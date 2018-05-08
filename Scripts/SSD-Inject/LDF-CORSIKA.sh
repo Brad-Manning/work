@@ -23,7 +23,7 @@ do
 
 	/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/./usereadpart <<EOF
    ${i}
-    EOF
+EOF
 
 	wait
 
@@ -38,7 +38,7 @@ do
 	/remote/tesla/bmanning/work/Modules/Merge/./merge
 
     done
-mv MIP_r_bins.txt /remote/tesla/bmanning/data/SimulationData/proton/10E19/60deg/${e}MIP-inject.txt
+mv MIP_r_bins.txt /remote/tesla/bmanning/data/SimulationData/proton/10E19/0deg/${e}MIP-inject.txt
     
 rm -f qgsII*
 rm -f rValues.txt

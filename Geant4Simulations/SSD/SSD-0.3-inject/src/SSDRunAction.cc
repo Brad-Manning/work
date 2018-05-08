@@ -51,8 +51,8 @@ SSDRunAction::SSDRunAction()
   G4int line_no = 0;
   while(myFile >> line) {
     line_no++;
-    if (line_no == 1 ) { nParticles = line; }
-    if (line_no == 3 ) {    
+    if (line_no == 3 ) { nParticles = line; }
+    if (line_no == 1 ) {    
       if ( var == 0 ) tank_pos = line;
       var = true;
     }
