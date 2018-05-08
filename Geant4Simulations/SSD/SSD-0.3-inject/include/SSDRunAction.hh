@@ -26,10 +26,13 @@ class SSDRunAction : public G4UserRunAction
     virtual void   EndOfRunAction(const G4Run*);
 
     void AddEdep (G4double edep); 
-    G4double GetWeight (G4int count);
+    G4double GetWeight ();
   private:
     G4Parameter<G4double> fEdep;
     G4Parameter<G4double> fEdep2;
+    std::vector<G4double> fWeight;
+    bool fUseWeights;
+    G4int fIdx = 0;
 };
 
 #endif

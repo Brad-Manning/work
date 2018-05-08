@@ -35,24 +35,26 @@ CherenkovRunAction::CherenkovRunAction()
   std::ifstream myFile("runInfo.txt");
   std::ifstream weightAll ("weightAll.txt");
   G4double w;
+  G4int line_no = 0;
   while(myFile >> line) {
-    nParticles = line;
-   
-    if ( var == 0 ) tank_pos = line;
-    var = true;
-
-    if ( line == "1" )
-       {
-	 fUseWeights = true;
-	 // G4cout << "line = 1 " << G4endl;
-	 while (weightAll >> w)
-	   {
-	     fWeight.push_back (w);
-	     // G4cout << w << G4endl;
-	   }
-       }
-    if ( line == "0" ) {
-      fUseWeights = false;
+    line_no++;
+    if (line_no == 1 ) { nParticles = line; }
+    if (line_no == 3 ) {
+      if ( var == 0 ) tank_pos = line;
+      var = true;
+    }
+    if (line_no == 2) {
+      if ( line == "1" )
+	{
+	  fUseWeights = true;
+	  while (weightAll >> w)
+	    {
+	      fWeight.push_back (w);
+	    }
+	}
+      if ( line == "0" ) {
+	fUseWeights = false;
+      }
     }
   }
   

@@ -21,7 +21,6 @@
 #include <fstream>
 #include <vector>
 
-std::vector < G4double > weight;
 SSDRunAction::SSDRunAction()
 : G4UserRunAction(),
   fEdep("Edep", 0.),
@@ -36,31 +35,43 @@ SSDRunAction::SSDRunAction()
   G4AnalysisManager* man = G4AnalysisManager::Instance();
 
   G4String fileName = "SSD";
-  // std::vector < G4double > weight;
+
   man->CreateH1("0","Energy Deposit",100, 0.000000, 15*MeV);
   man->CreateH1("1","Energy Deposit Variance", 100, 0.000000, 16.0*MeV);
   man->CreateH1("2","Energy Deposit (MIP)", 100, 0.000000, 3);
   man->OpenFile(fileName);
-  G4double w = 1;
+
   std::string nParticles;
   std::string tank_pos;
   std::string line;
   bool var = false;
   std::ifstream myFile("runInfo.txt");
+  std::ifstream weightAll ("weightAll.txt");
+  G4double w;
+  G4int line_no = 0;
   while(myFile >> line) {
-    nParticles = line;
-    
-    if ( var == 0 ) tank_pos = line;
-    var = true;
+    line_no++;
+    if (line_no == 1 ) { nParticles = line; }
+    if (line_no == 3 ) {    
+      if ( var == 0 ) tank_pos = line;
+      var = true;
+    }
+    if (line_no == 2) {
+      if ( line == "1" )
+	{
+	  fUseWeights = true;
+	  while (weightAll >> w)
+	    {
+	      fWeight.push_back (w);
+	    }
+	}
+      if ( line == "0" ) { fUseWeights = false; }
+    }
   }
   G4cout << "Run: Detector Position: " << tank_pos << " # Injected Particles: " << nParticles << G4endl;
   
   G4cout.rdbuf(NULL); 
   
-  if ( remove( "eValues.txt" ) != 0)
-    perror( "Error deleting file eValues.txt");
-  else
-    puts( "Successfully deleted eValues.txt");
 }
 
 SSDRunAction::~SSDRunAction()
@@ -109,8 +120,8 @@ void SSDRunAction::EndOfRunAction(const G4Run* run)
     G4double particleEnergy = particleGun->GetParticleEnergy();
     runCondition += G4BestUnit(particleEnergy,"Energy");
   }
-      
- 
+  //Increment weight index ready for new run   
+  fIdx++;
 }
 
 void SSDRunAction::AddEdep(G4double edep)
@@ -119,9 +130,13 @@ void SSDRunAction::AddEdep(G4double edep)
   fEdep2 += edep*edep;
 }
 
-G4double SSDRunAction::GetWeight(G4int count)
+G4double SSDRunAction::GetWeight()
 {
-  G4double weight_value = weight[count];
-  return weight_value;
+  if (fUseWeights)
+    {
+      return fWeight[fIdx];
+    } else {
+    return 1;
+  }
 }
 

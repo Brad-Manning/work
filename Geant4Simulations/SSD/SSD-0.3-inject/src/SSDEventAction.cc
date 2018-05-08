@@ -39,18 +39,17 @@ void SSDEventAction::EndOfEventAction(const G4Event*)
   fRunAction->AddEdep(fEdep2);
   //Get root manager
   G4AnalysisManager* man = G4AnalysisManager::Instance();
-  //weight = fRunAction->GetWeight(count);
-  weight = 1;
-  count++;
-  // G4cout << count << G4endl;
+  weight = fRunAction->GetWeight();
+  
+
   // MAGIC NUMBER FOR MIP FROM 100K RUNS OF VERTICAL MUON.
   man->FillH1(2,fEdep/2.41, weight);
   man->FillH1(0,fEdep);
   man->FillH1(1,fEdep2, weight);
   //Record energy values
-  std::ofstream eValues;
-  eValues.open ("eValues.txt", std::ios_base::app | std::ios_base::out);
-  eValues << fEdep << "\n";
+  // std::ofstream eValues;
+  // eValues.open ("eValues.txt", std::ios_base::app | std::ios_base::out);
+  // eValues << fEdep << "\n";
   totalVEM += fEdep*weight;
   // G4cout << fEdep << " with weight " << weight << G4endl;
   //Record VEM values
