@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- Configuration of Module EventFileReader -->
+
+<EventFileReader
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation='@SCHEMALOCATION@/EventFileReader.xsd'>
+
+  <ReportFilenames/>
+
+  <CORSIKA>
+
+    <!-- the list of filenames -->
+    <InputFilenames>
+      @AUGEROFFLINEROOT@/share/auger-offline/doc/SampleShowers/Corsika-1e19-6.part
+    </InputFilenames>
+
+    <!-- This is relative to what is specified in InputFilenames -->
+    <PatternPath> *.part </PatternPath>
+    
+    <!-- This is relative to what is specified in InputFilenames -->
+    <InputMapping>
+      <GroundData> (1).part </GroundData>
+      <ProfileData> (1).long </ProfileData>
+    </InputMapping>    
+    
+  </CORSIKA>
+
+</EventFileReader>

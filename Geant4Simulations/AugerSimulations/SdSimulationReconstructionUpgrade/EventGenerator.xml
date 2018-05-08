@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!-- Configuration of Module EventGenerator -->
+
+<!-- In the EventGenerator tag we define the path and name of the schema file
+     (EventGenerator.xsd) used to validate this xml file. When make is invoked,
+     \@SCHEMALOCATION\@ gets replaced by the path to the directory in the install area
+     where configuration files are copied. -->
+
+<EventGenerator
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation='/home/tesla/bmanning/trunk-install/share/auger-offline/config/EventGenerator.xsd'>
+
+  <mode> SD </mode>
+
+  <!--
+    The <eventIdentifier> is used to set the event ID for simulated
+    events. The event ID is composed of 4 parts:
+    1) libraryIdentifier (specified below). This can indicate purpose of
+       the run, what computing center was used, or whatever the person
+       in charge of productions feels is relevant
+    2) A Run Id, which is read automatically from the shower file
+    3) The Shower Id, which is read automatically from the shower file
+    4) The number of times a given shower has been used by the event
+       generator (in case, for example, one decides to throw the same
+       shower in various positions on the array)
+    The <format> tag below can be used to determine how the 4 components
+    are arranged and decorated to form the event ID. You can use the usual printf
+    directives in this <format> tag.
+  -->
+
+  <eventIdentifier>
+    <libraryIdentifier> Test </libraryIdentifier>
+    <format> Library_%1%:Run_%2%:Shower_%3%:Use_%4% </format>
+    <!-- digits to reserve in SD id for shower and use -->
+    <sdIdFormat> 2 2 </sdIdFormat>
+  </eventIdentifier>
+
+  <!-- Specify how to randomize the core position -->
+  <coreRandomization>
+    <useRandomStation> 1 </useRandomStation>
+  </coreRandomization>
+
+  <!-- Time stamp of the core impact on ground -->
+  <eventTime> 2008-01-01T04:33:12.5 </eventTime>
+
+  <!-- Use core position and/or time from radio event data -->
+  <useRadioCorePosition>0</useRadioCorePosition>
+  <useRadioEventTime>0</useRadioEventTime>
+
+</EventGenerator>

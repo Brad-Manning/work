@@ -1,0 +1,6 @@
+/run/initialize
+/gun/particle mu+
+/gun/momentum 10 10 -5
+/run/beamOn 7
+
+

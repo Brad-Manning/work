@@ -1,0 +1,6 @@
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build/CMakeFiles/install/local.dir
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build/CMakeFiles/list_install_components.dir
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build/CMakeFiles/rebuild_cache.dir
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build/CMakeFiles/install.dir
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build/CMakeFiles/Cherenkov.dir
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build/CMakeFiles/edit_cache.dir

@@ -1,0 +1,7 @@
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/install/strip.dir
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/edit_cache.dir
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/Cherenkov.dir
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/install.dir
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/rebuild_cache.dir
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/list_install_components.dir
+/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/install/local.dir

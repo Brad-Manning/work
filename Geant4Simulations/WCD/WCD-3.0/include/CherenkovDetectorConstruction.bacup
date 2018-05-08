@@ -1,0 +1,34 @@
+//Bradley Manning 8/2017
+
+
+
+#ifndef CherenkovDetectorConstruction_h
+#define CherenkovDetectorConstruction_h 1
+
+#include "globals.hh"
+#include "G4VUserDetectorConstruction.hh"
+
+class CherenkovDetectorConstruction : public G4VUserDetectorConstruction
+{
+public:
+  CherenkovDetectorConstruction();
+  ~CherenkovDetectorConstruction();
+
+public:
+  G4VPhysicalVolume* Construct();
+
+private:
+  G4double expHall_x;
+    G4double expHall_y;
+    G4double expHall_z;
+
+    G4double tank_x;
+    G4double tank_y;
+    G4double tank_z;
+
+    G4double bubble_x;
+    G4double bubble_y;
+    G4double bubble_z;
+};
+
+#endif /*CherenkovDetectorConstruction.hh*/

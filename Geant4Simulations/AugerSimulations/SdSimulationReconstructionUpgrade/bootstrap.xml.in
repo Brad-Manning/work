@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+
+<!DOCTYPE bootstrap [
+  <!ENTITY standardSdIdealDetConfig SYSTEM '@CONFIGDIR@/standardSdIdealDetConfig.xml'>
+  <!ENTITY standardSdSimModuleConfig SYSTEM '@CONFIGDIR@/standardSdSimModuleConfig.xml'>
+  <!ENTITY standardSdRecModuleConfig SYSTEM '@CONFIGDIR@/standardSdRecModuleConfig.xml'>
+]>
+
+<bootstrap
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:noNamespaceSchemaLocation='@SCHEMALOCATION@/bootstrap.xsd'
+  xmlns:xlink="http://www.auger.org/schema/types">
+
+  &standardSdIdealDetConfig;
+  &standardSdSimModuleConfig;
+  &standardSdRecModuleConfig;
+
+  <centralConfig>
+
+    <configLink
+      id         = "ModuleSequence"
+      type       = "XML"
+      xlink:href = "./ModuleSequence.xml"/>
+
+    <configLink
+      id         = "EventFileReader"
+      type       = "XML"
+      xlink:href = "./EventFileReader.xml"/>
+
+    <configLink
+      id         = "EventFileExporter"
+      type       = "XML"
+      xlink:href = "./EventFileExporter.xml"/>
+
+    <configLink
+      id         = "EventGenerator"
+      type       = "XML"
+      xlink:href = "./EventGenerator.xml"/>
+
+   <configLink
+       id         = "SStationListXMLManager"
+       type       = "XML"
+       xlink:href = "@CONFIGDIR@/SIdealUpgradedStationList.xml"/>
+
+  </centralConfig>
+
+  <parameterOverrides>
+
+    <configLink id="G4StationSimulator">
+      <G4StationSimulator>
+        <fullTrackMode> 1 </fullTrackMode>
+      </G4StationSimulator>
+    </configLink>
+    
+    <configLink id="RecDataWriter">
+      <RecDataWriter>
+        <asciiOutput>
+          <outputFileMode> eWrite </outputFileMode>
+          <mode> Hybrid </mode>
+          <outputFileName> HybridRec.dat </outputFileName>
+
+          <!-- Minimum reconstruction FD level for Tree entry (see FdRecLevel.h)
+               negative: no FD is stored -->
+          <minimumFDRecLevel> 5 </minimumFDRecLevel>
+
+          <!-- Minimum reconstruction level for Tree entry (see SdRecLevel.h)
+               negative: no SD is stored -->
+          <minimumSDRecLevel> 3 </minimumSDRecLevel>
+        </asciiOutput>
+      </RecDataWriter>
+    </configLink>
+
+    <configLink id="SDenseStationListXMLManager">
+      <SDenseStationList>
+        <hardwareVersion> 1 </hardwareVersion>
+      </SDenseStationList>
+    </configLink>
+
+  </parameterOverrides>
+
+</bootstrap>

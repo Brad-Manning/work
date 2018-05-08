@@ -1,0 +1,40 @@
+/run/verbose 2
+/run/initialize
+/control/execute vis.mac
+/vis/open OGL 600x600-0+0
+/vis/sceneHandler/create OGL
+/vis/viewer/create ! ! 600x600-0+0
+/vis/viewer/set/autoRefresh false
+/vis/verbose errors
+/vis/drawVolume
+/vis/scene/create
+/vis/scene/add/volume world
+/vis/sceneHandler/attach
+/vis/viewer/set/viewpointVector -1 0 0
+/vis/viewer/set/lightsVector -1 0 0
+/vis/viewer/set/style wireframe
+/vis/viewer/set/auxiliaryEdge true
+/vis/viewer/set/lineSegmentsPerCircle 100
+/vis/scene/add/trajectories smooth
+/tracking/storeTrajectory 2
+/vis/modeling/trajectories/create/drawByCharge
+/vis/modeling/trajectories/drawByCharge-0/default/setDrawStepPts true
+/vis/scene/notifyHandlers scene-0
+/vis/modeling/trajectories/drawByCharge-0/default/setStepPtsSize 2
+/vis/scene/notifyHandlers scene-0
+/vis/scene/endOfEventAction accumulate
+/vis/geometry/set/visibility World 0 false
+/vis/geometry/set/visibility Envelope 0 false
+/vis/viewer/set/style surface
+/vis/viewer/set/hiddenMarker true
+/vis/viewer/set/viewpointThetaPhi 120 150
+/vis/viewer/set/autoRefresh true
+/vis/verbose warnings
+/vis/geometry/set/colour vessel_cover 0 red
+/vis/geometry/set/colour vessel_bottom 0 yellow
+/vis/geometry/set/colour vessel_vertical_strip_1 0 green
+/vis/geometry/set/colour vessel_vertical_strip_2 0 green
+/vis/geometry/set/colour vessel_horizontal_strip_1 0 green
+/vis/geometry/set/colour vessel_horizontal_strip_2 0 green
+/vis/geometry/set/colour scintillator_left_module 0 blue
+/vis/geometry/set/colour scintillator_right_module 0 blue
