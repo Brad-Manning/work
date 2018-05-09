@@ -64,7 +64,7 @@ int main(){
   double_t  error[nEvents] = {0};
   cout << "dir to get files of: " << flush;
   //getline( cin, dir );  // gets everything the user ENTERs
-  dir =  "/remote/tesla/bmanning/data/SimulationData/proton/10E19/0deg";
+  dir =  "/remote/tesla/bmanning/data/SimulationData/proton/10E19/60deg";
   dp = opendir( dir.c_str() );
   if (dp == NULL)
     {
@@ -101,7 +101,7 @@ int main(){
    
     while ( fin >> num) 
       {
-	if ( file.find("MIP") != std::string::npos ){ //MIP file
+	if ( ( file.find("MIP") != std::string::npos  ) && ( file.find("inject") != std::string::npos ) ) { //MIP file
 	  //Define R start point and bin
 	  if ( file.find("Photon") != std::string::npos) {
 	    pSimLDFSSD->SetPoint(pSimLDFSSD->GetN(), prMIP, num/2);
@@ -118,7 +118,6 @@ int main(){
 	    rStep = (1+factor)*erMIP;
 	    erMIP = rStep / (1-factor);
 
-	  } if ( ( file.find("Electron") !=std::string::npos ) || ( file.find("Muon") != std::string::npos) || ( file.find("Photon") != std::string::npos ) ) {
 	  } else {
 	  
 	    simLDFSSD->SetPoint(simLDFSSD->GetN(), rMIP, num/2);
@@ -133,41 +132,36 @@ int main(){
 	  //simLDFSSD->SetPoint(simLDFSSD->GetN(), rMIP, num/2);
 	  //rMIP = rMIP + rStep;
 	  
-	} else if ( file.find("VEM") != std::string::npos ) { //VEM file
+	} else if ( ( file.find("VEM") != std::string::npos ) && (file.find("inject") != std::string::npos ) ) { //VEM file
 
 	    
-	  if ( file.find("Photon") != std::string::npos) {
+	  if ( file.find("photon") != std::string::npos) {
 	    pSimLDFSD->SetPoint(pSimLDFSD->GetN(), prVEM, num);
 	    rVEMStep = (1+factor)*prVEM;
 	    prVEM =  rVEMStep / (1-factor);
-	  } if (file.find("Muon") != std::string::npos) {
+	  } else if (file.find("muon") != std::string::npos) {
 	    mSimLDFSD->SetPoint(mSimLDFSD->GetN(), mrVEM, num);
 	    rVEMStep = (1+factor)*mrVEM;
 	    mrVEM = rVEMStep / (1-factor);
 
-	  } if (file.find("Electron") != std::string::npos) {
+	  } else if (file.find("electron") != std::string::npos) {
 	    eSimLDFSD->SetPoint(eSimLDFSD->GetN(), erVEM, num);
 	    rVEMStep = (1+factor)*erVEM;
 	    erVEM = rVEMStep / (1-factor);
 
 	  
 	  
-	  }
-
-	  if ( ( file.find("Electron") !=std::string::npos ) || ( file.find("Muon") != std::string::npos) || ( file.find("Photon") != std::string::npos ) ) {
 	  } else {
-	    if ( ( file.find("inject") !=std::string::npos ) ) {
-	      
-	      simLDFSD->SetPoint(simLDFSD->GetN(), rVEM, num);
-	      rVEMStep = (1+factor)*rVEM;
-	      rVEM = rVEMStep / (1-factor);
-	      sum[idx % nEvents] += num;
+	    simLDFSD->SetPoint(simLDFSD->GetN(), rVEM, num);
+	    rVEMStep = (1+factor)*rVEM;
+	    rVEM = rVEMStep / (1-factor);
+	    sum[idx % nEvents] += num;
 	      
 	  }
 	 
 	    // cout << sum[idx % nEvents] << endl;
 	   
-	  }
+	  
 	}
 	idx++;
       } 
@@ -312,7 +306,7 @@ int main(){
   TCanvas *c3 = new TCanvas("VEM-2", "VEM-2", 1920, 1000);
   TMultiGraph *mg3 = new TMultiGraph();
   c3->cd();
-  //mg3->Add(simLDFSD);
+  mg3->Add(simLDFSD);
   mg3->Add(LDFSD);
   // mg3->Add(simLDFSDerrors);
   mg3->Draw("AP*");
@@ -324,7 +318,7 @@ int main(){
 
   TLegend* leg3 = new TLegend(0.1, 0.7, 0.48, 0.9);
   leg3->AddEntry(LDFSD, "OffLine - Signal (VEM PEAK)", "p");
-  //leg3->AddEntry(simLDFSD, "My G4 - Signal (VEM PEAK)", "p");
+  leg3->AddEntry(simLDFSD, "My G4 - Signal (VEM PEAK)", "p");
   leg3->Draw();
 
   c3->SetTitle("Lateral Distribution Function (My G4 vs OffLine)");
