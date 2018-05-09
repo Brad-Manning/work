@@ -5,14 +5,14 @@
 
     <!-- Directory to CORSIKA file location -->
     <file>/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part</file>
-    
+    <saveLocation>/remote/tesla/bmanning/data/SimulationData/proton/10E19/0deg/</saveLocation>
     <particle>all</particle> <!-- all, muon, gamma, electron -->
     <phi> 0.15 </phi> <!-- Radians -->
     <delta> 0.1 </delta> <!-- width either side of tank for section of ring -->
-    <startingPosition>66</startingPosition>
+    <startingPosition>164</startingPosition>
     <!-- distance (m) of first tank from shower core -->
     <weightedSimulation> 1 </weightedSimulation> <!-- Allow the program to use a weighted simulation for number of incident particles > threshold; 0 (false), 1 (true) -->
-    <threshold>30000</threshold>
+    <threshold>20000</threshold>
 
     <detector>0</detector> <!-- 0 corresponds to WCD, 1, SSD -->
     

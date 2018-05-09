@@ -2,7 +2,7 @@
 
 startingPosition=$(sed -n 's/.*<startingPosition>\(.*\)<\/startingPosition>/\1/p' CORSIKAParameters.xml)
 
-for e in {0..20..1}
+for e in {0..0..1}
 do
     let step=1
     #for i in {366..4000..${step}}
@@ -38,7 +38,8 @@ EOF
 	/remote/tesla/bmanning/work/Modules/Merge/./merge
 
     done
-mv MIP_r_bins.txt /remote/tesla/bmanning/data/SimulationData/proton/10E19/0deg/${e}MIP-inject.txt
+saveLocation=$(sed -n 's/.*<saveLocation>\(.*\)<\/saveLocation>/\1/p' CORSIKAParameters.xml)
+mv MIP_r_bins.txt ${saveLocation}${e}MIP-inject.txt
     
 rm -f qgsII*
 rm -f rValues.txt

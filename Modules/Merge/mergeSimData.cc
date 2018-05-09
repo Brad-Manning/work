@@ -64,7 +64,7 @@ int main(){
   double_t  error[nEvents] = {0};
   cout << "dir to get files of: " << flush;
   //getline( cin, dir );  // gets everything the user ENTERs
-  dir =  "/remote/tesla/bmanning/data/SimulationData/proton/10E19/60deg";
+  dir =  "/remote/tesla/bmanning/data/SimulationData/proton/10E19/0deg";
   dp = opendir( dir.c_str() );
   if (dp == NULL)
     {
@@ -118,14 +118,13 @@ int main(){
 	    rStep = (1+factor)*erMIP;
 	    erMIP = rStep / (1-factor);
 
-	  } else {
-	  
-	    simLDFSSD->SetPoint(simLDFSSD->GetN(), rMIP, num/2);
-	    rStep = (1+factor)*rMIP;
-	    rMIP = rStep / (1-factor);
-	
 	  }
+	  simLDFSSD->SetPoint(simLDFSSD->GetN(), rMIP, num/2);
+	  rStep = (1+factor)*rMIP;
+	  rMIP = rStep / (1-factor);
+	
 	  
+      
 	  
 	  //cout << dirp->d_name << ": " << num << endl;
 	  //Note MIP was not calibrated to MIP in GEANT4 (hence 2)
@@ -139,25 +138,23 @@ int main(){
 	    pSimLDFSD->SetPoint(pSimLDFSD->GetN(), prVEM, num);
 	    rVEMStep = (1+factor)*prVEM;
 	    prVEM =  rVEMStep / (1-factor);
-	  } else if (file.find("muon") != std::string::npos) {
+	  } if (file.find("muon") != std::string::npos) {
 	    mSimLDFSD->SetPoint(mSimLDFSD->GetN(), mrVEM, num);
 	    rVEMStep = (1+factor)*mrVEM;
 	    mrVEM = rVEMStep / (1-factor);
 
-	  } else if (file.find("electron") != std::string::npos) {
+	  } if (file.find("electron") != std::string::npos) {
 	    eSimLDFSD->SetPoint(eSimLDFSD->GetN(), erVEM, num);
 	    rVEMStep = (1+factor)*erVEM;
 	    erVEM = rVEMStep / (1-factor);
-
 	  
-	  
-	  } else {
-	    simLDFSD->SetPoint(simLDFSD->GetN(), rVEM, num);
-	    rVEMStep = (1+factor)*rVEM;
-	    rVEM = rVEMStep / (1-factor);
-	    sum[idx % nEvents] += num;
-	      
 	  }
+	  simLDFSD->SetPoint(simLDFSD->GetN(), rVEM, num);
+	  rVEMStep = (1+factor)*rVEM;
+	  rVEM = rVEMStep / (1-factor);
+	  sum[idx % nEvents] += num;
+	      
+	  
 	 
 	    // cout << sum[idx % nEvents] << endl;
 	   

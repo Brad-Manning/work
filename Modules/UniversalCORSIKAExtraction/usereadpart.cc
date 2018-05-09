@@ -216,7 +216,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		weight = Part.weight;
 		
 		//1.2 = height of tank (m)
-		if (!(parameter.detector)) { area_tank = M_PI * pow(r_tank,2) * cos( zenith ) + 2*r_tank*1.2*sin( zenith );	}
+		if (!(parameter.detector)) { area_tank = M_PI * pow(r_tank,2) * cos( zenith ) + 2*r_tank*1.2*sin( zenith );}
 		else { area_tank = 4 * cos ( zenith ); } //Area of Scintillator is 4 sq m;
 		
 		double area_section = M_PI * ( pow(fTank_pos+delta*fTank_pos,2) - pow(fTank_pos-delta*fTank_pos,2) ) * ( (maxPhi-minPhi) / ( 2*M_PI ) );// * cos(zenith);
@@ -301,7 +301,7 @@ int main (int argc, char **argv){
     weightedSimulation(nParticles, parameter.weightedSimulation,parameter.threshold);
     useWeights = 1;
     fPositionDefined = true;
-    cout << fTank_pos << endl;
+    //cout << fTank_pos << endl;
     nParticles = createGEANT4Files(argc, argv, parameter, useWeights, nParticles);
    
   }

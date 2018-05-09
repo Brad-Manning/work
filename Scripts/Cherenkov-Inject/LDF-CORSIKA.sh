@@ -40,7 +40,10 @@ EOF
 	/remote/tesla/bmanning/work/Modules/Merge/./merge
 
     done
-mv VEM_r_bins.txt /remote/tesla/bmanning/data/SimulationData/proton/10E19/0deg/${e}VEM-inject.txt
+
+saveLocation=$(sed -n 's/.*<saveLocation>\(.*\)<\/saveLocation>/\1/p' CORSIKAParameters.xml)
+
+mv VEM_r_bins.txt ${saveLocation}${e}VEM-inject.txt
     
 rm -f qgsII*
 rm -f rValues.txt

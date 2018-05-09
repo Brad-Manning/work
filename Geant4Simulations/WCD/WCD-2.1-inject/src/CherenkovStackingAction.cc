@@ -57,7 +57,6 @@ void CherenkovStackingAction::NewStage()
   // G4cout << w << G4endl;
   man->FillH1(0,gammaCounter,w);
   man->FillH1(1,gammaCounter/49450.0,w); //VEM graph
-  count++;
   totalPhotons += (gammaCounter)/49450.0*w;///49450.0;
  
   //G4cout << "VEM: " << totalPhotons << " Hits: "  << hits << " Hits w/ weight: " << hitsWeight <<  G4endl;
