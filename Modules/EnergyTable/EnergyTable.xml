@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+
+<EnergyTable>
+  <EnergyTableParameters>
+
+    <directory> </directory> <!-- specify directory where files are stored -->
+
+    <tankPosition>1000</tankPosition>
+
+    <compositions>
+      <model>qgsII3</model>
+      <model>qgsII4</model>
+    </compositions>
+
+    <primary>
+      <particle>proton</particle>
+      <particle>iron</particle>
+    </primary>
+    
+    <energies>
+      <energy>18.5</energy>
+      <energy>19</energy>
+      <energy>19.5</energy>
+      <energy>20</energy>
+    </energies>
+
+    <zenith>
+      <angle>0</angle> <!-- degrees -->
+      <angle>26</angle>
+      <angle>38</angle>
+      <angle>49</angle>
+      <angle>60</angle>
+    </zenith>
+
+    
+  </EnergyTableParameters>
+</EnergyTable> 

@@ -1,0 +1,104 @@
+// Bradley Manning 10/5/2018
+
+// Includes
+
+// C++
+
+#include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <math.h>
+#include <dirent.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
+
+#include <boost/foreach.hpp>
+#include <boost/property_tree/xml_parser.hpp>
+#include <boost/property_tree/ptree.hpp>
+
+
+using namespace std;
+
+
+double integral(double(*f)(double x), double a, double b, int n)
+{
+  double step = (b-a) / n ; //width of each rectangle
+  double area = 0.0;
+  for (int i = 0; i < n; i++ )
+    {
+      area += f(a + (i + 0.5) * step) * step; // sum up each small rectangle
+    }
+  return area;
+}
+
+double f(double theta)
+{
+  return pow(10,(parameter1*pow((1/cos(theta)-1),2)+parameter0))*sin(theta)*cos(theta);
+}
+
+struct parameters
+{
+  std::string directory;
+  int tankPosition;
+};
+
+
+parameters read( std::istream & is)
+{
+  using boost::property_tree::ptree;
+  ptree pt;
+  read_xml(is,pt);
+  parameters p;
+  BOOST_FOREACH ( ptree::value_type const& v, pt.get_child("EnergyTable"))
+    {
+      if( v.first == "EnergyTableParameters" ) {
+	p.file = v.second.get<std::string>("directory");
+	p.file = v.second.get<int>("tankPosition");
+	
+      }
+    }
+  return p;
+}
+
+void getDataFromDirectory(string directory)
+{
+  ifstream fin;
+  string dir, filepath, file;
+  double num; DIR *dp;
+  
+  struct dirent *dirp;
+  struct stat filestat;
+  double VEM;
+  int nFiles;
+  
+  cout << "dir to get files of: " << flush;
+  dir = directory;
+  dp = open( dir.c_str() );
+  if (dp == NULL)
+    {
+      cout << "Error(" << errno << ") opening " << dir << endl;
+      break;
+    }
+  while ((dirp = readdir( dp )))
+    {
+      filepath = dir + "/" + dirp->d_name;
+      file = dirp->d_name;
+      // If th fileis a directory (or is in some way invalid) we'll skip it
+      if (stat( filepath.c_str(), &filestat )) continue;
+      if (S_ISDIR( filestat.st_mode )) continue;
+
+      // Endeavor to read a single number from the file and display it
+      fin.open( filepath.c_str() );
+
+      //File is opened
+
+      while ( fin >> num ) 
+	{
+	  if ( -
+	       }
+
+	}
+      
+}

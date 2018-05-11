@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+
+<EnergyTable>
+  <EnergyTableParameters>
+
+    <directory> </directory> <!-- specify directory where files are stored -->
+
+    <tankPosition>1000</tankPosition>
+
+  </EnergyTableParameters>
+</EnergyTable> 

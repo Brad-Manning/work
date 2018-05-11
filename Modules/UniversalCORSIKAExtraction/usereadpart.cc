@@ -219,8 +219,8 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		if (!(parameter.detector)) { area_tank = M_PI * pow(r_tank,2) * cos( zenith ) + 2*r_tank*1.2*sin( zenith );}
 		else { area_tank = 4 * cos ( zenith ); } //Area of Scintillator is 4 sq m;
 		
-		double area_section = M_PI * ( pow(fTank_pos+delta*fTank_pos,2) - pow(fTank_pos-delta*fTank_pos,2) ) * ( (maxPhi-minPhi) / ( 2*M_PI ) );// * cos(zenith);
-		   
+		double area_section = M_PI * ( pow(fTank_pos+delta*fTank_pos,2) - pow(fTank_pos-delta*fTank_pos,2) ) * ( (maxPhi-minPhi) / ( 2*M_PI ) );//* cos(zenith);
+		//cout << "Before: " << area_section << " After : " << area_section*cos(zenith) << " zenith : " << zenith << endl;
 		double average_n = weight * ( area_tank / area_section );
 
        		boost::poisson_distribution<int> distribution(average_n);

@@ -64,7 +64,7 @@ int main(){
   double_t  error[nEvents] = {0};
   cout << "dir to get files of: " << flush;
   //getline( cin, dir );  // gets everything the user ENTERs
-  dir =  "/remote/tesla/bmanning/data/SimulationData/proton/10E19/0deg";
+  dir =  "/remote/tesla/bmanning/data/SimulationData/proton/10E19/60deg";
   dp = opendir( dir.c_str() );
   if (dp == NULL)
     {
