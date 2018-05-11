@@ -1,0 +1,89 @@
+//Bradley Manning 11/5/2018
+
+
+#include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <math.h>
+#include <sstream>
+#include <iomanip>
+#include "TVector2.h"
+#include "TROOT.h"
+#include "TSystem.h"
+#include "TStyle.h"
+#include "TH1F.h"
+#include "TH2F.h"
+#include "TMultiGraph.h"
+#include "TGraphErrors.h"
+#include "TMarker.h"
+#include "TGraph.h"
+#include "TProfile.h"
+#include "TCanvas.h"
+#include "TCut.h"
+#include "TLatex.h"
+#include "TColor.h"
+#include "TFile.h"
+#include "TApplication.h"
+#include "TLegend.h"
+#include "TGraph.h"
+#include <cstdlib>
+using namespace std;
+
+int main()
+{
+
+  ifstream zenithAngles ("ZenithAngles.txt");
+  int type;
+  double zenith, w;
+
+  TH1* spaceAnglesMuon = new TH1F("spaceAnglesMuon", "Space Angle Muon" , 1000, -90, 90 );
+  TH1* spaceAnglesElectron = new TH1F("spaceAnglesElectron", "Space Angle Electron" , 1000, -90, 90 );
+  TH1* spaceAnglesPhoton = new TH1F("spaceAnglesPhoton", "Space Angle Photon" , 1000, -90, 90 );
+  TH1* spaceAnglesAll = new TH1F("spaceAnglesAll", "Space Angle All" , 1000, -90, 90 );
+  
+  
+
+  
+  if (zenithAngles.is_open())
+    {
+      while ( zenithAngles >> type >> zenith >> w )
+	{
+	  if (type == 1)
+	    {
+	      spaceAnglesPhoton->Fill(zenith, w);
+	    }
+	  if (type == 2 || type == 3)
+	    {
+	      spaceAnglesElectron->Fill(zenith, w);
+	    }
+	  if (type == 5 || type == 6)
+	    {
+	      spaceAnglesMuon->Fill(zenith, w);
+	    }
+	  spaceAnglesAll->Fill(zenith, w);
+	}
+    }
+
+  TFile *spaceAnglesFile = new TFile("spaceAngles.root", "RECREATE");
+  TCanvas *spaceAngles = new TCanvas("Space Angles", "Space Angles", 1920, 1000);
+  spaceAngles->cd();
+
+  spaceAnglesPhoton->Draw();
+  spaceAnglesElectron->Draw();
+  spaceAnglesMuon->Draw();
+  spaceAnglesAll->Draw();
+  spaceAnglesPhoton->GetXaxis()->SetTitle("Zenith Angle");
+  spaceAnglesElectron->GetXaxis()->SetTitle("Zenith Angle");
+  spaceAnglesMuon->GetXaxis()->SetTitle("Zenith Angle");
+  spaceAnglesAll->GetXaxis()->SetTitle("Zenith Angle");
+  spaceAnglesPhoton->Write();
+  spaceAnglesElectron->Write();
+  spaceAnglesMuon->Write();
+  spaceAnglesAll->Write();
+
+  spaceAngles->Write();
+
+  spaceAnglesFile->Write();
+  return 1;
+}

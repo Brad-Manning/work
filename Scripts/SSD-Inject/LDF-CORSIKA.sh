@@ -2,7 +2,7 @@
 
 startingPosition=$(sed -n 's/.*<startingPosition>\(.*\)<\/startingPosition>/\1/p' CORSIKAParameters.xml)
 
-for e in {0..20..1}
+for e in {0..5..1}
 do
     let step=1
     #for i in {366..4000..${step}}
@@ -21,7 +21,7 @@ do
 #	echo ${rs20}
 #	echo ${rs21}
 
-	/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/./usereadpart <<EOF
+	/remote/tesla/bmanning/work/Modules/GroundBasedCORSIKA/./usereadpart <<EOF
    ${i}
 EOF
 
