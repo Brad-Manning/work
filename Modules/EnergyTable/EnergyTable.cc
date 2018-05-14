@@ -20,7 +20,8 @@
 
 
 using namespace std;
-
+using namespace boost;
+using namespace boost::property_tree;
 
 // double integral(double(*f)(double x), double a, double b, int n)
 // {
@@ -54,6 +55,11 @@ struct signal
   double VEM;
 };
 
+const ptree& empty_ptree() {
+  static ptree t;
+  return t;
+}
+
 parameters read( std::istream & is)
 {
   using boost::property_tree::ptree;
@@ -65,10 +71,49 @@ parameters read( std::istream & is)
       if( v.first == "EnergyTableParameters" ) {
 	p.directory = v.second.get<std::string>("directory");
 	p.tankPosition = v.second.get<std::string>("tankPosition");
-	
-	p.composition.push_back
       }
+      
     }
+
+  BOOST_FOREACH ( ptree::value_type const& v, pt.get_child("EnergyTable.EnergyTableParameters"))
+  {
+    if ( v.first == "energies" )
+      {
+	ptree subtree = v.second;
+	BOOST_FOREACH(const ptree::value_type & f, subtree.equal_range("energy"))
+	  {
+	    std::string a = f.second.data();
+	    p.energies.push_back(std::stod(a));
+	  }
+      }
+    if ( v.first == "zenith" )
+      {
+	ptree subtree = v.second;
+	BOOST_FOREACH(const ptree::value_type & f, subtree.equal_range("angle"))
+	  {
+	    std::string a = f.second.data();
+	    p.zenith.push_back(std::stod(a));
+	  }
+      }
+    if ( v.first == "primary" )
+      {
+	ptree subtree = v.second;
+	BOOST_FOREACH(const ptree::value_type & f, subtree.equal_range("particle"))
+	  {
+	    std::string a = f.second.data();
+	    p.primary.push_back(a);
+	  }
+      }
+    if ( v.first == "compositions" )
+      {
+	ptree subtree = v.second;
+	BOOST_FOREACH(const ptree::value_type & f, subtree.equal_range("model"))
+	  {
+	    std::string a = f.second.data();
+	    p.compositions.push_back(a);
+	  }
+      }
+  }
   return p;
 }
 
@@ -96,7 +141,7 @@ signal getDataFromDirectory(string directory, parameters parameter)
     {
       filepath = dir + "/" + dirp->d_name;
       file = dirp->d_name;
-      // If th fileis a directory (or is in some way invalid) we'll skip it
+      // If the file is a directory (or is in some way invalid) we'll skip it
       if (stat( filepath.c_str(), &filestat )) continue;
       if (S_ISDIR( filestat.st_mode )) continue;
 
@@ -140,6 +185,12 @@ int main()
   std::ifstream input("EnergyTable.xml");
   parameters parameter = read( input );
   vector<signal> signal;
+
+
+  
+
+
+  
   signal.push_back(getDataFromDirectory("/remote/tesla/bmanning/data/EnergyTable/Auger/qgsII3/proton/10E19/0deg/", parameter));
   return 1;  
 }

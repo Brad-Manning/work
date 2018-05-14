@@ -3,7 +3,8 @@
 <EnergyTable>
   <EnergyTableParameters>
 
-    <directory> </directory> <!-- specify directory where files are stored -->
+     <!-- specify directory where files are stored -->
+    <directory> </directory>
 
     <tankPosition>1000</tankPosition>
 
@@ -16,16 +17,18 @@
       <particle>proton</particle>
       <particle>iron</particle>
     </primary>
-    
+
+    <!-- 10^(X) eV-->
     <energies>
-      <energy>18.5</energy>
+      <energy>18.5</energy> 
       <energy>19</energy>
       <energy>19.5</energy>
       <energy>20</energy>
     </energies>
 
+    <!-- degrees -->
     <zenith>
-      <angle>0</angle> <!-- degrees -->
+      <angle>0</angle>
       <angle>26</angle>
       <angle>38</angle>
       <angle>49</angle>

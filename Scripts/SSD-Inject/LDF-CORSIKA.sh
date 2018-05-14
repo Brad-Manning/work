@@ -2,7 +2,7 @@
 
 startingPosition=$(sed -n 's/.*<startingPosition>\(.*\)<\/startingPosition>/\1/p' CORSIKAParameters.xml)
 
-for e in {0..5..1}
+for e in {0..40..1}
 do
     let step=1
     #for i in {366..4000..${step}}
