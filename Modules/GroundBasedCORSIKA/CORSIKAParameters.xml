@@ -4,7 +4,7 @@
   <CORSIKA>
 
     <!-- Directory to CORSIKA file location -->
-    <file>/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part</file>
+    <file>/remote/tesla/bmanning/data/qgsII3/proton/19/0deg/DAT200006.part</file>
     
     <particle>all</particle> <!-- all, muon, gamma, electron -->
     <phi> 0.15 </phi> <!-- Radians -->

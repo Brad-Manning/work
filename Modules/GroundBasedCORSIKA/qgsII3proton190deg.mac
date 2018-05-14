@@ -1,0 +1,6 @@
+/run/initialize
+/gun/energy 0
+/run/beamOn 1
+/gun/momentum 0.0118917 0.0968406 -10.1634
+/gun/particle pi-
+/run/beamOn 15513

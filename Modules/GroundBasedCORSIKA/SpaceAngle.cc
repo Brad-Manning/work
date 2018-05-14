@@ -37,10 +37,10 @@ int main()
   int type;
   double zenith, w;
 
-  TH1* spaceAnglesMuon = new TH1F("spaceAnglesMuon", "Space Angle Muon" , 1000, -90, 90 );
-  TH1* spaceAnglesElectron = new TH1F("spaceAnglesElectron", "Space Angle Electron" , 1000, -90, 90 );
-  TH1* spaceAnglesPhoton = new TH1F("spaceAnglesPhoton", "Space Angle Photon" , 1000, -90, 90 );
-  TH1* spaceAnglesAll = new TH1F("spaceAnglesAll", "Space Angle All" , 1000, -90, 90 );
+  TH1* spaceAnglesMuon = new TH1F("spaceAnglesMuon", "Space Angle Muon" , 1000, -5, 90 );
+  TH1* spaceAnglesElectron = new TH1F("spaceAnglesElectron", "Space Angle Electron" , 1000, -5, 90 );
+  TH1* spaceAnglesPhoton = new TH1F("spaceAnglesPhoton", "Space Angle Photon" , 1000, -5, 90 );
+  TH1* spaceAnglesAll = new TH1F("spaceAnglesAll", "Space Angle All" , 1000, -5, 90 );
   
   
 

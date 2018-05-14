@@ -4,8 +4,8 @@
   <CORSIKA>
 
     <!-- Directory to CORSIKA file location -->
-    <file>/remote/tesla/bmanning/data/qgsII3/proton/10E19/60deg/DAT200010.part</file>
-    <saveLocation>/remote/tesla/bmanning/data/SimulationData/proton/10E19/60deg/</saveLocation>
+    <file>/remote/tesla/bmanning/data/qgsII3/proton/19/60deg/DAT200010.part</file>
+    <saveLocation>/remote/tesla/bmanning/data/SimulationData/proton/19/60deg/</saveLocation>
     <particle>all</particle> <!-- all, muon, gamma, electron -->
     <phi> 0.15 </phi> <!-- Radians -->
     <delta> 0.1 </delta> <!-- width either side of tank for section of ring -->

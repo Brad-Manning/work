@@ -212,13 +212,16 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		py = Part.py;
 		pz = Part.pz;
 		//Zenith is in RADIANS
-		zenith =  (atan2 ( py , pz  ) );
+		//zenith =  (atan2 ( px , pz  ) );
+		//	cout << pz << " " <<  py << " " << px << endl;
+		zenith = acos (pz / ( sqrt( pow(px,2) + pow(py,2) + pow(pz,2)) ) ) ;
+		//cout << zenith*180/M_PI << endl;
 		pz = -pz;
 		//	cout << "Ground r " << r << " x " << Part.x << " Y " << Part.y << " Ground phi" << phi << endl;
 	  
 		type = Part.type;
 		weight = Part.weight;
-		zenithAngles << type << " " << zenith*(180. /M_PI) <<  " " << weight << "\n";
+	
 		//1.2 = height of tank (m)
 		if (!(parameter.detector)) { area_tank = M_PI * pow(r_tank,2) * cos( zenith ) + 2*r_tank*1.2*sin( zenith );}
 		else { area_tank = 4 * cos ( zenith ); } //Area of Scintillator is 4 sq m;
@@ -226,7 +229,9 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		double area_section = M_PI * ( pow(fTank_pos+delta*fTank_pos,2) - pow(fTank_pos-delta*fTank_pos,2) ) * ( (maxPhi-minPhi) / ( 2*M_PI ) )* cos(zenith);
 		//cout << "Before: " << area_section << " After : " << area_section*cos(zenith) << " zenith : " << zenith << endl;
 		double average_n = weight * ( area_tank / area_section );
-
+		//if ( (phi >= minPhi && phi <= maxPhi)  && (r >= min) && (r <= max)) {
+		  zenithAngles << type << " " << zenith*(180. /M_PI) <<  " " << weight << "\n";
+		  //	}
        		boost::poisson_distribution<int> distribution(average_n);
 		int n = distribution(gen);
 	         
@@ -234,6 +239,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		  {
 		    if ( (phi >= minPhi && phi <= maxPhi)  && (r >= min) && (r <= max)) 
 		      {
+	
 			if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) )
 			  {
 			    G4file << "/gun/momentum " << px << " " << py << " " << pz << "\n";

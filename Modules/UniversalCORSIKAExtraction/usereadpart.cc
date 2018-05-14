@@ -24,6 +24,11 @@
 #include "TColor.h"
 #include "TFile.h"
 #include <algorithm>
+
+#include <dirent.h>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 //#include <random>
 #include <boost/random/poisson_distribution.hpp>
 using boost::poisson_distribution;
@@ -176,7 +181,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
   
     int min;
     double max;
-    if (!fPositionDefined) { cin >> fTank_pos; }
+    if (!fPositionDefined) { cin >> fTank_pos; 	fPositionDefined = true; }
     max = 1.1*fTank_pos;
     min = 0.9*fTank_pos;
     RunInfo << fTank_pos << "\n";
@@ -208,7 +213,9 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		py = Part.py;
 		pz = Part.pz;
 		//Zenith is in RADIANS
-		zenith = fabs (atan2 ( py , pz  ) );
+		
+		zenith = acos (pz / ( sqrt( pow(px,2) + pow(py,2) + pow(pz,2)) )) ;
+		//	cout << zenith << endl;
 		pz = -pz;
 
 	  
@@ -278,6 +285,41 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
   return count;  
 }
 
+vector<string> getFilesFromDirectory(string directory)
+{
+  ifstream fin;
+  string dir, filepath, file;
+  double num; DIR *dp;
+  
+  struct dirent *dirp;
+  struct stat filestat;
+  vector<string> fileNames;
+  double nFiles = 0;
+  double sumVEM = 0;
+  double finalVEM;
+  
+  //cout << "dir to get files of: " << flush;
+  dir = directory;
+  dp = opendir( dir.c_str() );
+  if (dp == NULL)
+    {
+      cout << "Error(" << errno << ") opening " << dir << endl;
+    }
+  while ((dirp = readdir( dp )))
+    {
+      filepath = dir + "/" + dirp->d_name;
+      file = dirp->d_name;
+      // If the file is a directory (or is in some way invalid) we'll skip it
+      if (stat( filepath.c_str(), &filestat )) continue;
+      if (S_ISDIR( filestat.st_mode )) continue;
+
+      cout << file << endl;
+      fileNames.push_back(file);
+    }
+  return fileNames;
+}
+
+
 
 int main (int argc, char **argv){
 
@@ -291,7 +333,13 @@ int main (int argc, char **argv){
   if (argc < 2) {
     //usage();
     std::string args = parameter.file;
-    std::strcpy(argv[0],args.c_str());
+    if ( parameter.file.find(".part") != std::string::npos) {
+      std::strcpy(argv[0],args.c_str());
+    } else if ( parameter.file.find(".long") !=std::string::npos) {
+      cout << "Provide a .part CORSIKA file, (.long does not contain particle information)" << endl;
+    } else {}
+      //Get Files in directory
+      
     // cout << argv[0] << endl;
     
   }
