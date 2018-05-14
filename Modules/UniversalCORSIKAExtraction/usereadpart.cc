@@ -154,10 +154,12 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
     corsikafile file(argv[iFile]);
     if (!useWeights) cout << "Current File: " << argv[iFile] << "\n";
     string fileName = argv[iFile];
+
     size_t pos_start = fileName.find("qgs");
     size_t pos_end = fileName.find("/DAT");
-    string G4name = fileName.substr(pos_start,pos_end-pos_start);
 
+    string G4name = fileName.substr(pos_start,pos_end-pos_start);
+    G4name += std::to_string(iFile);
     G4name.erase(remove_if(G4name.begin(), G4name.end(), &IsForwardSlash), G4name.end());
    
     string infoName = "runInfo.txt";
@@ -333,6 +335,7 @@ int main (int argc, char **argv){
   if (argc < 2) {
     //usage();
     std::string args = parameter.file;
+   
     if ( parameter.file.find(".part") != std::string::npos) {
       std::strcpy(argv[0],args.c_str());
     } else if ( parameter.file.find(".long") !=std::string::npos) {

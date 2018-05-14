@@ -4,7 +4,7 @@
   <CORSIKA>
 
     <!-- Directory to CORSIKA file location --> <!-- include file or directory -->
-    <file>/remote/tesla/bmanning/data/qgsII3/proton/19/0deg/</file> 
+    <file>/remote/tesla/bmanning/data/qgsII3/proton/19/0deg/DAT2000* </file> 
     <saveLocation>/remote/tesla/bmanning/data/EnergyTable/Auger/qgsII3/proton/19/0deg/</saveLocation>
     <particle>all</particle> <!-- all, muon, gamma, electron -->
     <phi> 0.15 </phi> <!-- Radians -->
@@ -17,7 +17,9 @@
     <threshold>20000</threshold>
     <detector>0</detector> <!-- 0 corresponds to WCD, 1, SSD -->
     <iterations>1</iterations>
-    <!-- number of times to simulate the same shower -->
+    <!-- number of times to simulate the same shower(s) -->
+    <nUniqueShowers>5</nUniqueShowers>
+    <!-- number of unique showers to use from data directory -->
     
   </CORSIKA> 
 </CORSIKAParameters>

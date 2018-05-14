@@ -2,7 +2,8 @@
 startingPosition=$(sed -n 's/.*<startingPosition>\(.*\)<\/startingPosition>/\1/p' CORSIKAParameters.xml)
 maxPosition=$(sed -n 's/.*<maxPosition>\(.*\)<\/maxPosition>/\1/p' CORSIKAParameters.xml)
 iterations=$(sed -n 's/.*<iterations>\(.*\)<\/iterations>/\1/p' CORSIKAParameters.xml)
-
+fileName=$(sed -n 's/.*<file>\(.*\)<\/file>/\1/p' CORSIKAParameters.xml)
+nUniqueShowers=$(sed -n 's/.*<nUniqueShowers>\(.*\)<\/nUniqueShowers>/\1/p' CORSIKAParameters.xml)
 for (( e=1; e<=iterations; e=e+1 ))
 do
     let step=1
@@ -22,7 +23,7 @@ do
 #	echo ${rs20}
 #	echo ${rs21}
 
-	/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/./usereadpart <<EOF #/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part 
+	/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/./usereadpart ${fileName} <<EOF #/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part 
  ${i}
 EOF
 
@@ -30,14 +31,13 @@ EOF
 
 	mv *weight.txt weightAll.txt
 
-	
-	/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/./Cherenkov qgs*
-
-
+	for (( j=1; j<=nUniqueShowers; j=j+1 ))
+	do	
+	    /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/./Cherenkov *${j}.mac
+	  
+	    /remote/tesla/bmanning/work/Modules/Merge/./merge
+	done
 	rm -f qgsII*
-	
-	/remote/tesla/bmanning/work/Modules/Merge/./merge
-
     done
 
 saveLocation=$(sed -n 's/.*<saveLocation>\(.*\)<\/saveLocation>/\1/p' CORSIKAParameters.xml)
