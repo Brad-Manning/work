@@ -35,6 +35,8 @@
       <angle>60</angle>
     </zenith>
 
+    <detector>Auger</detector> <!-- TA, Auger -->
+
     
   </EnergyTableParameters>
 </EnergyTable> 
