@@ -61,6 +61,7 @@ struct parameters
   std::string file;
   std::string particle;
   double phi;
+  double phiAngle;
   double delta;
   double startingPosition;
   bool weightedSimulation;
@@ -88,6 +89,7 @@ parameters read( std::istream & is)
       p.weightedSimulation = v.second.get<bool>("weightedSimulation");
       p.threshold = v.second.get<int>("threshold");
       p.detector = v.second.get<int>("detector");
+      p.phiAngle = v.second.get<double>("phiAngle");
     }
 
   }
@@ -133,6 +135,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
   gen.seed(time(NULL));
   std::vector<int> validParticles = findTypes(parameter.particle);
   double weightMultiplier;
+  bool fSetAzimuth = false;
   if (useWeights)
     {
       weightMultiplier = parameter.threshold / nParticles;
@@ -209,7 +212,6 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		particle Part=theEvent.getnextparticle();
 		r=(sqrt(pow((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)),2)+pow(((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)),2)))/100.0;//core dist in shower plane (m)
 		phi=atan2((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)) ,((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)));//azimuth in shower plane
-		phi += 0;
 		//time=Part.t-(Part.zstart-theRun.OBSLEVELS[Part.obslev-1])*(1.0E+07/cos(Part.primtheta))/c-Part.x*1.0E+07*sin(Part.primtheta)*cos(Part.primphi)/c-Part.y*1.0E+07*sin(Part.primtheta)*sin(Part.primphi)/c;//time in shower front
 		px = Part.px;
 		py = Part.py;
@@ -219,7 +221,27 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		zenith = acos (pz / ( sqrt( pow(px,2) + pow(py,2) + pow(pz,2)) )) ;
 		//	cout << zenith << endl;
 		pz = -pz;
-
+		if (!fSetAzimuth) {
+		  minPhi = minPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
+		  maxPhi = maxPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
+		  if (minPhi > M_PI )
+		    {
+		      minPhi = -2*M_PI + minPhi;
+		    } else if (minPhi < -M_PI)
+		    {
+		      minPhi = 2*M_PI + minPhi;
+		    }
+		  if (maxPhi > M_PI )
+		    {
+		      maxPhi = -2*M_PI + maxPhi;
+		    } else if (maxPhi < -M_PI)
+		    {
+		      maxPhi = 2*M_PI + maxPhi;
+		    }
+		  
+		  fSetAzimuth = true;
+		}
+		
 	  
 		type = Part.type;
 		weight = Part.weight;

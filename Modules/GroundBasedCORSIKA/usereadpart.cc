@@ -212,8 +212,6 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		r = ( sqrt( pow( Part.x, 2 ) + pow( Part.y, 2) ) )/100.0 ;
 	
 		//	phi=atan2((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)) ,((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)));//azimuth in shower plane
-		phi += 0;
-
 		//time=Part.t-(Part.zstart-theRun.OBSLEVELS[Part.obslev-1])*(1.0E+07/cos(Part.primtheta))/c-Part.x*1.0E+07*sin(Part.primtheta)*cos(Part.primphi)/c-Part.y*1.0E+07*sin(Part.primtheta)*sin(Part.primphi)/c;//time in shower front
 		px = Part.px;
 		py = Part.py;
@@ -225,7 +223,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		phi = atan2(Part.x, Part.y); 
 		max = (1+delta)*arear;
 		min = (1-delta)*arear;
-		cout << Part.primphi << endl;
+	
 		if (!fSetAzimuth) {
 		  minPhi = minPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
 		  maxPhi = maxPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
@@ -246,7 +244,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		  
 		  fSetAzimuth = true;
 		}
-		cout << minPhi << " " << maxPhi << endl;
+	
 		//Zenith is in RADIANS
 		//zenith =  (atan2 ( px , pz  ) );
 
