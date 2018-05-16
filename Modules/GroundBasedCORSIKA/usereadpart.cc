@@ -227,8 +227,23 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		min = (1-delta)*arear;
 		cout << Part.primphi << endl;
 		if (!fSetAzimuth) {
-		  minPhi = minPhi + Part.primphi;
-		  maxPhi = maxPhi + Part.primphi;
+		  minPhi = minPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
+		  maxPhi = maxPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
+		  if (minPhi > M_PI )
+		    {
+		      minPhi = -2*M_PI + minPhi;
+		    } else if (minPhi < -M_PI)
+		    {
+		      minPhi = 2*M_PI + minPhi;
+		    }
+		  if (maxPhi > M_PI )
+		    {
+		      maxPhi = -2*M_PI + maxPhi;
+		    } else if (maxPhi < -M_PI)
+		    {
+		      maxPhi = 2*M_PI + maxPhi;
+		    }
+		  
 		  fSetAzimuth = true;
 		}
 		cout << minPhi << " " << maxPhi << endl;

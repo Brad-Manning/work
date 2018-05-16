@@ -8,7 +8,8 @@
     
     <particle>all</particle> <!-- all, muon, gamma, electron -->
     <phi> 0.15 </phi> <!-- Radians, the range at which phi will span -->
-    <phiAngle>0</phiAngle> <!-- degrees, the starting angle for phi in CORSIKA convention -->
+    <phiAngle>90</phiAngle> <!-- degrees, the starting angle for phi in CORSIKA convention.
+    WITH THE SHOWER ALWAYS POINTING TOWARDS +X -->
 
     <!--
         Corsika Axes/Azimuth Convention
