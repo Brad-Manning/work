@@ -7,7 +7,26 @@
     <file>/remote/tesla/bmanning/data/qgsII3/proton/19/0deg/DAT200006.part</file>
     
     <particle>all</particle> <!-- all, muon, gamma, electron -->
-    <phi> 0.15 </phi> <!-- Radians -->
+    <phi> 0.15 </phi> <!-- Radians, the range at which phi will span -->
+    <phiAngle>0</phiAngle> <!-- degrees, the starting angle for phi in CORSIKA convention -->
+
+    <!--
+        Corsika Axes/Azimuth Convention
+
+         +z is up, -z down
+                           +0, +x
+                             |
+                             |
+                             |
+           +90, +y  _________|________ -90, -y	
+                             |
+	                     |
+	                     |
+	                     |
+		        +/- 180, -x
+    -->
+
+    
     <delta> 0.1 </delta> <!-- width either side of tank for section of ring -->
     <startingPosition> 164 </startingPosition> <!-- distance (m) of first tank from shower core -->
     <weightedSimulation> 1 </weightedSimulation> <!-- Allow the program to use a weighted simulation for number of incident particles > threshold; 0 (false), 1 (true) -->

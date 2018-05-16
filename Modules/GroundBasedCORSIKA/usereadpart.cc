@@ -56,6 +56,7 @@ struct parameters
   std::string file;
   std::string particle;
   double phi;
+  double phiAngle;
   double delta;
   double startingPosition;
   bool weightedSimulation;
@@ -83,6 +84,7 @@ parameters read( std::istream & is)
       p.weightedSimulation = v.second.get<bool>("weightedSimulation");
       p.threshold = v.second.get<int>("threshold");
       p.detector = v.second.get<int>("detector");
+      p.phiAngle = v.second.get<double>("phiAngle");
     }
 
   }
@@ -128,6 +130,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
   gen.seed(time(NULL));
   std::vector<int> validParticles = findTypes(parameter.particle);
   double weightMultiplier;
+  bool fSetAzimuth = false;
   if (useWeights)
     {
       weightMultiplier = parameter.threshold / nParticles;
@@ -182,8 +185,8 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 
     
     double delta = parameter.delta;
-    double minPhi = 0;
-    double maxPhi = parameter.phi;
+    double minPhi = -parameter.phi/2.;
+    double maxPhi = parameter.phi/2.;
 
     max = (1+delta)*fTank_pos;
     min = (1-delta)*fTank_pos;
@@ -222,7 +225,13 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		phi = atan2(Part.x, Part.y); 
 		max = (1+delta)*arear;
 		min = (1-delta)*arear;
-		
+		cout << Part.primphi << endl;
+		if (!fSetAzimuth) {
+		  minPhi = minPhi + Part.primphi;
+		  maxPhi = maxPhi + Part.primphi;
+		  fSetAzimuth = true;
+		}
+		cout << minPhi << " " << maxPhi << endl;
 		//Zenith is in RADIANS
 		//zenith =  (atan2 ( px , pz  ) );
 
