@@ -1,9 +1,40 @@
 #!/usr/bin/env bash
+
+Compositions=(qgsII3 qgsII4)
+nC=2
+Particles=(proton iron)
+nP=2
+Energies=(20 19.5 19 18.5)
+nE=4
+Angles=(60deg 0deg 26deg 38deg 49deg)
+nA=5
+
+for (( c=0; c<nC; c=c+1 ))
+do
+    composition=${Compositions[$c]}
+    for (( p=0; p<nP; p=p+1 ))
+    do
+	particle=${Particles[$p]}
+	for (( en=0; en<nE; en=en+1 ))
+	do
+	    energy=${Energies[$en]}
+	    for (( a=0; a<nA; a=a+1 ))
+	    do
+		angle=${Angles[a]}
+	        newFileName=/remote/tesla/bmanning/data/${composition}/${particle}/${energy}/${angle}/*
+		newSaveLocation=/remote/tesla/bmanning/data/EnergyTable/Auger/${composition}/${particle}/${energy}/${angle}/
+		
+sed -i "
+    /<CORSIKA>/,/<\/CORSIKA>/ s@<file>.*</file>@<file>$newFileName</file>@;
+    /<CORSIKA>/,/<\/CORSIKA>/ s@<saveLocation>.*</saveLocation>@<saveLocation>$newSaveLocation</saveLocation>@
+" "CORSIKAParameters.xml"
+
 startingPosition=$(sed -n 's/.*<startingPosition>\(.*\)<\/startingPosition>/\1/p' CORSIKAParameters.xml)
 maxPosition=$(sed -n 's/.*<maxPosition>\(.*\)<\/maxPosition>/\1/p' CORSIKAParameters.xml)
 iterations=$(sed -n 's/.*<iterations>\(.*\)<\/iterations>/\1/p' CORSIKAParameters.xml)
 fileName=$(sed -n 's/.*<file>\(.*\)<\/file>/\1/p' CORSIKAParameters.xml)
 nUniqueShowers=$(sed -n 's/.*<nUniqueShowers>\(.*\)<\/nUniqueShowers>/\1/p' CORSIKAParameters.xml)
+
 for (( e=1; e<=iterations; e=e+1 ))
 do
     let step=1
@@ -56,4 +87,8 @@ rm -f Cherenkov.root
 rm -f LDF.root
 rm -f MIP_r_bins.txt
 done
+	    done
+	done
+    done
+done    
 #/remote/tesla/bmanning/work/Modules/plot/./plot 

@@ -135,7 +135,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
   
 
   
-  double count,r,phi,px, py, pz, type, weight, zenith, area_tank, groundr, groundphi;
+  double count,r,phi,px, py, pz, type, weight, zenith, area_tank, arear;
   char* strName[] = {"gamma", "e+", "e-", "?" , "mu+" , "mu-" , "pi0" , "pi+" , "pi-" , "kaon0" , "kaon+" , "kaon-" , "neutron" , "proton" , "anti_proton"};
   vector<string> vecName(strName, strName+15);
   count = 0;
@@ -179,15 +179,16 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
     int min;
     double max;
     if (!fPositionDefined) { cin >> fTank_pos; }
-    max = 1.1*fTank_pos;
-    min = 0.9*fTank_pos;
-    RunInfo << fTank_pos << "\n";
-    RunInfo << useWeights << "\n";
+
     
     double delta = parameter.delta;
     double minPhi = 0;
     double maxPhi = parameter.phi;
-    
+
+    max = (1+delta)*fTank_pos;
+    min = (1-delta)*fTank_pos;
+    RunInfo << fTank_pos << "\n";
+    RunInfo << useWeights << "\n";
     //Tank radius given in metres
     double r_tank = 1.8;
      while (file.findnextrun())
@@ -202,23 +203,32 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 	    while (theEvent.findnextparticle())
 	      {
 		particle Part=theEvent.getnextparticle();
-		r=(sqrt(pow((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)),2)+pow(((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)),2)))/100.0;//core dist in shower plane (m)
-		//r = ( sqrt( pow( Part.x, 2 ) + pow( Part.y, 2) ) )/100.0 ;
-		phi = atan2(Part.x, Part.y);
+
+		//corer=(sqrt(pow((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)),2)+pow(((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)),2)))/100.0;//core dist in shower plane (m)
+
+		r = ( sqrt( pow( Part.x, 2 ) + pow( Part.y, 2) ) )/100.0 ;
+	
 		//	phi=atan2((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)) ,((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)));//azimuth in shower plane
 		phi += 0;
+
 		//time=Part.t-(Part.zstart-theRun.OBSLEVELS[Part.obslev-1])*(1.0E+07/cos(Part.primtheta))/c-Part.x*1.0E+07*sin(Part.primtheta)*cos(Part.primphi)/c-Part.y*1.0E+07*sin(Part.primtheta)*sin(Part.primphi)/c;//time in shower front
 		px = Part.px;
 		py = Part.py;
 		pz = Part.pz;
+
+		//Creating object at ground ---------
+		if (Part.primtheta != 0) { arear = fTank_pos / sin(Part.primtheta) ; }
+		else { arear = fTank_pos; } 
+		phi = atan2(Part.x, Part.y); 
+		max = (1+delta)*arear;
+		min = (1-delta)*arear;
+		
 		//Zenith is in RADIANS
 		//zenith =  (atan2 ( px , pz  ) );
-		//	cout << pz << " " <<  py << " " << px << endl;
+
 		zenith = acos (pz / ( sqrt( pow(px,2) + pow(py,2) + pow(pz,2)) ) ) ;
 		//cout << zenith*180/M_PI << endl;
 		pz = -pz;
-		//	cout << "Ground r " << r << " x " << Part.x << " Y " << Part.y << " Ground phi" << phi << endl;
-	  
 		type = Part.type;
 		weight = Part.weight;
 	
@@ -226,15 +236,16 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		if (!(parameter.detector)) { area_tank = M_PI * pow(r_tank,2) * cos( zenith ) + 2*r_tank*1.2*sin( zenith );}
 		else { area_tank = 4 * cos ( zenith ); } //Area of Scintillator is 4 sq m;
 		
-		double area_section = M_PI * ( pow(fTank_pos+delta*fTank_pos,2) - pow(fTank_pos-delta*fTank_pos,2) ) * ( (maxPhi-minPhi) / ( 2*M_PI ) )* cos(zenith);
-		//cout << "Before: " << area_section << " After : " << area_section*cos(zenith) << " zenith : " << zenith << endl;
+		double area_section = M_PI * ( pow(arear+delta*arear,2) - pow(arear-delta*arear,2) ) * ( (maxPhi-minPhi) / ( 2*M_PI ) )* cos(zenith);
+		//	cout << "Before: " << area_section/(cos(zenith)) << " After : " << area_section << " zenith : " << zenith << endl;
 		double average_n = weight * ( area_tank / area_section );
+		//cout << average_n << " " << area_tank << " " << area_section << " " << zenith <<  endl;
 		//if ( (phi >= minPhi && phi <= maxPhi)  && (r >= min) && (r <= max)) {
-		  zenithAngles << type << " " << zenith*(180. /M_PI) <<  " " << weight << "\n";
-		  //	}
+		//	zenithAngles << type << " " << zenith*(180. /M_PI) <<  " " << weight << "\n";
+		//	}
        		boost::poisson_distribution<int> distribution(average_n);
 		int n = distribution(gen);
-	         
+		// cout << n << endl;
 		if (n != 0)
 		  {
 		    if ( (phi >= minPhi && phi <= maxPhi)  && (r >= min) && (r <= max)) 
