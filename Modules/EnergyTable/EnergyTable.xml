@@ -10,12 +10,14 @@
 
     <compositions>
       <model>qgsII3</model>
-      <model>qgsII4</model>
+      <!--
+	  <model>qgsII4</model>  -->
     </compositions>
 
     <primary>
       <particle>proton</particle>
-      <particle>iron</particle>
+      <!--
+	  <particle>iron</particle> -->
     </primary>
 
     <!-- 10^(X) eV-->

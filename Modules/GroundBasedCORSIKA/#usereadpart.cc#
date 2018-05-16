@@ -202,7 +202,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 	    while (theEvent.findnextparticle())
 	      {
 		particle Part=theEvent.getnextparticle();
-		r=(sqrt(pow((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)),2)+pow(((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)),2)))/100.0;//core dist in shower plane (m)
+		corer=(sqrt(pow((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)),2)+pow(((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)),2)))/100.0;//core dist in shower plane (m)
 		//r = ( sqrt( pow( Part.x, 2 ) + pow( Part.y, 2) ) )/100.0 ;
 		phi = atan2(Part.x, Part.y);
 		//	phi=atan2((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)) ,((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)));//azimuth in shower plane

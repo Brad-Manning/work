@@ -186,13 +186,14 @@ signal getDataFromDirectory(string directory, parameters parameter)
 
   //Calculate Variance
   double variance = 0;;
-  for (int i = 0; i<=VEM.size(); i++) {
+  for (int i = 0; i<VEM.size(); i++) {
     VEM[i] = pow((VEM[i] - finalVEM),2);
     variance = variance + VEM[i];
+    cout << VEM[i] << " " << variance << " " << VEM.size() << endl;
   }
   variance = variance / VEM.size();
   cout << "Variance = " << variance << endl;
-  double error = sqrt(variance) / sqrt(VEM.size());
+  double error = sqrt(variance);// / sqrt(VEM.size());
 
   signal signal;
   signal.VEM = finalVEM;
@@ -207,8 +208,8 @@ int main()
   parameters parameter = read( input );
    
   //PLOTS ---------------------------------------------------------------
-  TApplication theApp("app",0,0);
-  TCanvas plots;
+  //TApplication theApp("app",0,0);
+  // TCanvas plots;
 
   const int nAngles = parameter.zenith.size();
   const int nEnergies = parameter.energies.size();
@@ -272,7 +273,13 @@ int main()
 //number of points
  const Int_t n = nAngles*nEnergies;
  TF1 *myFit = new TF1("myFit","[1]*(x-1)^2+[0]");
-   
+ TFile *EnergyTable = new TFile("EnergyTable.root", "RECREATE");
+ TCanvas *EnergyTableCanvas = new TCanvas("EnergyTableCanvas", "EnergyTableCanvas", 1920, 1000);
+ EnergyTableCanvas->cd();
+ 
+
+ 
+ if (0 != 0) {
    grqgsII4p[0]->SetName("grqgsII4p");
    grqgsII4p[1]->SetName("grqgsII4p1");
    grqgsII4p[2]->SetName("grqgsII4p2");
@@ -313,12 +320,15 @@ int main()
    double qgsII4p2_p1 = grqgsII4p[2]->GetFunction("myFit")->GetParameter(1);
     double qgsII4p3_p0 = grqgsII4p[3]->GetFunction("myFit")->GetParameter(0);
    double qgsII4p3_p1 = grqgsII4p[3]->GetFunction("myFit")->GetParameter(1);
+
+ }
    // double qgsII4p3_p2 = grqgsII4p[3]->GetFunction("myFit")->GetParameter(2);
    
    
    //--------------------------------------------------
+ if (grqgsII3p[0]->GetN() != 0) {
    grqgsII3p[0]->SetName("grqgsII3p");
-   grqgsII3p[3]->Draw("P");
+   grqgsII3p[3]->Draw("AP");
    grqgsII3p[1]->Draw("P");
    grqgsII3p[2]->Draw("P");
    grqgsII3p[0]->Draw("P");
@@ -346,8 +356,15 @@ int main()
    double qgsII3p2_p1 = grqgsII3p[2]->GetFunction("myFit")->GetParameter(1);
    double qgsII3p3_p0 = grqgsII3p[3]->GetFunction("myFit")->GetParameter(0);
    double qgsII3p3_p1 = grqgsII3p[3]->GetFunction("myFit")->GetParameter(1);
+   EnergyTableCanvas->Update();
+   grqgsII3p[0]->Write();
+   grqgsII3p[1]->Write();
+   grqgsII3p[2]->Write();
+   grqgsII3p[3]->Write();
+ }
    
    //--------------------------------------------------
+ if (0 != 0) {
    grqgsII4i[0]->SetName("grqgsII4i");
    grqgsII4i[3]->Draw("P");
    grqgsII4i[1]->Draw("P");
@@ -398,8 +415,11 @@ int main()
    double qgsII4i3_p0 = grqgsII4i[3]->GetFunction("myFit")->GetParameter(0);
    double qgsII4i3_p1 = grqgsII4i[3]->GetFunction("myFit")->GetParameter(1);
    
+
+   }
    //--------------------------------------------------
-   grqgsII3i[0]->SetName("grqgsII3i");
+   if (0!= 0) {
+     grqgsII3i[0]->SetName("grqgsII3i");
    grqgsII3i[0]->SetLineStyle(2);
    grqgsII3i[1]->SetLineStyle(2);
    grqgsII3i[2]->SetLineStyle(2);
@@ -448,25 +468,28 @@ int main()
    double qgsII3i2_p1 = grqgsII3i[2]->GetFunction("myFit")->GetParameter(1);
    double qgsII3i3_p0 = grqgsII3i[3]->GetFunction("myFit")->GetParameter(0);
    double qgsII3i3_p1 = grqgsII3i[3]->GetFunction("myFit")->GetParameter(1);
+   }
 
-   TLegend* legend;
-   legend = new TLegend(0.1,0.7,0.48,0.9);
-   legend->SetNColumns(2);
-   legend->SetHeader("Energies-Composition");
-   legend->AddEntry("grqgsII4p","QGSJETII-04 proton","l");
-   legend->AddEntry("grqgsII4p","10E18.5","p");
+   // TLegend* legend;
+   // legend = new TLegend(0.1,0.7,0.48,0.9);
+   // legend->SetNColumns(2);
+   // legend->SetHeader("Energies-Composition");
+   // legend->AddEntry("grqgsII4p","QGSJETII-04 proton","l");
+   // legend->AddEntry("grqgsII4p","10E18.5","p");
  
-   legend->AddEntry("grqgsII4i","QGSJETII-04 iron", "l");
-   legend->AddEntry("grqgsII4p2","10E19.5","p");
-   legend->AddEntry("grqgsII3p", "QGSJETII-03 proton","l");
-   legend->AddEntry("grqgsII4p1","10E19","p");
-   legend->AddEntry("grqgsII3i","QGSJETII-03 iron", "l");
-   legend->AddEntry("grqgsII4p3","10E20","p");
+   // legend->AddEntry("grqgsII4i","QGSJETII-04 iron", "l");
+   // legend->AddEntry("grqgsII4p2","10E19.5","p");
+   // legend->AddEntry("grqgsII3p", "QGSJETII-03 proton","l");
+   // legend->AddEntry("grqgsII4p1","10E19","p");
+   // legend->AddEntry("grqgsII3i","QGSJETII-03 iron", "l");
+   // legend->AddEntry("grqgsII4p3","10E20","p");
    
-   legend->Draw();
+   // legend->Draw();
 
+   EnergyTableCanvas->SetLogy();
+   EnergyTableCanvas->Write();
 
-
+   
   return 1;  
 }
   

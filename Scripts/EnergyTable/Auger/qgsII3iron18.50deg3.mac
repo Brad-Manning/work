@@ -1,0 +1,372 @@
+/run/initialize
+/gun/energy 0
+/run/beamOn 1
+/gun/momentum 0.0805005 -0.00562431 -0.0569894
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00559024 -0.000511786 -0.00398797
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00328497 -0.000611375 -0.00624527
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00220685 -0.000498887 -0.00347041
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.163093 -0.0246924 -0.749465
+/gun/particle mu+
+/run/beamOn 1
+/gun/momentum 0.00681341 -0.00102829 -0.0102869
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00834242 -0.000381133 -0.0312132
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00179379 0.000789771 -0.00437229
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00731895 0.00163026 -0.0199838
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.000751005 0.000136464 -0.00483607
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum -6.55765e-06 -0.0011638 -0.00293182
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00443319 -0.000358729 -0.00860952
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00259505 -0.000369905 -0.00589626
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00834971 -0.00108752 -0.0442795
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0059678 -0.000714352 -0.00321048
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0451514 -0.00236565 -0.0460155
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00296895 -0.00122381 -0.00370514
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00753914 0.00102646 -0.0121489
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00290023 0.000854511 -0.0124702
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00300651 -0.000217922 -0.00405843
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00288911 -0.00139446 -0.0166083
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00537576 0.00185207 -0.0104429
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00596487 -0.000349361 -0.0143982
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00436918 -0.00186105 -0.00447578
+/gun/particle e-
+/run/beamOn 1
+/gun/momentum 0.00157605 -0.00051532 -0.00339899
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00348621 -0.000516486 -0.0056039
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00214638 5.52575e-05 -0.00502098
+/gun/particle gamma
+/run/beamOn 3
+/gun/momentum 0.00450222 -0.000945604 -0.0156178
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00451557 -0.000756106 -0.00322775
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00377078 0.000650336 -0.00996678
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00259938 -0.00137266 -0.00364868
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0177878 -0.00204798 -0.0735612
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00257992 -0.000130632 -0.00286589
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0117711 -0.000924801 -0.0367055
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0745934 -0.02418 -0.0771413
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00583148 0.000165284 -0.00405888
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00256942 -0.000390186 -0.0038081
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00759588 -0.000918687 -0.026277
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00195371 -0.00142517 -0.00525803
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00808416 -0.000735387 -0.0195137
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00231707 -0.00151224 -0.00224266
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00178337 0.000359861 -0.00345638
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00844136 -0.000383813 -0.0130726
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00560752 -0.000630591 -0.0120542
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.0136956 -0.00293761 -0.013399
+/gun/particle e+
+/run/beamOn 1
+/gun/momentum 0.00356851 -0.000509981 -0.0125289
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00956072 0.000581459 -0.0227959
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00185083 -0.00106637 -0.00849249
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00249409 0.000127955 -0.00455287
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00829909 -0.000396223 -0.00721769
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00156782 0.000186263 -0.00568169
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00370864 3.32909e-05 -0.00305036
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00222741 -8.2856e-05 -0.00512571
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0044969 -0.000174944 -0.0119523
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00170897 0.00115536 -0.00319451
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00293209 -0.000401294 -0.00883511
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00488329 -0.00273267 -0.0226218
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00518552 -0.000380567 -0.014032
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00681629 -0.000670701 -0.0193849
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0130015 -0.00136821 -0.0125419
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum -9.31186e-05 -0.0003592 -0.00368055
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00160231 0.000260075 -0.0041526
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.343111 -0.0431057 -1.24567
+/gun/particle mu-
+/run/beamOn 1
+/gun/momentum 0.589242 -0.0791415 -3.17975
+/gun/particle mu-
+/run/beamOn 1
+/gun/momentum 0.00203457 0.000903592 -0.00361446
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00196829 0.000270199 -0.00254036
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0184163 -0.000456873 -0.0598562
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00287939 -0.000314216 -0.00263481
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00718765 -0.00207869 -0.00721014
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00882127 -0.000946824 -0.0136919
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00307091 -0.000106619 -0.0104081
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0115668 5.43652e-05 -0.0169798
+/gun/particle e+
+/run/beamOn 2
+/gun/momentum 0.019497 -0.00118585 -0.0454704
+/gun/particle e-
+/run/beamOn 1
+/gun/momentum 0.0370261 -0.00145443 -0.0853328
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00240083 -0.000128362 -0.00199925
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00224323 -9.27388e-07 -0.00567676
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00190125 0.000296572 -0.00301673
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00704911 0.000502089 -0.00227525
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00110992 -8.13653e-05 -0.00281658
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00269464 0.000266673 -0.00310753
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0119043 -0.00403026 -0.0104811
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00283779 0.000233074 -0.00947011
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.0160563 -0.00151884 -0.0409932
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00245909 -0.000307375 -0.00268142
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00572826 -0.000637788 -0.00939004
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00333102 -6.57619e-06 -0.00251301
+/gun/particle gamma
+/run/beamOn 3
+/gun/momentum 0.00567883 -0.000268037 -0.00765464
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00452335 -0.000377955 -0.0111275
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00247596 -0.00179293 -0.00250279
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0021426 -0.00016878 -0.0116712
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.000221644 -0.00158599 -0.00286864
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0210322 -0.00385318 -0.0349548
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00837647 -0.000894178 -0.019902
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0051874 -0.000875299 -0.00705096
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00174036 -0.000522761 -0.00448784
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00163288 -0.000119117 -0.003738
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00406434 -5.38112e-05 -0.00545211
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.0234921 -0.000228912 -0.0600739
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum -3.79646e-05 -0.0019748 -0.00880557
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00295275 -0.000725406 -0.00412825
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00173338 0.000827422 -0.00365511
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00449502 -0.000458527 -0.00536484
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.000402964 -0.000364665 -0.00450683
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00238134 -0.000120942 -0.00360732
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00936187 -0.00147779 -0.0198034
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00161191 0.00140434 -0.00621336
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00561722 -9.51402e-05 -0.0237687
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00389515 -0.000563032 -0.00347924
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00473183 0.00244606 -0.00434188
+/gun/particle e+
+/run/beamOn 1
+/gun/momentum 0.000198338 -0.000596626 -0.00295632
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00439031 -0.000626343 -0.00566642
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.0112423 -0.00140401 -0.0144372
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00122116 -0.000826456 -0.00450137
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00672377 -0.00166547 -0.0306723
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00235584 3.62251e-05 -0.0045882
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00252399 -0.000329665 -0.00704776
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0046438 -0.000407556 -0.0024819
+/gun/particle gamma
+/run/beamOn 2
+/gun/momentum 0.00465711 0.00133188 -0.00524512
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00302501 -0.000200975 -0.0063577
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00853772 -0.000115149 -0.0197912
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00558053 0.000222941 -0.00610519
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.0028628 7.4371e-05 -0.000900479
+/gun/particle gamma
+/run/beamOn 1
+/gun/momentum 0.00227708 -0.000375573 -0.00408271
+/gun/particle gamma
+/run/beamOn 1
