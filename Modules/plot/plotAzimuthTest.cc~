@@ -1,0 +1,50 @@
+// Bradley Manning 5/2018
+
+
+#include <vector>
+#include <string>
+#include <iostream>
+#include <fstream>
+#include <math.h>
+#include <sstream>
+#include <iomanip>
+#include <vector>
+#include "TVector2.h"
+#include "TROOT.h"
+#include "TSystem.h"
+#include "TStyle.h"
+#include "TH1F.h"
+#include "TH2F.h"
+#include "TMultiGraph.h"
+#include "TGraphErrors.h"
+#include "TMarker.h"
+#include "TGraph.h"
+#include "TProfile.h"
+#include "TCanvas.h"
+#include "TCut.h"
+#include "TLatex.h"
+#include "TColor.h"
+#include "TFile.h"
+#include "TApplication.h"
+#include "TLegend.h"
+#include "TGraph.h"
+#include <cstdlib>
+using namespace std;
+
+int main(){
+
+  ifstream AzimuthTestFile ("/remote/tesla/bmanning/work/Scripts/AzimuthTest/test.txt");
+
+  std::vector<int> nParticles;
+  int nP;
+  std::vector<double> minPhi;
+  double minP;
+  std::vector<double> maxPhi; //Min and Max phi are in radians
+  double maxP;
+  
+  TCanvas * AzimuthTestCanvas = new TCanvas( "AzimuthTest", "AzimuthTest", 1920, 1000 );
+  TGraph* AzimuthTestGraph = new TGraph();
+
+  if ( AzimuthTestFile.is_open() )
+    {
+      while (AzimuthTestFile >> nParticle

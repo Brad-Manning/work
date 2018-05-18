@@ -136,12 +136,17 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
   std::vector<int> validParticles = findTypes(parameter.particle);
   double weightMultiplier;
   bool fSetAzimuth = false;
+  ofstream testAzimuth;
+  ofstream primtest;
+  primtest.open("primtest.txt");
+  testAzimuth.open("test.txt", std::ios_base::app);
+  
   if (useWeights)
     {
       weightMultiplier = parameter.threshold / nParticles;
     }
   
-
+  double howmanyPhi =0;
   
   double count,r,phi,px, py, pz, type, weight, zenith, area_tank;
   char* strName[] = {"gamma", "e+", "e-", "?" , "mu+" , "mu-" , "pi0" , "pi+" , "pi-" , "kaon0" , "kaon+" , "kaon-" , "neutron" , "proton" , "anti_proton"};
@@ -193,8 +198,8 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
     RunInfo << useWeights << "\n";
     
     double delta = parameter.delta;
-    double minPhi = 0;
-    double maxPhi = parameter.phi;
+    double minPhi = -parameter.phi/2.;
+    double maxPhi = parameter.phi/2.;
     
     //Tank radius given in metres
     double r_tank = 1.8;
@@ -211,19 +216,20 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 	      {
 		particle Part=theEvent.getnextparticle();
 		r=(sqrt(pow((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)),2)+pow(((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)),2)))/100.0;//core dist in shower plane (m)
-		phi=atan2((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)) ,((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)));//azimuth in shower plane
+        	phi=atan2( -Part.y*cos(Part.primphi)-Part.x*sin(Part.primphi) , (-Part.y*sin(Part.primphi) + Part.x*cos(Part.primphi))*cos(Part.primtheta) );
 		//time=Part.t-(Part.zstart-theRun.OBSLEVELS[Part.obslev-1])*(1.0E+07/cos(Part.primtheta))/c-Part.x*1.0E+07*sin(Part.primtheta)*cos(Part.primphi)/c-Part.y*1.0E+07*sin(Part.primtheta)*sin(Part.primphi)/c;//time in shower front
 		px = Part.px;
 		py = Part.py;
 		pz = Part.pz;
+
 		//Zenith is in RADIANS
-		
 		zenith = acos (pz / ( sqrt( pow(px,2) + pow(py,2) + pow(pz,2)) )) ;
-		//	cout << zenith << endl;
+		
 		pz = -pz;
 		if (!fSetAzimuth) {
 		  minPhi = minPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
 		  maxPhi = maxPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
+		  primtest << Part.primtheta << " " << Part.primphi << "\n";
 		  if (minPhi > M_PI )
 		    {
 		      minPhi = -2*M_PI + minPhi;
@@ -238,7 +244,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		    {
 		      maxPhi = 2*M_PI + maxPhi;
 		    }
-		  
+		  cout << "Primary particle azimuth: " << Part.primphi << " MaxPhi: " << maxPhi << " MinPhi: " << minPhi << endl;
 		  fSetAzimuth = true;
 		}
 		
@@ -250,17 +256,32 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		if (!(parameter.detector)) { area_tank = M_PI * pow(r_tank,2) * cos( zenith ) + 2*r_tank*1.2*sin( zenith );}
 		else { area_tank = 4 * cos ( zenith ); } //Area of Scintillator is 4 sq m;
 		
-		double area_section = M_PI * ( pow(fTank_pos+delta*fTank_pos,2) - pow(fTank_pos-delta*fTank_pos,2) ) * ( (maxPhi-minPhi) / ( 2*M_PI ) );//* cos(zenith);
-		//cout << "Before: " << area_section << " After : " << area_section*cos(zenith) << " zenith : " << zenith << endl;
+		double area_section = M_PI * ( pow(fTank_pos+delta*fTank_pos,2) - pow(fTank_pos-delta*fTank_pos,2) ) * ( (parameter.phi) / ( 2*M_PI ) );//* cos(zenith);
+		//	cout << "Before: " << area_section << " After : " << area_section*cos(zenith) << " zenith : " << zenith << endl;
 		double average_n = weight * ( area_tank / area_section );
 
        		boost::poisson_distribution<int> distribution(average_n);
 		int n = distribution(gen);
-	         
+	        bool particleApplicable = false;
+	
 		if (n != 0)
 		  {
-		    if ( (phi >= minPhi && phi <= maxPhi)  && (r >= min) && (r <= max)) 
+		    if  ((r >= min) && (r <= max)) {
+			if (phi >= minPhi && phi <= maxPhi) 
+			  {
+			    particleApplicable = true;
+			    	if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) )  howmanyPhi++;
+			  } else if (maxPhi < minPhi) {
+			  if ((phi >= -M_PI && phi <= maxPhi) || (phi <= M_PI && phi >= minPhi)  )                                
+			    {
+			      particleApplicable =true;
+			       	if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) howmanyPhi++;
+			    }
+			}
+		    }
+		    if (particleApplicable)
 		      {
+			
 			if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) )
 			  {
 			    G4file << "/gun/momentum " << px << " " << py << " " << pz << "\n";
@@ -297,6 +318,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 			    }
 			  }
 		      }
+		      
 		  }
 	      }
 	  }
@@ -304,6 +326,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
     RunInfo << count << "\n";						     
     G4file.close();
     RunInfo.close();
+    testAzimuth << howmanyPhi << " " << minPhi << " " << maxPhi << "\n";
   }
     
   return count;  

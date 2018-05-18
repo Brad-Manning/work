@@ -4,17 +4,44 @@
   <CORSIKA>
 
     <!-- Directory to CORSIKA file location -->
-    <file>/remote/tesla/bmanning/data/qgsII3/proton/19/49deg/DAT200014.part</file>
-    <saveLocation>/remote/tesla/bmanning/data/SimulationData/proton/19/49deg/</saveLocation>
+    <file>/remote/tesla/bmanning/data/qgsII3/proton/19/60deg/DAT200030.part</file>
+    <saveLocation>/remote/tesla/bmanning/data/SimulationData/proton/19/60deg/</saveLocation>
     <particle>all</particle> <!-- all, muon, gamma, electron -->
-    <phi> 0.15 </phi> <!-- Radians -->
+    <phi> 0.15708 </phi> <!-- Radians, total span of phi -->
+    <phiAngle>180</phiAngle> <!-- degrees, the starting angle for phi in CORSIKA convention.
+    WITH THE SHOWER ALWAYS POINTING TOWARDS +X -->
+
+    <!--
+        Corsika Axes/Azimuth Convention
+
+         +z is up, -z down
+                           +0, +x
+                             |
+                             |
+                             |
+           +90, +y  _________|________ -90, -y	
+                             |
+	                     |
+	                     |
+	                     |
+		        +/- 180, -x
+    -->
+
+
+
+  
     <delta> 0.1 </delta> <!-- width either side of tank for section of ring -->
-    <startingPosition>164</startingPosition>
+    <startingPosition> 1000 </startingPosition>
     <!-- distance (m) of first tank from shower core -->
+    <maxPosition>1000</maxPosition>
+    <!-- max distance(m) of last tank from shower core - to simulate one distance make max and staring position the same -->
     <weightedSimulation> 1 </weightedSimulation> <!-- Allow the program to use a weighted simulation for number of incident particles > threshold; 0 (false), 1 (true) -->
-    <threshold>20000</threshold>
+    <threshold>10000</threshold>
 
     <detector>1</detector> <!-- 0 corresponds to WCD, 1 SSD -->
-    
+    <iterations>1</iterations>
+    <!-- number of times to simulate the same shower(s) -->
+    <nUniqueShowers>40</nUniqueShowers>
+    <!-- number of unique showers to use from data directory -->
   </CORSIKA> 
 </CORSIKAParameters>

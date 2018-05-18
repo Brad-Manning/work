@@ -279,7 +279,7 @@ int main()
  
 
  
- if (0 != 0) {
+ {
    grqgsII4p[0]->SetName("grqgsII4p");
    grqgsII4p[1]->SetName("grqgsII4p1");
    grqgsII4p[2]->SetName("grqgsII4p2");
@@ -328,7 +328,7 @@ int main()
    //--------------------------------------------------
  if (grqgsII3p[0]->GetN() != 0) {
    grqgsII3p[0]->SetName("grqgsII3p");
-   grqgsII3p[3]->Draw("AP");
+   grqgsII3p[3]->Draw("P");
    grqgsII3p[1]->Draw("P");
    grqgsII3p[2]->Draw("P");
    grqgsII3p[0]->Draw("P");
@@ -364,7 +364,7 @@ int main()
  }
    
    //--------------------------------------------------
- if (0 != 0) {
+{
    grqgsII4i[0]->SetName("grqgsII4i");
    grqgsII4i[3]->Draw("P");
    grqgsII4i[1]->Draw("P");
@@ -418,7 +418,7 @@ int main()
 
    }
    //--------------------------------------------------
-   if (0!= 0) {
+{
      grqgsII3i[0]->SetName("grqgsII3i");
    grqgsII3i[0]->SetLineStyle(2);
    grqgsII3i[1]->SetLineStyle(2);
