@@ -127,8 +127,8 @@ event::event (fileinfo* thefile)
       crap=file->getnextnumber();
     }
   primintz=file->getnextnumber();
-  primpx=file->getnextnumber();
   primpy=file->getnextnumber();
+  primpx=-file->getnextnumber();
   primpz=file->getnextnumber();
   primtheta=file->getnextnumber();
   primphi=file->getnextnumber();
@@ -197,11 +197,11 @@ particle::particle (fileinfo* thefile,double primTheta,double primPhi,double ZSt
   if (type==75 || type==76 || type==85 || type==86)//additional muon info. first particle is muon at production point, then parent then grandparent if there is prehistory, then muon at ground or decay point.
     {
  
-mupx=file->getnextnumber();//muon at production point
-mupy=file->getnextnumber();
+mupy=file->getnextnumber();//muon at production point
+mupx=-(file->getnextnumber());
 mupz=file->getnextnumber();
-mux=file->getnextnumber();
 muy=file->getnextnumber();
+mux=-(file->getnextnumber());
 muz=file->getnextnumber();
 muweight=file->getnextnumber();
 
@@ -215,11 +215,11 @@ muweight=file->getnextnumber();
 
       if (description<0.0)//if there is prehistory information
 	{
-	  ppx=file->getnextnumber();/////////////read parent
-	  ppy=file->getnextnumber();
+	  ppy=file->getnextnumber();/////////////read parent
+	  ppx=-(file->getnextnumber());
 	  ppz=file->getnextnumber();
-	  Px=file->getnextnumber();
 	  Py=file->getnextnumber();
+	  Px=-(file->getnextnumber());
 	  pzint=file->getnextnumber();
 	  pweight=file->getnextnumber();
 
@@ -270,11 +270,11 @@ muweight=file->getnextnumber();
 	  /////////////////////////////////////////////////////////////////////////////////
 
 description=file->getnextnumber();/////////////read grandparent
-gppx=file->getnextnumber();
 gppy=file->getnextnumber();
+gppx=-(file->getnextnumber());
 gppz=file->getnextnumber();
-gpx=file->getnextnumber();
 gpy=file->getnextnumber();
+gpx=-(file->getnextnumber());
 gpz=file->getnextnumber();
 gpweight=file->getnextnumber();
 
@@ -328,11 +328,11 @@ gpweight=file->getnextnumber();
 
 
 
-px=file->getnextnumber();//////////////read muon at ground or decay point
-py=file->getnextnumber();
+py=file->getnextnumber(); //////////////read muon at ground or decay point
+px=-(file->getnextnumber());
 pz=file->getnextnumber();
-x=file->getnextnumber();
 y=file->getnextnumber();
+x=-(file->getnextnumber());
 t=file->getnextnumber();
 weight=file->getnextnumber();
 
@@ -373,11 +373,12 @@ weight=file->getnextnumber();
 
   else
     {
-      px=file->getnextnumber();
+      //Converted to Mathematical Convention
       py=file->getnextnumber();
+      px=-(file->getnextnumber());
       pz=file->getnextnumber();
-      x=file->getnextnumber();
       y=file->getnextnumber();
+      x=-(file->getnextnumber());
       t=file->getnextnumber();
       weight=file->getnextnumber();
       p=sqrt(px*px+py*py+pz*pz)*1.0E+09;

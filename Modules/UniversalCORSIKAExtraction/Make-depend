@@ -56,6 +56,9 @@ usereadpart.o: usereadpart.cc readPart_1_7b.h corsikaFile.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TH2.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TMatrixFBasefwd.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TMatrixDBasefwd.h \
+ /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TH3I.h \
+ /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TH3.h \
+ /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TAtt3D.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TMultiGraph.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TF1.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TFormula.h \

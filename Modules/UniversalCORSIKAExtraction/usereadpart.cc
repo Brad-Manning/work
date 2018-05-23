@@ -13,6 +13,7 @@
 #include "TStyle.h"
 #include "TH1F.h"
 #include "TH2F.h"
+#include "TH3I.h"
 #include "TMultiGraph.h"
 #include "TGraphErrors.h"
 #include "TMarker.h"
@@ -132,6 +133,13 @@ void weightedSimulation(int nParticles, bool weighted, int threshold)
 int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeights, double nParticles)
 {
   mt19937 gen;
+
+  TFile *Hist = new TFile("2Dhist.root", "RECREATE");
+  TCanvas* canvas = new TCanvas("canvas", "CanvasBrowser", 1000,1000);
+  TH2* h2 = new TH2F("h2", "particles at ground", 6000, -5000, 5000, 6000, -5000,5000);
+  TH2* h2_1 = new TH2F("h2_1", "particles at ground", 6000, -5000, 5000, 6000, -5000,5000);
+  TH2* h1 = new TH2F("h1", "particles in shower plane", 6000, -5000, 5000, 6000, -5000, 5000);
+  TH3* h3 = new TH3I("h3", "particles 3d" , 100, -4000, 4000, 100, -2000, 2000, 100, -2000, 2000);
   gen.seed(time(NULL));
   std::vector<int> validParticles = findTypes(parameter.particle);
   double weightMultiplier;
@@ -148,7 +156,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
   
   double howmanyPhi =0;
   
-  double count,r,phi,px, py, pz, type, weight, zenith, area_tank;
+  double count,corer, r,phi,px, py, pz, type, weight, zenith, area_tank;
   char* strName[] = {"gamma", "e+", "e-", "?" , "mu+" , "mu-" , "pi0" , "pi+" , "pi-" , "kaon0" , "kaon+" , "kaon-" , "neutron" , "proton" , "anti_proton"};
   vector<string> vecName(strName, strName+15);
   count = 0;
@@ -159,6 +167,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
   //Loop over files, and read the files
   int start = (argc < 2) ? 0 : 1;
   for (int iFile = start; iFile <= argc - 1; iFile++) {
+ 
     corsikafile file(argv[iFile]);
     if (!useWeights) cout << "Current File: " << argv[iFile] << "\n";
     string fileName = argv[iFile];
@@ -169,7 +178,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
     string G4name = fileName.substr(pos_start,pos_end-pos_start);
     G4name += std::to_string(iFile);
     G4name.erase(remove_if(G4name.begin(), G4name.end(), &IsForwardSlash), G4name.end());
-   
+
     string infoName = "runInfo.txt";
     if (useWeights)
       {
@@ -200,7 +209,6 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
     double delta = parameter.delta;
     double minPhi = -parameter.phi/2.;
     double maxPhi = parameter.phi/2.;
-    
     //Tank radius given in metres
     double r_tank = 1.8;
      while (file.findnextrun())
@@ -211,12 +219,38 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 	while (theRun.findnextevent())
 	  {
 	    event theEvent=theRun.getnextevent();
-	
+	    double ppx = theEvent.primpx;
+	    double ppy = theEvent.primpy;
+	    double ppz = theEvent.primpz;
+	    double primphi = atan2(ppy, ppx);
+	    cout << ppx << " " << ppy << "" << endl;
+					       // primphi = primphi + M_PI/2.;
+		
 	    while (theEvent.findnextparticle())
 	      {
+		
 		particle Part=theEvent.getnextparticle();
-		r=(sqrt(pow((Part.x*sin(Part.primphi)-Part.y*cos(Part.primphi)),2)+pow(((Part.x*cos(Part.primphi)+Part.y*sin(Part.primphi))*cos(Part.primtheta)),2)))/100.0;//core dist in shower plane (m)
-        	phi=atan2( -Part.y*cos(Part.primphi)-Part.x*sin(Part.primphi) , (-Part.y*sin(Part.primphi) + Part.x*cos(Part.primphi))*cos(Part.primtheta) );
+	
+	
+
+		//	r=(sqrt(pow((-Part.x*sin(Part.primphi)*cos(Part.primtheta)-Part.y*cos(Part.primphi)),2)+pow(((Part.x*cos(Part.primphi)-Part.y*sin(Part.primphi)*cos(Part.primtheta))),2)))/100.0;//core dist in shower plane (m)
+	
+		double xprime = (Part.x*cos(primphi) + Part.y*sin(primphi))*cos(Part.primtheta);
+		double yprime = (Part.x*sin(primphi) - Part.y*cos(primphi));//*cos(Part.primtheta);
+		r = (sqrt( pow(yprime,2 ) + pow(xprime,2)))/100.0;
+		
+		phi=atan2( yprime , xprime );
+		double z = Part.y*sin(Part.primtheta)/100.0;
+		double y = Part.y*cos(Part.primtheta)/100.0;
+		double x = Part.x/100.0;
+		if (r > 900 && r < 1100 ){ h2->Fill(Part.x/100.,Part.y/100. , Part.weight);}
+		h2_1->Fill(Part.x/100.,Part.y/100.,Part.weight);
+		if (r > 900 && r < 1100 ){ h1->Fill( xprime/100.0 , yprime/100.0 , Part.weight);}
+		//	if ( (x < 4000 && x > -4000) && (y < 2000 && y > -2000) && (z < 500 && z > -500) ){ h3->Fill(x,y,z,Part.weight); }
+		//	cout << "y in shower plane: " << -Part.y*cos(Part.primphi)-Part.x*sin(Part.primphi) << "x in shower plane" <<  (-Part.y*sin(Part.primphi) + Part.x*cos(Part.primphi))*cos(Part.primtheta) << "phi : " << phi << endl;
+		//	phi = atan2(Part.y , Part.x );
+		//	phi += M_PI;
+		//	cout << phi << " " << r << endl;
 		//time=Part.t-(Part.zstart-theRun.OBSLEVELS[Part.obslev-1])*(1.0E+07/cos(Part.primtheta))/c-Part.x*1.0E+07*sin(Part.primtheta)*cos(Part.primphi)/c-Part.y*1.0E+07*sin(Part.primtheta)*sin(Part.primphi)/c;//time in shower front
 		px = Part.px;
 		py = Part.py;
@@ -227,9 +261,11 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		
 		pz = -pz;
 		if (!fSetAzimuth) {
-		  minPhi = minPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
-		  maxPhi = maxPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
-		  primtest << Part.primtheta << " " << Part.primphi << "\n";
+		  // minPhi = minPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
+		  // maxPhi = maxPhi + Part.primphi + (parameter.phiAngle*(M_PI/180.));
+		  minPhi = parameter.phiAngle*(M_PI/180.);
+		  maxPhi = minPhi + parameter.phi;
+		  primtest << Part.primtheta << " " << primphi << "\n";
 		  if (minPhi > M_PI )
 		    {
 		      minPhi = -2*M_PI + minPhi;
@@ -244,10 +280,10 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		    {
 		      maxPhi = 2*M_PI + maxPhi;
 		    }
-		  cout << "Primary particle azimuth: " << Part.primphi << " MaxPhi: " << maxPhi << " MinPhi: " << minPhi << endl;
+		  cout << "Primary particle azimuth: " << primphi << " Prev azimuth: " << Part.primphi << " MaxPhi: " << maxPhi << " MinPhi: " << minPhi << endl;
 		  fSetAzimuth = true;
 		}
-		
+		//cout << r << endl;
 	  
 		type = Part.type;
 		weight = Part.weight;
@@ -266,7 +302,8 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 	
 		if (n != 0)
 		  {
-		    if  ((r >= min) && (r <= max)) {
+		    if  ((r >= min) && (r <= max))
+		    {
 			if (phi >= minPhi && phi <= maxPhi) 
 			  {
 			    particleApplicable = true;
@@ -284,7 +321,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 			
 			if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) )
 			  {
-			    G4file << "/gun/momentum " << px << " " << py << " " << pz << "\n";
+			    G4file << "/gun/momentum " << -px << " " << -py << " " << pz << "\n";
 			    G4file << "/gun/particle " << vecName[type-1] << "\n";
 			    if (useWeights && n >= 10) //is 10 suitable? Think about it after confirming that it works
 			      {
@@ -302,7 +339,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 			  }
 			if (type >= 16 && ( parameter.particle == "all" ))
 			  {
-			    G4file << "/gun/momentum " << pz << " " << py << " " << pz << "\n";
+			    G4file << "/gun/momentum " << -px << " " << -py << " " << pz << "\n";
 			    G4file << "/gun/particle ion " << "\n";
 			    G4file << "/gun/ion " << type << " " << type*2 << "\n";
 
@@ -326,6 +363,19 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
     RunInfo << count << "\n";						     
     G4file.close();
     RunInfo.close();
+    cout << " ?? " << endl;
+
+    canvas->cd();
+    h2_1->Draw("");
+    h2->Draw("SAME");
+    h2_1->SetMarkerColor(kBlue);
+    canvas->Write();
+    h1->Draw();
+    h3->Draw();
+    h3->Write();
+    h1->Write();
+     h2->Write();
+    Hist->Write();
     testAzimuth << howmanyPhi << " " << minPhi << " " << maxPhi << "\n";
   }
     
