@@ -21,7 +21,7 @@ do
 	step=$(bc -l <<< "scale=2; $rs2-$i")
 	step=$(printf "%.0f" $step)
 
-	/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/./usereadpart ${fileName} <<EOF #/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part 
+	/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/./UniParticleReader ${fileName} <<EOF #/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part 
  ${i}
 EOF
 

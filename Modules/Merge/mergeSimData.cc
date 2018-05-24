@@ -20,6 +20,7 @@
 #include "TGraph.h"
 #include "TProfile.h"
 #include "TCanvas.h"
+#include "TPad.h"
 #include "TCut.h"
 #include "TLatex.h"
 #include "TColor.h"
@@ -195,7 +196,7 @@ int main(){
   mSimLDFSSD->SetMarkerColor(kBlue);
   simLDFSDerrors->SetMarkerColor(kRed);
   TFile *Trace = new TFile("/remote/tesla/bmanning/work/Modules/ADST_Analysis/Trace.root");
-  TFile *simTrace = new TFile("MuonSimTrace.root", "RECREATE");
+  TFile *simTrace = new TFile("SimTrace.root", "RECREATE");
 
   //Custom NKG function to fit
   
@@ -360,5 +361,59 @@ int main(){
 
   
   simTrace->Write();
+
+
+
+  TFile *Hists2D = new TFile("/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/2Dhist.root");
+  if (Hists2D->IsOpen() )
+    {
+      printf("2DHIST file opened successfully\n");
+
+      TH2* h2 = (TH2F*)Hists2D->Get("h2");
+      TH2* h2_1 = (TH2F*)Hists2D->Get("h2_1");
+      TH2* h2_2 = (TH2F*)Hists2D->Get("h2_2");
+      TH2* h1 = (TH2F*)Hists2D->Get("h1");
+      TH2* h1_1 = (TH2F*)Hists2D->Get("h1_1");
+      TGraph* showerDirection = (TGraph*)Hists2D->Get("");
+
+	//	TGraph *LDFSD = (TGraph*)Trace->Get("LDFSD");
+
+      TCanvas *canvas = new TCanvas("2DHists", "2DHists", 1000,1000);
+      TFile *PlanesLDF = new TFile("PlanesLDF.root","RECREATE");
+      TPad pad1("Surface Plot","Ground Particles", 0.01, 0.99,0.5 ,0.5);
+      TPad pad2("Surface Plot2","Shower plane particles", 0.51, 0.99, 0.99, 0.5);
+      TPad *pad3 = new TPad("LDF", "SSD", 0.01, 0.01, 0.99, 0.5);
+      pad1.Draw();
+      pad1.cd();
+      h2_1->Draw("");
+      h2_1->SetStats(false);
+      h2->Draw("SAME");
+      h2_2->Draw("SAME");
+      showerDirection->Draw("SAME");
+      showerDirection->SetLineColor(kGreen);
+      h2_1->SetMarkerColor(kBlue);
+      h2_2->SetMarkerColor(kRed);
+      canvas->cd();
+      pad2.Draw();
+      pad2.cd();
+      h1->Draw("");
+      h1->SetStats(false);
+      h1_1->Draw("SAME");
+      h1_1->SetMarkerColor(kRed);
+      canvas->cd();
+      pad3->Draw();
+      pad3->cd();
+      pad3->SetLogy();
+      pad3->SetTitle("LDF-SSD");
+      mg2->Draw("AP*");
+      leg2->Draw();
+
+      canvas->Write();
+      PlanesLDF->Write();
+
+
+      
+    }
+  
   return 0;
 }

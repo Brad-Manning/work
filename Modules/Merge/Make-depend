@@ -172,6 +172,7 @@ mergeSimData.o: mergeSimData.cc \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TPoint.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TAttCanvas.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TCanvasImp.h \
+ /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TPad.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TCut.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TLatex.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TText.h \
