@@ -88,6 +88,8 @@ struct parameters
   bool weightedSimulation;
   int threshold;
   int detector;
+  bool makeSurfacePlots;
+  bool azimuthTest;
 };
 
 parameters read( std::istream & is)
@@ -108,6 +110,8 @@ parameters read( std::istream & is)
       p.threshold = v.second.get<int>("threshold");
       p.detector = v.second.get<int>("detector");
       p.phiAngle = v.second.get<double>("phiAngle");
+      p.makeSurfacePlots = v.second.get<bool>("makeSurfacePlots");
+      p.azimuthTest = v.second.get<bool>("azimuthTest");
     }
 
   }
@@ -153,17 +157,20 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 {
 
   //Initialise ROOT histograms ---------------------------------------------------------------------------
-  if(!createdROOTPlots) {
-  Hist = new TFile("2Dhist.root", "RECREATE");
-  canvas = new TCanvas("canvas", "CanvasBrowser", 1000,1000);
-  h2 = new TH2F("h2", "particles at ground", 2000, -5000, 5000, 2000, -5000,5000);
-  h2_1 = new TH2F("h2_1", "particles at ground", 2000, -5000, 5000, 2000, -5000,5000);
-  h2_2 = new TH2F("h2_2", "particles at ground", 2000, -5000, 5000, 2000, -5000, 5000);
-  h1 = new TH2F("h1", "particles in shower plane", 1000, -5000, 5000, 1000, -5000, 5000);
-  h1_1 = new TH2F("h1_1", "particles in shower plane", 1000, -5000, 5000, 1000, -5000, 5000);
-  showerDirection = new TGraph();
-  createdROOTPlots = true;
-  }
+  if (parameter.makeSurfacePlots)
+    {
+      if(!createdROOTPlots) {
+	Hist = new TFile("2Dhist.root", "RECREATE");
+	canvas = new TCanvas("canvas", "CanvasBrowser", 1000,1000);
+	h2 = new TH2F("h2", "particles at ground", 2000, -5000, 5000, 2000, -5000,5000);
+	h2_1 = new TH2F("h2_1", "particles at ground", 2000, -5000, 5000, 2000, -5000,5000);
+	h2_2 = new TH2F("h2_2", "particles at ground", 2000, -5000, 5000, 2000, -5000, 5000);
+	h1 = new TH2F("h1", "particles in shower plane", 1000, -5000, 5000, 1000, -5000, 5000);
+	h1_1 = new TH2F("h1_1", "particles in shower plane", 1000, -5000, 5000, 1000, -5000, 5000);
+	showerDirection = new TGraph();
+	createdROOTPlots = true;
+      }
+    }
   //------------------------------------------------------------------------------------------------------
 
   //Mersenne Twister 1997 Algorithm ----------------------------------------------------------------------
@@ -395,125 +402,155 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		//Simple boolean to determine whether or not a particle is within the area defined in the shower plane
 		//testing for plots
 			//Only create 2D histograms once
-        	if (createdROOTPlots) {
-		  if (r >= min && r <= max )
-		    {
-		      h2->Fill(Part.x/100.,Part.y/100. , Part.weight);
-		      if (phi >= minPhi && phi <= maxPhi)
+		if (parameter.makeSurfacePlots)
+		  {
+		    if (createdROOTPlots) {
+		      if (r >= min && r <= max )
 			{
-			  h2_2->Fill(Part.x/100.,Part.y/100. , Part.weight);
+			  h2->Fill(Part.x/100.,Part.y/100. , Part.weight);
+			  if (phi >= minPhi && phi <= maxPhi)
+			    {
+			      h2_2->Fill(Part.x/100.,Part.y/100. , Part.weight);
+			    }
+			}
+		      h2_1->Fill(Part.x/100.,Part.y/100.,Part.weight);
+		      if (r >= min && r <= max)
+			{
+			  h1->Fill( xprime/100.0 , yprime/100.0 , Part.weight);
+			  if (phi >= minPhi && phi <= maxPhi)
+			    {
+			      h1_1->Fill(xprime/100.0, yprime/100., Part.weight);
+			      if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) howmanyPhi = howmanyPhi + Part.weight;
+			    }
+			  else if (maxPhi < minPhi)
+			    {
+			      if ((phi >= -M_PI && phi <= maxPhi) || (phi <= M_PI && phi >= minPhi)  )                                
+				{
+				  if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) howmanyPhi = howmanyPhi + Part.weight;
+				}
+			    }
 			}
 		    }
-		  h2_1->Fill(Part.x/100.,Part.y/100.,Part.weight);
+		  }
+
+		if (parameter.azimuthTest) {
 		  if (r >= min && r <= max)
 		    {
-		      h1->Fill( xprime/100.0 , yprime/100.0 , Part.weight);
 		      if (phi >= minPhi && phi <= maxPhi)
 			{
-			  h1_1->Fill(xprime/100.0, yprime/100., Part.weight);
+			  if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) howmanyPhi = howmanyPhi + Part.weight;
 			}
-		    }
-		}
-
-		
-		//Always initialise as false for each particle
-	        bool particleApplicable = false;
-	
-		if (n != 0) //Only continue following routines if there actually are particles that may be injected
-		  {
-		    if  ((r >= min) && (r <= max)) //Check whether particle is within the area by radius
-		    {
-		      if (phi >= minPhi && phi <= maxPhi) //Then check whether the particle is within the area by angle
-			  {
-			    particleApplicable = true;
-			    if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) )  howmanyPhi++;
-			  }
-		      else if (maxPhi < minPhi) //At the +PI/-PI point there is a chance maxPhi < minPhi, the
-			//following if statement takes this into account.
+		      else if (maxPhi < minPhi)
 			{
 			  if ((phi >= -M_PI && phi <= maxPhi) || (phi <= M_PI && phi >= minPhi)  )                                
 			    {
-			      particleApplicable =true;
-			      if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) howmanyPhi++;
+			      if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) howmanyPhi = howmanyPhi + Part.weight;
 			    }
 			}
 		    }
-		    if (particleApplicable) //true if particle is within area
-		      {
-			if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) //Is the particle valid/one we are considering?
-			  //This could be moved above.
-			  //fill histogram for applicable particles
-			 
-			  {
-			   
-			    //Write G4 macro file
-			    G4file << "/gun/momentum " << -px << " " << -py << " " << -pz << "\n";
-			    G4file << "/gun/particle " << vecName[type-1] << "\n";
-			    if (useWeights && n >= 10) //is 10 suitable? Think about it after confirming that it works.
-			      //You cannot fire a non-integer number of particles into GEANT4 it crashes if you do.
-			      //This number > 10 is to somewhat guarantee that after applying the weight multiplier, we do not
-			      //Try to run a non-integer number of particles that always rounds to zero. ie. 0.2, from n = 1
-			      //and a weight multiplier of 0.2. Instead of running 5 instances of 0.2 particles, we would run 5
-			      //instances of 0 particles. Critical if this 1 was a muon.
-			      {
-				G4file << "/run/beamOn " << round(n*weightMultiplier) << "\n";
-				weightAll << ( n / round(n*weightMultiplier) ) << "\n";
-				//Count is the number of particles GEANT4 is simulating. It is used to determine whether or not
-				//weights should be used
-				count = count + round(n*weightMultiplier);
-			      } else {
-			      G4file << "/run/beamOn " << (int) n <<"\n";
-			      //line below is unnecessary unless weights are being used - 
-			      weightAll << 1 << "\n";
-			      count = count + n;
-			    }
+		}
 		
-			    
-			  }
-			// types > 16 are ions
-			if (type >= 16 && ( parameter.particle == "all" ))
+		//Always initialise as false for each particle
+	        bool particleApplicable = false;
+		if (!parameter.azimuthTest)
+		  {
+		    if (n != 0) //Only continue following routines if there actually are particles that may be injected
+		      {
+			if  ((r >= min) && (r <= max)) //Check whether particle is within the area by radius
 			  {
-			    G4file << "/gun/momentum " << -px << " " << -py << " " << -pz << "\n";
-			    G4file << "/gun/particle ion " << "\n";
-			    G4file << "/gun/ion " << type << " " << type*2 << "\n";
-
-			    if (useWeights && n >= 10)
+			    if (phi >= minPhi && phi <= maxPhi) //Then check whether the particle is within the area by angle
 			      {
-				G4file << "/run/beamOn " << round(n*weightMultiplier) << "\n";
-				weightAll << ( n / round(n*weightMultiplier) ) << "\n";
-				count = count + round(n*weightMultiplier);
-			      } else {
-			      G4file << "/run/beamOn " << (int) n << "\n";
-			      weightAll << 1 << "\n";
-			      count = count + n;
-			    }
+				particleApplicable = true;
+				// if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) // howmanyPhi++;
+			      }
+			    else if (maxPhi < minPhi) //At the +PI/-PI point there is a chance maxPhi < minPhi, the
+			      //following if statement takes this into account.
+			      {
+				if ((phi >= -M_PI && phi <= maxPhi) || (phi <= M_PI && phi >= minPhi)  )                    
+				  {
+				    particleApplicable =true;
+				    // if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) //howmanyPhi++;
+				  }
+			      }
 			  }
+			if (particleApplicable) //true if particle is within area
+			  {
+			    if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) //Is the particle valid/one we are considering?
+			      //This could be moved above.
+			      //fill histogram for applicable particles
+			      {
+				//Write G4 macro file
+				G4file << "/gun/momentum " << -px << " " << -py << " " << -pz << "\n";
+				G4file << "/gun/particle " << vecName[type-1] << "\n";
+				if (useWeights && n >= 10) //is 10 suitable? Think about it after confirming that it works.
+				  //You cannot fire a non-integer number of particles into GEANT4 it crashes if you do.
+				  //This number > 10 is to somewhat guarantee that after applying the weight multiplier, we do not
+				  //Try to run a non-integer number of particles that always rounds to zero. ie. 0.2, from n = 1
+				  //and a weight multiplier of 0.2. Instead of running 5 instances of 0.2 particles, we would run 5
+				  //instances of 0 particles. Critical if this 1 was a muon.
+				  {
+				    G4file << "/run/beamOn " << round(n*weightMultiplier) << "\n";
+				    weightAll << ( n / round(n*weightMultiplier) ) << "\n";
+				    //Count is the number of particles GEANT4 is simulating. It is used to determine whether or not
+				    //weights should be used
+				    count = count + round(n*weightMultiplier);
+				  } else {
+				  G4file << "/run/beamOn " << (int) n <<"\n";
+				  //line below is unnecessary unless weights are being used - 
+				  weightAll << 1 << "\n";
+				  count = count + n;
+				}
+				
+				
+			      }
+			    // types > 16 are ions
+			    if (type >= 16 && ( parameter.particle == "all" ))
+			      {
+				G4file << "/gun/momentum " << -px << " " << -py << " " << -pz << "\n";
+				G4file << "/gun/particle ion " << "\n";
+				G4file << "/gun/ion " << type << " " << type*2 << "\n";
+				
+				if (useWeights && n >= 10)
+				  {
+				    G4file << "/run/beamOn " << round(n*weightMultiplier) << "\n";
+				    weightAll << ( n / round(n*weightMultiplier) ) << "\n";
+				    count = count + round(n*weightMultiplier);
+				  } else {
+				  G4file << "/run/beamOn " << (int) n << "\n";
+				  weightAll << 1 << "\n";
+				  count = count + n;
+				}
+			      }
+			  }
+			
 		      }
-		      
 		  }
 	      }
 	  }
       }
-
      //Add number of particles to RunInfo and close ostreams
     RunInfo << count << "\n";						     
     G4file.close();
     RunInfo.close();
 
     //Only write ROOT file once
-    if(createdROOTPlots) {
-      showerDirection->Write();
-      h1->Write();
-      h1_1->Write();
-      h2_1->Write();
-      h2_2->Write();
-      h2->Write();
-      Hist->Write();
-    }
+    if (parameter.makeSurfacePlots)
+      {
+	if(createdROOTPlots) {
+	  showerDirection->Write();
+	  h1->Write();
+	  h1_1->Write();
+	  h2_1->Write();
+	  h2_2->Write();
+	  h2->Write();
+	  Hist->Write();
+	}
+      }
     //testing purposes
     testAzimuth << howmanyPhi << " " << minPhi << " " << maxPhi << "\n";
+  
   }
-    
+     
   return count;  
 }
 
