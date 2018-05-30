@@ -23,7 +23,7 @@ do
 #	echo ${rs20}
 #	echo ${rs21}
 
-	/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/./usereadpart <<EOF #/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part 
+	/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/./UniParticleReader <<EOF #/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part 
  ${i}
 EOF
 

@@ -9,11 +9,11 @@
     <particle>all</particle> <!-- all, muon, gamma, electron -->
     <phi> 0.15 </phi> <!-- Radians, total span of phi -->
 
-    <phiAngle>0</phiAngle> <!-- degrees, the starting angle for phi in CORSIKA convention.
+    <phiAngle>0</phiAngle> <!-- degrees, the starting angle for phi in CORSIKA convention. 0 = east, 90 = 6, -90 = 12, 180/-180 = 9
     WITH THE SHOWER ALWAYS POINTING TOWARDS +X -->
     
     <!--
-        Corsika Axes/Azimuth Convention
+        Corsika Axes/Azimuth Convention -SWITCHED TO MATH CONVENTION
 
          +z is up, -z down
                            +0, +x
@@ -25,7 +25,22 @@
 	                     |
 	                     |
 	                     |
-		        +/- 180, -x
+		             +/- 180, -x
+
+
+
+
+     +z is up, -z down
+                           +90, +y
+                             |
+                             |
+                             |
+           +/-180, -x________|________ 0, x	
+                             |
+	                     |
+	                     |
+	                     |
+		         -90, -y
     -->
 
 
@@ -41,6 +56,9 @@
     <threshold>50000</threshold>
 
     <detector>1</detector> <!-- 0 corresponds to WCD, 1 SSD -->
-    
+    <makeSurfacePlots>1</makeSurfacePlots>
+    <!-- make root surface plots, true or false -->
+    <azimuthTest>0</azimuthTest>
+    <!-- azimuth testing, true or false -->
   </CORSIKA> 
 </CORSIKAParameters>

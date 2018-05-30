@@ -35,7 +35,11 @@ do
 EOF
 
 	    wait
-	    
+
+	    /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/./Cherenkov *${j}.mac
+	    #/remote/tesla/bmanning/work/Geant4Simulations/SSD-build/./SSDSimulation *${j}.mac
+	  
+	    /remote/tesla/bmanning/work/Modules/Merge/./merge
 	    rm -f qgsII*
 	done
 	
@@ -49,11 +53,14 @@ EOF
 	rm -f SSD.root
 	rm -f VEM.txt
 	rm -f eValues.txt
-	rm -f VEM_r_bins.txt
+	#	rm -f VEM_r_bins.txt
+	echo $angle >> VEM_r_bins.txt
 	rm -f Cherenkov.root
 	rm -f LDF.root
-	rm -f MIP_r_bins.txt
+	#rm -f MIP_r_bins.txt
+	echo $angle >> MIP_r_bins.txt
     done
     
     echo "-1 -1 -1" >> test.txt
+   
 done

@@ -4,9 +4,10 @@
   <CORSIKA>
 
     <!-- Directory to CORSIKA file location --> <!-- include file or directory -->
-    <file>/remote/tesla/bmanning/data/qgsII4/proton/18.5/60deg/*</file> 
-    <saveLocation>/remote/tesla/bmanning/data/EnergyTable/Auger/qgsII4/proton/18.5/60deg/</saveLocation>
-    <particle>all</particle> <!-- all, muon, gamma, electron -->
+    <file>/remote/tesla/bmanning/data/qgsII3/proton/19.5/26deg/*</file> 
+    <saveLocation>/remote/tesla/bmanning/data/ShowerComponents/qgsII4/proton/19/60deg/</saveLocation>
+    <particle>all</particle>
+    <!-- all, muon, gamma, electron -->
     <phi> 0.15 </phi> <!-- Radians -->
     <phiAngle>0</phiAngle>
     <delta> 0.1 </delta> <!-- width either side of tank for section of ring -->
@@ -19,8 +20,11 @@
     <detector>0</detector> <!-- 0 corresponds to WCD, 1, SSD -->
     <iterations>1</iterations>
     <!-- number of times to simulate the same shower(s) -->
-    <nUniqueShowers>40</nUniqueShowers>
+    <nUniqueShowers>45</nUniqueShowers>
     <!-- number of unique showers to use from data directory -->
-    
+    <makeSurfacePlots>0</makeSurfacePlots>
+    <!-- make root surface plots, true or false -->
+    <azimuthTest>0</azimuthTest>
+    <!-- azimuth testing, true or false -->
   </CORSIKA> 
 </CORSIKAParameters>

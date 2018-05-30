@@ -419,14 +419,14 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 			  h1->Fill( xprime/100.0 , yprime/100.0 , Part.weight);
 			  if (phi >= minPhi && phi <= maxPhi)
 			    {
-			      h1_1->Fill(xprime/100.0, yprime/100., Part.weight);
-			      if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) howmanyPhi = howmanyPhi + Part.weight;
+			      h1_1->Fill(xprime/100.0, -yprime/100., Part.weight);
+			      //if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) )// howmanyPhi = howmanyPhi + Part.weight;
 			    }
 			  else if (maxPhi < minPhi)
 			    {
 			      if ((phi >= -M_PI && phi <= maxPhi) || (phi <= M_PI && phi >= minPhi)  )                                
 				{
-				  if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) howmanyPhi = howmanyPhi + Part.weight;
+				  //if ( type > (validParticles[0]-1) && type < (validParticles[1]+1) ) //howmanyPhi = howmanyPhi + Part.weight;
 				}
 			    }
 			}
@@ -452,7 +452,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		
 		//Always initialise as false for each particle
 	        bool particleApplicable = false;
-		if (!parameter.azimuthTest)
+		if (1==1)//!parameter.azimuthTest)
 		  {
 		    if (n != 0) //Only continue following routines if there actually are particles that may be injected
 		      {

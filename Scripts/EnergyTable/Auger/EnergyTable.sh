@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-Compositions=(qgsII4) #(qgsII3 qgsII4)
-nC=1
-Particles=(proton) # (proton iron)
-nP=1
-Energies=(20 19.5 19 18.5)
-nE=4
-Angles=(0deg 26deg 38deg 49deg 60deg)
-nA=5
+Compositions=(qgsII4 qgsII3) #(qgsII3 qgsII4)
+nC=2 #2
+Particles=(proton iron) # (proton iron)
+nP=2 #2
+Energies=(20 19.5 19 18.5)         #  (20 19.5 19 18.5)
+nE=4 #4
+Angles=(0deg 26deg 38deg 49deg 60deg)   #(0deg 26deg 38deg 49deg 60deg)
+nA=5  #5
 
 for (( c=0; c<nC; c=c+1 ))
 do
@@ -22,7 +22,8 @@ do
 	    do
 		angle=${Angles[a]}
 	        newFileName=/remote/tesla/bmanning/data/${composition}/${particle}/${energy}/${angle}/*
-		newSaveLocation=/remote/tesla/bmanning/data/EnergyTable/Auger/${composition}/${particle}/${energy}/${angle}/
+		#	newSaveLocation=/remote/tesla/bmanning/data/EnergyTable/Auger/${composition}/${particle}/${energy}/${angle}/
+		newSaveLocation=/remote/tesla/bmanning/data/ShowerComponents/qgsII4/proton/19/60deg/
 		
 sed -i "
     /<CORSIKA>/,/<\/CORSIKA>/ s@<file>.*</file>@<file>$newFileName</file>@;
@@ -34,6 +35,7 @@ maxPosition=$(sed -n 's/.*<maxPosition>\(.*\)<\/maxPosition>/\1/p' CORSIKAParame
 iterations=$(sed -n 's/.*<iterations>\(.*\)<\/iterations>/\1/p' CORSIKAParameters.xml)
 fileName=$(sed -n 's/.*<file>\(.*\)<\/file>/\1/p' CORSIKAParameters.xml)
 nUniqueShowers=$(sed -n 's/.*<nUniqueShowers>\(.*\)<\/nUniqueShowers>/\1/p' CORSIKAParameters.xml)
+#particle2=$(sed -n 's/.*<particle>\(.*\)<\/particle>/\1/p' CORSIKAParameters.xml)
 
 for (( e=1; e<=iterations; e=e+1 ))
 do
@@ -54,7 +56,7 @@ do
 #	echo ${rs20}
 #	echo ${rs21}
 
-	/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/./usereadpart ${fileName} <<EOF #/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part 
+	/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/./UniParticleReader ${fileName} <<EOF #/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part 
  ${i}
 EOF
 
@@ -73,6 +75,11 @@ EOF
 
 saveLocation=$(sed -n 's/.*<saveLocation>\(.*\)<\/saveLocation>/\1/p' CORSIKAParameters.xml)
 
+echo ${particle}
+echo ${e}
+echo ${startingPosition}
+echo ${saveLocation}${startingPosition}${particle}-${e}.txt
+
 mv VEM_r_bins.txt ${saveLocation}${startingPosition}-${e}.txt
     
 rm -f qgsII*
@@ -82,7 +89,7 @@ rm -f weightAll.txt
 rm -f SSD.root
 rm -f VEM.txt
 rm -f eValues.txt
-rm -f VEM_r_bins.txt
+#rm -f VEM_r_bins.txt
 rm -f Cherenkov.root
 rm -f LDF.root
 rm -f MIP_r_bins.txt

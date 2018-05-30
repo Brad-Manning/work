@@ -4,11 +4,11 @@
   <CORSIKA>
 
     <!-- Directory to CORSIKA file location --> <!-- include file or directory -->
-    <file>/remote/tesla/bmanning/data/qgsII3/proton/19/60deg/DAT200110.part</file> 
+    <file>/remote/tesla/bmanning/data/qgsII3/proton/19/60deg/DAT200990.part</file> 
     <saveLocation>/remote/tesla/bmanning/data/EnergyTable/Auger/qgsII3/proton/19/38deg/</saveLocation>
-    <particle>muon</particle> <!-- all, muon, gamma, electron -->
+    <particle>gamma</particle> <!-- all, muon, gamma, electron -->
     <phi> 0.30 </phi> <!-- Radians -->
-    <phiAngle>-90</phiAngle>
+    <phiAngle>180</phiAngle>
     <delta> 0.1 </delta> <!-- width either side of tank for section of ring -->
     <startingPosition>1000</startingPosition>
     <!-- distance (m) of first tank from shower core -->
