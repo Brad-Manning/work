@@ -17,6 +17,7 @@
 #include "CherenkovRunAction.hh"
 #include <vector>
 
+G4double nParticles = 0;
 CherenkovStackingAction::CherenkovStackingAction(CherenkovRunAction* runAction)
   : G4UserStackingAction(),
     fRunAction(runAction),
@@ -58,10 +59,21 @@ void CherenkovStackingAction::NewStage()
   man->FillH1(0,gammaCounter,w);
   man->FillH1(1,gammaCounter/49450.0,w); //VEM graph
   totalPhotons += (gammaCounter)/49450.0*w;///49450.0;
- 
+
+  nParticles += w;
+  
   //G4cout << "VEM: " << totalPhotons << " Hits: "  << hits << " Hits w/ weight: " << hitsWeight <<  G4endl;
   std::ofstream finalVEM ("finalVEM.txt");
-  finalVEM << totalPhotons << "\n";
+  std::ifstream runInfo ("runInfo.txt");
+  G4int line_no = 0;
+  G4double line;
+  G4int tank_pos;
+  while(runInfo >> line) {
+    line_no++;
+    //if (line_no == 3 ) { nParticles = line; }
+    if (line_no == 1) tank_pos = line;
+  }
+  finalVEM << totalPhotons << " " << (int) nParticles-1 << " " << tank_pos << "\n";
 }
 
 void CherenkovStackingAction::PrepareNewEvent()

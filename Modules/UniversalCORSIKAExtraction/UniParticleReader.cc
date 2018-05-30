@@ -529,7 +529,8 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 	  }
       }
      //Add number of particles to RunInfo and close ostreams
-    RunInfo << count << "\n";						     
+    RunInfo << count << "\n";
+    if (useWeights) RunInfo << 1/weightMultiplier << "\n";
     G4file.close();
     RunInfo.close();
 
