@@ -12,7 +12,7 @@
 #include <fstream>
 
 G4double totalVEM;
-
+G4double nParticles = 0;
 SSDEventAction::SSDEventAction(SSDRunAction* runAction)
 : G4UserEventAction(),
   fRunAction(runAction),
@@ -40,7 +40,7 @@ void SSDEventAction::EndOfEventAction(const G4Event*)
   //Get root manager
   G4AnalysisManager* man = G4AnalysisManager::Instance();
   weight = fRunAction->GetWeight();
-  
+  nParticles += weight;
 
   // MAGIC NUMBER FOR MIP FROM 100K RUNS OF VERTICAL MUON.
   man->FillH1(2,fEdep/2.41, weight);
@@ -54,7 +54,22 @@ void SSDEventAction::EndOfEventAction(const G4Event*)
   // G4cout << fEdep << " with weight " << weight << G4endl;
   //Record VEM values
   std::ofstream finalVEM;
+  std::ifstream runInfo ("runInfo.txt");
+  G4int tank_pos;
+  G4int line_no = 0;
+  G4double line;
+  while(runInfo >> line)
+    {
+      line_no++;
+      if (line_no == 1)
+	{
+	  tank_pos = line;
+	}
+    }
+  
+  
   finalVEM.open ("finalMIP.txt");// std::ios_base::app);
-  finalVEM << totalVEM << "\n";
+  finalVEM << totalVEM/2. << " " << (int) nParticles << " " << tank_pos <<  "\n";
+  // G4cout << weight << " " << nParticles << " " << totalVEM << G4endl;
   finalVEM.close();
 }

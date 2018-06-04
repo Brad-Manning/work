@@ -4,7 +4,7 @@
   <CORSIKA>
 
     <!-- Directory to CORSIKA file location --> <!-- include file or directory -->
-    <file>/remote/tesla/bmanning/data/qgsII3/proton/19/38deg/DAT200118.part</file> 
+    <file>/remote/tesla/bmanning/data/qgsII3/proton/19/38deg/DAT200998.part</file> 
     <saveLocation>/remote/tesla/bmanning/data/SimulationData/proton/19/38deg/</saveLocation>
     <particle>gamma</particle>
     <!-- all, muon, gamma, electron -->

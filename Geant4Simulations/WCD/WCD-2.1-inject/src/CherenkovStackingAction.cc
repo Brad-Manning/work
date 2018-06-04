@@ -73,7 +73,7 @@ void CherenkovStackingAction::NewStage()
     //if (line_no == 3 ) { nParticles = line; }
     if (line_no == 1) tank_pos = line;
   }
-  finalVEM << totalPhotons << " " << (int) nParticles-1 << " " << tank_pos << "\n";
+  finalVEM << totalPhotons << " " << (int) nParticles << " " << tank_pos << "\n";
 }
 
 void CherenkovStackingAction::PrepareNewEvent()

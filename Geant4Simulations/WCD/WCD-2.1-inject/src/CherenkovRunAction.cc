@@ -57,7 +57,9 @@ CherenkovRunAction::CherenkovRunAction()
       }
     }
   }
-  
+  std::ofstream finalVEM;
+  finalVEM.open ("finalVEM.txt");
+  finalVEM << 0 << " " << 0 << " " << tank_pos << "\n";
   G4cout << "Run: Tank Position: " << tank_pos << " # Injected Particles: " << nParticles << G4endl;
   G4cout.rdbuf(NULL);
 }

@@ -1,6 +1,6 @@
 // Bradley Manning 4/2018
 
-
+#include <numeric>
 #include <vector>
 #include <string>
 #include <iostream>
@@ -48,12 +48,41 @@ TGraph* eSimLDFSSD = new TGraph();
 TGraph* mSimLDFSSD = new TGraph();
 TGraph* pSimLDFSSD = new TGraph();
 
+TGraph* simLDFSSDnum = new TGraph();
+TGraph* simLDFSDnum = new TGraph();
 
+TGraph* eSimLDFSDnum = new TGraph();
+TGraph* mSimLDFSDnum = new TGraph();
+TGraph* pSimLDFSDnum = new TGraph();
+TGraph* eSimLDFSSDnum = new TGraph();
+TGraph* mSimLDFSSDnum = new TGraph();
+TGraph* pSimLDFSSDnum = new TGraph();
+
+// TH1* eSimLDFSDnum = new TH1F("eSimLDFSDnum", "eSimLDFSDnum", 1000, 0, 4000);
+// TH1* mSimLDFSDnum = new TH1F("mSimLDFSDnum", "mSimLDFSDnum", 1000, 0, 4000);
+// TH1* pSimLDFSDnum = new TH1F("pSimLDFSDnum", "pSimLDFSDnum", 1000, 0, 4000);
+// TH1* eSimLDFSSDnum = new TH1F("eSimLDFSSDnum", "eSimLDFSSDnum", 1000, 0, 4000);
+// TH1* mSimLDFSDnum = new TH1F("mSimLDFSDnum", "mSimLDFSDnum", 1000, 0, 4000);
+// TH1* pSimLDFSDnum = new TH1F("pSimLDFSDnum", "pSimLDFSDnum", 1000, 0, 4000);
+
+auto eSimLDFSDnumprof = new TProfile("eSimLDFSDumprof", "Profile of e number", 1000, 0, 4000);
+auto mSimLDFSDnumprof = new TProfile("mSimLDFSDumprof", "Profile of m number", 1000, 0, 4000);
+auto pSimLDFSDnumprof = new TProfile("pSimLDFSDumprof", "Profile of p number", 1000, 0, 4000);
+auto eSimLDFSSDnumprof = new TProfile("eSimLDFSDumprof", "Profile of e number", 1000, 0, 4000);
+auto mSimLDFSSDnumprof = new TProfile("mSimLDFSDumprof", "Profile of m number", 1000, 0, 4000);
+auto pSimLDFSSDnumprof = new TProfile("pSimLDFSDumprof", "Profile of p number", 1000, 0, 4000);
+
+auto eSimLDFSDprof = new TProfile("eSimLDFSDprof", "Profile of e number", 1000, 0, 4000);
+auto mSimLDFSDprof = new TProfile("mSimLDFSDprof", "Profile of m number", 1000, 0, 4000);
+auto pSimLDFSDprof = new TProfile("pSimLDFSDprof", "Profile of p number", 1000, 0, 4000);
+auto eSimLDFSSDprof = new TProfile("eSimLDFSDprof", "Profile of e number", 1000, 0, 4000);
+auto mSimLDFSSDprof = new TProfile("mSimLDFSDprof", "Profile of m number", 1000, 0, 4000);
+auto pSimLDFSSDprof = new TProfile("pSimLDFSDprof", "Profile of p number", 1000, 0, 4000);
 
 int main(){
   ifstream fin;
   string dir, filepath,file;
-  double num;
+  double num, nParticles, tank_pos;
   DIR *dp;
   struct dirent *dirp;
   struct stat filestat;
@@ -63,9 +92,12 @@ int main(){
 
   double_t  sum[nEvents] = {0};
   double_t  error[nEvents] = {0};
+
+  vector < double > pSDSum, eSDSum, mSDSum, pSSDSum, eSSDSum, mSSDSum;
+  
   cout << "dir to get files of: " << flush;
   //getline( cin, dir );  // gets everything the user ENTERs
-  dir =  "/remote/tesla/bmanning/data/SimulationData/proton/19/60deg";
+  dir =  "/remote/tesla/bmanning/data/SimulationData/proton/19/38deg";
   dp = opendir( dir.c_str() );
   if (dp == NULL)
     {
@@ -85,76 +117,74 @@ int main(){
     fin.open( filepath.c_str() );
 
     // Dynamic Bin Size 12 April 2018
-    double rMIPTankPos = 164;
-    const double factor = 0.1;
-    double rStep = 0;
-    double rMIP = rMIPTankPos;
-    double prMIP = rMIPTankPos;
-    double erMIP = rMIPTankPos;
-    double mrMIP = rMIPTankPos;
-    double rVEMTankPos = 164;
-    double rVEMStep = 0;
-    double rVEM = rVEMTankPos;
-    double prVEM = rVEMTankPos;
-    double erVEM = rVEMTankPos;
-    double mrVEM = rVEMTankPos;
 
+
+    
    
-    while ( fin >> num) 
+    while ( fin >> num >> nParticles >> tank_pos) 
       {
-	if ( ( file.find("MIP") != std::string::npos  ) && ( file.find("inject") != std::string::npos ) ) { //MIP file
+       	if ( ( file.find("MIP") != std::string::npos  ) ) { //MIP file
 	  //Define R start point and bin
-	  if ( file.find("Photon") != std::string::npos) {
-	    pSimLDFSSD->SetPoint(pSimLDFSSD->GetN(), prMIP, num/2);
-	    rStep = (1+factor)*prMIP;
-	    prMIP = rStep / (1-factor);
+	  if ( file.find("gamma") != std::string::npos) {
+	    pSimLDFSSD->SetPoint(pSimLDFSSD->GetN(), tank_pos, num/2);
+	    pSimLDFSSDnum->SetPoint(pSimLDFSSDnum->GetN(), tank_pos, nParticles);
+	    pSSDSum.push_back(num/2);
+	    pSimLDFSSDnumprof->Fill(tank_pos, nParticles);
+	    pSimLDFSSDprof->Fill(tank_pos, num/2.);
+	    
+	  } else if (file.find("muon") != std::string::npos) {
+	    mSimLDFSSD->SetPoint(mSimLDFSSD->GetN(), tank_pos, num/2);
+	    mSimLDFSSDnum->SetPoint(mSimLDFSSDnum->GetN(), tank_pos, nParticles);
+	    mSSDSum.push_back(num);
+	    mSimLDFSSDnumprof->Fill(tank_pos, nParticles);
+	    mSimLDFSSDprof->Fill(tank_pos, num/2.);
+	  } else if (file.find("electron") != std::string::npos) {
+	    eSimLDFSSD->SetPoint(eSimLDFSSD->GetN(), tank_pos, num/2);
+	    eSimLDFSSDnum->SetPoint(eSimLDFSSDnum->GetN(), tank_pos, nParticles);
+	    eSSDSum.push_back(num);
+	    eSimLDFSSDnumprof->Fill(tank_pos, nParticles);
+	    cout << nParticles+1 << " " << tank_pos << " " << num/2. << endl;
+	    eSimLDFSSDprof->Fill(tank_pos, num/2.);
 
-	  } if (file.find("muon") != std::string::npos) {
-	    mSimLDFSSD->SetPoint(mSimLDFSSD->GetN(), mrMIP, num/2);
-	    rStep = (1+factor)*mrMIP;
-	    mrMIP = rStep / (1-factor);
-	 
-	  } if (file.find("electron") != std::string::npos) {
-	    eSimLDFSSD->SetPoint(eSimLDFSSD->GetN(), erMIP, num/2);
-	    rStep = (1+factor)*erMIP;
-	    erMIP = rStep / (1-factor);
-
-	  }
-	  simLDFSSD->SetPoint(simLDFSSD->GetN(), rMIP, num/2);
-	  rStep = (1+factor)*rMIP;
-	  rMIP = rStep / (1-factor);
+	    //  cout << tank_pos << " " << nParticles << endl;
+	  } else
+	    {
+	      simLDFSSD->SetPoint(simLDFSSD->GetN(), tank_pos, num/2);
+	      simLDFSSDnum->SetPoint(simLDFSSDnum->GetN(), tank_pos, nParticles);
+	    }
 	
-	  
-      
-	  
+	 	  
 	  //cout << dirp->d_name << ": " << num << endl;
 	  //Note MIP was not calibrated to MIP in GEANT4 (hence 2)
 	  //simLDFSSD->SetPoint(simLDFSSD->GetN(), rMIP, num/2);
 	  //rMIP = rMIP + rStep;
 	  
-	} else if ( ( file.find("VEM") != std::string::npos ) && (file.find("inject") != std::string::npos ) ) { //VEM file
+	} else if ( ( file.find("VEM") != std::string::npos ) ) { //VEM file
 
 	    
-	  if ( file.find("photon") != std::string::npos) {
-	    pSimLDFSD->SetPoint(pSimLDFSD->GetN(), prVEM, num);
-	    rVEMStep = (1+factor)*prVEM;
-	    prVEM =  rVEMStep / (1-factor);
-	  } if (file.find("muon") != std::string::npos) {
-	    mSimLDFSD->SetPoint(mSimLDFSD->GetN(), mrVEM, num);
-	    rVEMStep = (1+factor)*mrVEM;
-	    mrVEM = rVEMStep / (1-factor);
-
-	  } if (file.find("electron") != std::string::npos) {
-	    eSimLDFSD->SetPoint(eSimLDFSD->GetN(), erVEM, num);
-	    rVEMStep = (1+factor)*erVEM;
-	    erVEM = rVEMStep / (1-factor);
-	  
-	  }
-	  simLDFSD->SetPoint(simLDFSD->GetN(), rVEM, num);
-	  rVEMStep = (1+factor)*rVEM;
-	  rVEM = rVEMStep / (1-factor);
+	  if ( file.find("gamma") != std::string::npos) {
+	    pSimLDFSD->SetPoint(pSimLDFSD->GetN(), tank_pos, num);
+	    pSimLDFSDnum->SetPoint(pSimLDFSDnum->GetN(), tank_pos, nParticles);
+	    pSDSum.push_back(num);
+	    pSimLDFSDnumprof->Fill(tank_pos, nParticles);
+	    pSimLDFSDprof->Fill(tank_pos, num);
+	  } else if (file.find("muon") != std::string::npos) {
+	    mSimLDFSD->SetPoint(mSimLDFSD->GetN(), tank_pos, num);
+	    mSimLDFSDnum->SetPoint(mSimLDFSDnum->GetN(), tank_pos, nParticles);
+	    mSDSum.push_back(num);
+	    mSimLDFSDnumprof->Fill(tank_pos, nParticles);
+	    mSimLDFSDprof->Fill(tank_pos, num);
+	  } else if (file.find("electron") != std::string::npos) {
+	    eSimLDFSD->SetPoint(eSimLDFSD->GetN(), tank_pos, num);
+	    eSimLDFSDnum->SetPoint(eSimLDFSDnum->GetN(), tank_pos, nParticles);
+	    eSDSum.push_back(num);
+	    eSimLDFSDnumprof->Fill(tank_pos, nParticles);
+	    eSimLDFSDprof->Fill(tank_pos, num);
+	  } else {
+	  simLDFSD->SetPoint(simLDFSD->GetN(), tank_pos, num);
+	  simLDFSDnum->SetPoint(simLDFSDnum->GetN(), tank_pos, nParticles);
 	  sum[idx % nEvents] += num;
-	      
+	  }
 	  
 	 
 	    // cout << sum[idx % nEvents] << endl;
@@ -184,16 +214,45 @@ int main(){
   }
   simLDFSDerrors = new TGraphErrors(nEvents, rVEM_vector, mean, 0, error);
 
-
+  
+  // double pSDMean = accumulate( pSDSum.begin(), pSDSum.end(), 0.0)/pSDSum.size();
+  // double eSDMean = accumulate( eSDSum.begin(), eSDSum.end(), 0.0)/eSDSum.size();
+  // double mSDMean = accumulate( mSDSum.begin(), mSDSum.end(), 0.0)/mSDSum.size();
+  // double pSSDMean = accumulate( pSSDSum.begin(), pSSDSum.end(), 0.0)/pSSDSum.size();
+  // double eSSDMean = accumulate( eSSDSum.begin(), eSSDSum.end(), 0.0)/eSSDSum.size();
+  // double mSSDMean = accumulate( mSSDSum.begin(), mSSDSum.end(), 0.0)/mSSDSum.size();
       
-  simLDFSSD->SetMarkerColor(kBlue);
-  simLDFSD->SetMarkerColor(kGreen);
-  eSimLDFSD->SetMarkerColor(kRed);
-  eSimLDFSSD->SetMarkerColor(kRed);
-  pSimLDFSD->SetMarkerColor(kYellow);
-  pSimLDFSSD->SetMarkerColor(kYellow);
-  mSimLDFSD->SetMarkerColor(kBlue);
-  mSimLDFSSD->SetMarkerColor(kBlue);
+  simLDFSSD->SetMarkerColor(kBlue); simLDFSSD->SetMarkerStyle(20);
+  simLDFSD->SetMarkerColor(kGreen); simLDFSD->SetMarkerStyle(20);
+  eSimLDFSD->SetMarkerColor(kRed);  eSimLDFSD->SetMarkerStyle(21);
+  eSimLDFSSD->SetMarkerColor(kRed); eSimLDFSSD->SetMarkerStyle(21);
+  pSimLDFSD->SetMarkerColor(kGreen); pSimLDFSD->SetMarkerStyle(22);
+  pSimLDFSSD->SetMarkerColor(kGreen); pSimLDFSSD->SetMarkerStyle(22);
+  mSimLDFSD->SetMarkerColor(kBlue); mSimLDFSD->SetMarkerStyle(23);
+  mSimLDFSSD->SetMarkerColor(kBlue); mSimLDFSSD->SetMarkerStyle(23);
+  simLDFSSDnum->SetMarkerColor(kBlue); simLDFSSDnum->SetMarkerStyle(20);
+  simLDFSDnum->SetMarkerColor(kGreen); simLDFSDnum->SetMarkerStyle(20);
+  eSimLDFSDnum->SetMarkerColor(kRed); eSimLDFSDnum->SetMarkerStyle(21);
+  eSimLDFSSDnum->SetMarkerColor(kRed); eSimLDFSSDnum->SetMarkerStyle(21);
+  pSimLDFSDnum->SetMarkerColor(kGreen); pSimLDFSDnum->SetMarkerStyle(22);
+  pSimLDFSSDnum->SetMarkerColor(kGreen); pSimLDFSSDnum->SetMarkerStyle(22);
+  mSimLDFSDnum->SetMarkerColor(kBlue); mSimLDFSDnum->SetMarkerStyle(23);
+  mSimLDFSSDnum->SetMarkerColor(kBlue); mSimLDFSSDnum->SetMarkerStyle(23);
+
+  eSimLDFSDprof->SetMarkerColor(kRed);  eSimLDFSDprof->SetMarkerStyle(21);
+  eSimLDFSSDprof->SetMarkerColor(kRed); eSimLDFSSDprof->SetMarkerStyle(21);
+  pSimLDFSDprof->SetMarkerColor(kGreen); pSimLDFSDprof->SetMarkerStyle(22);
+  pSimLDFSSDprof->SetMarkerColor(kGreen); pSimLDFSSDprof->SetMarkerStyle(22);
+  mSimLDFSDprof->SetMarkerColor(kBlue); mSimLDFSDprof->SetMarkerStyle(23);
+  mSimLDFSSDprof->SetMarkerColor(kBlue); mSimLDFSSDprof->SetMarkerStyle(23);
+  
+  eSimLDFSDnumprof->SetMarkerColor(kRed); eSimLDFSDnumprof->SetMarkerStyle(21);
+  eSimLDFSSDnumprof->SetMarkerColor(kRed); eSimLDFSSDnumprof->SetMarkerStyle(21);
+  pSimLDFSDnumprof->SetMarkerColor(kGreen); pSimLDFSDnumprof->SetMarkerStyle(22);
+  pSimLDFSSDnumprof->SetMarkerColor(kGreen); pSimLDFSSDnumprof->SetMarkerStyle(22);
+  mSimLDFSDnumprof->SetMarkerColor(kBlue); mSimLDFSDnumprof->SetMarkerStyle(23);
+  mSimLDFSSDnumprof->SetMarkerColor(kBlue); mSimLDFSSDnumprof->SetMarkerStyle(23);
+  
   simLDFSDerrors->SetMarkerColor(kRed);
   TFile *Trace = new TFile("/remote/tesla/bmanning/work/Modules/ADST_Analysis/Trace.root");
   TFile *simTrace = new TFile("SimTrace.root", "RECREATE");
@@ -290,7 +349,7 @@ int main(){
   mg2->SetMaximum(15000);
   mg2->GetXaxis()->SetLimits(0,4000);
   mg2->GetXaxis()->SetTitle("r (m)");
-  mg2->SetTitle("Laterial Distribution Function (My G4 vs OffLine)");
+  mg2->SetTitle("Lateral Distribution Function (My G4 vs OffLine)");
 
   TLegend* leg2 = new TLegend(0.1,0.7,0.48,0.9);
   leg2->AddEntry(LDFSSD, "OffLine - Signal (MIP PEAK)", "p");
@@ -327,39 +386,168 @@ int main(){
   TMultiGraph *SDmg = new TMultiGraph();
   simComponentsSD->cd();
   simComponentsSD->SetLogy();
+  // SDmg->Add(eSimLDFSD);
+  // SDmg->Add(pSimLDFSD);
+  // SDmg->Add(mSimLDFSD);
   SDmg->Add(eSimLDFSD);
   SDmg->Add(pSimLDFSD);
   SDmg->Add(mSimLDFSD);
-  SDmg->Draw("AP*");
+  SDmg->Draw("AP");
   SDmg->SetMinimum(0.1);
   SDmg->SetMaximum(15000);
   SDmg->GetXaxis()->SetLimits(0,4000);
   SDmg->GetXaxis()->SetTitle("r (m)");
-  SDmg->SetTitle("Laterial Distribution Function for components (SD Sim)");
+  SDmg->SetTitle("Lateral Distribution Function for components (SD Sim)");
   SDmg->Write();
   simComponentsSD->Write();
+
+  TCanvas *simComponentsSDnum = new TCanvas("ComponentsSDnum", "ComponentsSD-Simnum", 1920, 1000);
+  TMultiGraph *SDmgnum = new TMultiGraph();
+  simComponentsSDnum->cd();
+  simComponentsSDnum->SetLogy();
+  SDmgnum->Add(eSimLDFSDnum);
+  SDmgnum->Add(pSimLDFSDnum);
+  SDmgnum->Add(mSimLDFSDnum);
+  // SDmgnum->Add(eSimLDFSDnumprof);
+  // SDmgnum->Add(pSimLDFSDnumprof);
+  // SDmgnum->Add(mSimLDFSDnumprof);
+  SDmgnum->Draw("AP");
+  SDmgnum->SetMinimum(0.1);
+  SDmgnum->SetMaximum(15000);
+  SDmgnum->GetXaxis()->SetLimits(0,4000);
+  SDmgnum->GetXaxis()->SetTitle("r (m)");
+  SDmgnum->SetTitle("Lateral Distribution Function for num components (SD Sim)");
+  SDmgnum->Write();
+  simComponentsSDnum->Write();
 
   TCanvas *simComponentsSSD = new TCanvas("ComponentsSSD", "ComponentsSSD-Sim", 1920, 1000);
   TMultiGraph *SSDmg = new TMultiGraph();
   simComponentsSSD->cd();
   simComponentsSSD->SetLogy();
+  // SSDmg->Add(eSimLDFSSD);
+  // SSDmg->Add(pSimLDFSSD);
+  // SSDmg->Add(mSimLDFSSD);
   SSDmg->Add(eSimLDFSSD);
   SSDmg->Add(pSimLDFSSD);
   SSDmg->Add(mSimLDFSSD);
-  SSDmg->Draw("AP*");
+  SSDmg->Draw("AP");
   SSDmg->SetMinimum(0.1);
   SSDmg->SetMaximum(15000);
   SSDmg->GetXaxis()->SetLimits(0,4000);
   SSDmg->GetXaxis()->SetTitle("r (m)");
-  SSDmg->SetTitle("Laterial Distribution Function for components (SD Sim)");
+  SSDmg->SetTitle("Lateral Distribution Function for components (SD Sim)");
   SSDmg->Write();
   simComponentsSSD->Write();
-
-
-
-
+  
+  TCanvas *simComponentsSSDnum = new TCanvas("ComponentsSSDnum", "ComponentsSSD-Simnum", 1920, 1000);
+  TMultiGraph *SSDmgnum = new TMultiGraph();
+  simComponentsSSDnum->cd();
+  simComponentsSSDnum->SetLogy();
+  SSDmgnum->Add(eSimLDFSSDnum);
+  SSDmgnum->Add(pSimLDFSSDnum);
+  SSDmgnum->Add(mSimLDFSSDnum);
+  SSDmgnum->Draw("AP");
+  SSDmgnum->SetMinimum(0.1);
+  SSDmgnum->SetMaximum(15000);
+  SSDmgnum->GetXaxis()->SetLimits(0,4000);
+  SSDmgnum->GetXaxis()->SetTitle("r (m)");
+  SSDmgnum->SetTitle("Lateral Distribution Function for components (SD Sim)");
+  SSDmgnum->Write();
+  simComponentsSSDnum->Write();
 
   
+  TCanvas *simComponentsSSDnumprof = new TCanvas("ComponentsSSDnumprof", "ComponentsSSD-SimNumProf", 1920, 1000);
+  simComponentsSSDnumprof->cd();
+  simComponentsSSDnumprof->SetLogy();
+  eSimLDFSSDnumprof->Draw("LP");
+  pSimLDFSSDnumprof->Draw("SAME");
+  mSimLDFSSDnumprof->Draw("SAME");
+  eSimLDFSSDnumprof->SetMinimum(0.001);
+  eSimLDFSSDnumprof->SetMaximum(1500000);
+  eSimLDFSSDnumprof->SetStats(false);
+  eSimLDFSSDnumprof->GetXaxis()->SetLimits(0,4000);
+  eSimLDFSSDnumprof->GetXaxis()->SetTitle("r (m)");
+  eSimLDFSSDnumprof->GetYaxis()->SetTitle("Number of Particles");
+  eSimLDFSSDnumprof->SetTitle("Lateral Distribution Function for components (SSD Sim)");
+
+  TLegend* legsimComponentsSSDnumprof = new TLegend(0.1, 0.7, 0.48, 0.9);
+  legsimComponentsSSDnumprof->AddEntry(eSimLDFSSDnumprof, "e^{+} / e^{-}" , "p");
+  legsimComponentsSSDnumprof->AddEntry(pSimLDFSSDnumprof, "#gamma", "p");
+  legsimComponentsSSDnumprof->AddEntry(mSimLDFSSDnumprof, "#mu", "p");
+  legsimComponentsSSDnumprof->SetBorderSize(0);
+  legsimComponentsSSDnumprof->Draw("SAME");
+  
+  simComponentsSSDnumprof->Write();
+
+  TCanvas *simComponentsSSDprof = new TCanvas("ComponentsSSDprof", "ComponentsSSD-SimProf", 1920, 1000);
+  simComponentsSSDprof->cd();
+  simComponentsSSDprof->SetLogy();
+  eSimLDFSSDprof->Draw("LP");
+  pSimLDFSSDprof->Draw("SAME");
+  mSimLDFSSDprof->Draw("SAME");
+  eSimLDFSSDprof->SetMinimum(0.001);
+  eSimLDFSSDprof->SetMaximum(15000);
+  eSimLDFSSDprof->SetStats(false);
+  eSimLDFSSDprof->GetXaxis()->SetLimits(0,4000);
+  eSimLDFSSDprof->GetXaxis()->SetTitle("r (m)");
+  eSimLDFSSDprof->GetYaxis()->SetTitle("SSD signal (MIP)");
+  eSimLDFSSDprof->SetTitle("Lateral Distribution Function for components (SSD Sim)");
+
+  TLegend* legsimComponentsSSDprof = new TLegend(0.1, 0.7, 0.48, 0.9);
+  legsimComponentsSSDprof->AddEntry(eSimLDFSSDprof, "e^{+} / e^{-}" , "p");
+  legsimComponentsSSDprof->AddEntry(pSimLDFSSDprof, "#gamma", "p");
+  legsimComponentsSSDprof->AddEntry(mSimLDFSSDprof, "#mu", "p");
+  legsimComponentsSSDprof->SetBorderSize(0);
+  legsimComponentsSSDprof->Draw("SAME");
+
+  simComponentsSSDprof->Write();
+  
+  TCanvas *simComponentsSDnumprof = new TCanvas("ComponentsSDnumprof", "ComponentsSD-SimNumProf", 1920, 1000);
+  simComponentsSDnumprof->cd();
+  simComponentsSDnumprof->SetLogy();
+  eSimLDFSDnumprof->Draw("LP");
+  pSimLDFSDnumprof->Draw("SAME");
+  mSimLDFSDnumprof->Draw("SAME");
+  eSimLDFSDnumprof->SetMinimum(0.001);
+  eSimLDFSDnumprof->SetMaximum(1500000);
+  eSimLDFSDnumprof->SetStats(false);
+  eSimLDFSDnumprof->GetXaxis()->SetLimits(0,4000);
+  eSimLDFSDnumprof->GetXaxis()->SetTitle("r (m)");
+  eSimLDFSDnumprof->GetYaxis()->SetTitle("Number of Particles");
+  eSimLDFSDnumprof->SetTitle("Lateral Distribution Function for components (WCD Sim)");
+
+  TLegend* legsimComponentsSDnumprof = new TLegend(0.1, 0.7, 0.48, 0.9);
+  legsimComponentsSDnumprof->AddEntry(eSimLDFSDnumprof, "e^{+} / e^{-}" , "p");
+  legsimComponentsSDnumprof->AddEntry(pSimLDFSDnumprof, "#gamma", "p");
+  legsimComponentsSDnumprof->AddEntry(mSimLDFSDnumprof, "#mu", "p");
+  legsimComponentsSDnumprof->SetBorderSize(0);
+  legsimComponentsSDnumprof->Draw("SAME");
+  
+  simComponentsSDnumprof->Write();
+
+  TCanvas *simComponentsSDprof = new TCanvas("ComponentsSDprof", "ComponentsSD-SimProf", 1920, 1000);
+  simComponentsSDprof->cd();
+  simComponentsSDprof->SetLogy();
+  eSimLDFSDprof->Draw("LP");
+  pSimLDFSDprof->Draw("SAME");
+  mSimLDFSDprof->Draw("SAME");
+  eSimLDFSDprof->SetMinimum(0.001);
+  eSimLDFSDprof->SetMaximum(15000);
+  eSimLDFSDprof->SetStats(false);
+  eSimLDFSDprof->GetXaxis()->SetLimits(0,4000);
+  eSimLDFSDprof->GetXaxis()->SetTitle("r (m)");
+  eSimLDFSDprof->GetYaxis()->SetTitle("WCD signal (VEM)");
+  eSimLDFSDprof->SetTitle("Lateral Distribution Function for components (WCD Sim)");
+
+
+  TLegend* legsimComponentsSDprof = new TLegend(0.1, 0.7, 0.48, 0.9);
+  legsimComponentsSDprof->AddEntry(eSimLDFSDprof, "e^{+} / e^{-}" , "p");
+  legsimComponentsSDprof->AddEntry(pSimLDFSDprof, "#gamma", "p");
+  legsimComponentsSDprof->AddEntry(mSimLDFSDprof, "#mu", "p");
+  legsimComponentsSDprof->SetBorderSize(0);
+  legsimComponentsSDprof->Draw("SAME");
+
+  simComponentsSDprof->Write();
   simTrace->Write();
 
 

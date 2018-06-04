@@ -238,7 +238,7 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 	weightAll.open(wei);
 	//All new runs in GEANT4 must start with a dummy particle (may not be necessary anymore)
 	//Previous motivation was so that GEANT4 could detect a new set/new shower of particles
-	weightAll << 0 << "\n";
+	//	weightAll << 0 << "\n";
       }
 
     //Append G4 macro with appropriate file type
@@ -248,8 +248,8 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
     //Initialise dummy particle
     G4file.open (G4);
     G4file << "/run/initialize" << "\n";
-    G4file << "/gun/energy 0" << "\n";
-    G4file << "/run/beamOn 1" << "\n";
+    // G4file << "/gun/energy 0" << "\n";
+    // G4file << "/run/beamOn 1" << "\n";
     RunInfo.open (runInfo);
   
     double min;

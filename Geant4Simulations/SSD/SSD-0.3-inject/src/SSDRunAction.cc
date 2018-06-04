@@ -68,6 +68,9 @@ SSDRunAction::SSDRunAction()
       if ( line == "0" ) { fUseWeights = false; }
     }
   }
+  std::ofstream finalVEM;
+  finalVEM.open ("finalMIP.txt");
+  finalVEM << 0 << " " << 0 << " " << tank_pos << "\n";
   G4cout << "Run: Detector Position: " << tank_pos << " # Injected Particles: " << nParticles << G4endl;
   
   G4cout.rdbuf(NULL); 

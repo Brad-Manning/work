@@ -39,8 +39,8 @@ EOF
 
 	    mv *weight.txt weightAll.txt
 	    
-	    /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/./Cherenkov *${j}.mac
-	    #/remote/tesla/bmanning/work/Geant4Simulations/SSD-build/./SSDSimulation *${j}.mac
+	   # /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/./Cherenkov *${j}.mac
+	    /remote/tesla/bmanning/work/Geant4Simulations/SSD-build/./SSDSimulation *${j}.mac
 	  
 	    /remote/tesla/bmanning/work/Modules/Merge/./merge
 	    rm -f qgsII*
@@ -49,9 +49,9 @@ EOF
 	saveLocation=$(sed -n 's/.*<saveLocation>\(.*\)<\/saveLocation>/\1/p' CORSIKAParameters.xml)
 	pName=$(sed -n 's/.*<particle>\(.*\)<\/particle>/\1/p' CORSIKAParameters.xml)
 #echo  ${saveLocation}${pName}-${fileInc}VEM-inject.txt
-	mv VEM_r_bins.txt ${saveLocation}${pName}-${fileInc}VEM.txt
+	#mv VEM_r_bins.txt ${saveLocation}${pName}-${fileInc}VEM.txt
        
-	#mv MIP_r_bins.txt ${saveLocation}${pName}-${fileInc}MIP.txt
+	mv MIP_r_bins.txt ${saveLocation}${pName}-${fileInc}MIP.txt
 
 	rm -f qgsII*
 	rm -f rValues.txt
