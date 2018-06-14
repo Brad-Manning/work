@@ -25,9 +25,10 @@ set(CMAKE_TARGET_DEFINITIONS_CXX
 
 # The include file search paths:
 set(CMAKE_CXX_TARGET_INCLUDE_PATH
-  "/remote/tesla/bmanning/auger/software/ApeInstall/External/clhep/2.3.1.1/lib/CLHEP-2.3.1.1/../../include"
-  "/remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/4.10.02.p01/include/Geant4"
+  "/remote/tesla/bmanning/auger/software/ApeInstall/External/clhep/2.4.0.4/lib/CLHEP-2.4.0.4/../../include"
+  "/remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4"
   "/remote/tesla/bmanning/work/Geant4Simulations/SSD/SSD-0.3-inject/include"
+  "/remote/tesla/bmanning/auger/software/ApeInstall/External/clhep/2.4.0.4/include"
   )
 
 # Targets to which this target links.

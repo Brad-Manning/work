@@ -4,8 +4,9 @@
 #define SSDRunAction_h 1
 
 #include "G4UserRunAction.hh"
-#include "G4Parameter.hh"
+#include "G4Accumulable.hh"
 #include "globals.hh"
+#include <vector>
 
 class G4Run;
 
@@ -28,8 +29,8 @@ class SSDRunAction : public G4UserRunAction
     void AddEdep (G4double edep); 
     G4double GetWeight ();
   private:
-    G4Parameter<G4double> fEdep;
-    G4Parameter<G4double> fEdep2;
+    G4Accumulable<G4double> fEdep;
+    G4Accumulable<G4double> fEdep2;
     std::vector<G4double> fWeight;
     bool fUseWeights;
     G4int fIdx = 0;

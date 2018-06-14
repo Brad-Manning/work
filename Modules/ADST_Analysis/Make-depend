@@ -1,5 +1,5 @@
 ReadADST_short.o: ReadADST_short.cc \
- /home/tesla/bmanning/trunk-install/include/adst/RecEvent.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RecEvent.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/RConfigure.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TObject.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/Rtypes.h \
@@ -15,10 +15,10 @@ ReadADST_short.o: ReadADST_short.cc \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TVersionCheck.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/Riosfwd.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TBuffer.h \
- /home/tesla/bmanning/trunk-install/include/adst/Detector.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdLidarData.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdCloudCameraData.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdAerosols.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/Detector.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdLidarData.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdCloudCameraData.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdAerosols.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TVector3.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TError.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TVector2.h \
@@ -40,15 +40,15 @@ ReadADST_short.o: ReadADST_short.cc \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TMatrixFUtilsfwd.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TBits.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TString.h \
- /home/tesla/bmanning/trunk-install/include/adst/MeteoData.h \
- /home/tesla/bmanning/trunk-install/include/adst/SDEvent.h \
- /home/tesla/bmanning/trunk-install/include/adst/SdRecShower.h \
- /home/tesla/bmanning/trunk-install/include/adst/SdRecLevel.h \
- /home/tesla/bmanning/trunk-install/include/adst/RecShower.h \
- /home/tesla/bmanning/trunk-install/include/adst/Shower.h \
- /home/tesla/bmanning/trunk-install/include/adst/LDF.h \
- /home/tesla/bmanning/trunk-install/include/adst/FileInfo.h \
- /home/tesla/bmanning/trunk-install/include/adst/SimInfo.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/MeteoData.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SDEvent.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SdRecShower.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SdRecLevel.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RecShower.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/Shower.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/LDF.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FileInfo.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SimInfo.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TF1.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TFormula.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TObjArray.h \
@@ -59,11 +59,11 @@ ReadADST_short.o: ReadADST_short.cc \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TAttFill.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TAttMarker.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/Math/ParamFunctor.h \
- /home/tesla/bmanning/trunk-install/include/adst/SdRiseTime.h \
- /home/tesla/bmanning/trunk-install/include/adst/SdFootprintData.h \
- /home/tesla/bmanning/trunk-install/include/adst/SdFootprintEnumerations.h \
- /home/tesla/bmanning/trunk-install/include/adst/ShowerSRecDataQuantities.h \
- /home/tesla/bmanning/trunk-install/include/adst/SdRecShowerParameterStorageMap.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SdRiseTime.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SdFootprintData.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SdFootprintEnumerations.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/ShowerSRecDataQuantities.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SdRecShowerParameterStorageMap.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TH1D.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TH1.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TAxis.h \
@@ -76,37 +76,37 @@ ReadADST_short.o: ReadADST_short.cc \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TArrayF.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/Foption.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TFitResultPtr.h \
- /home/tesla/bmanning/trunk-install/include/adst/UnivRecShower.h \
- /home/tesla/bmanning/trunk-install/include/adst/SdRecStation.h \
- /home/tesla/bmanning/trunk-install/include/adst/StationStatus.h \
- /home/tesla/bmanning/trunk-install/include/adst/TraceType.h \
- /home/tesla/bmanning/trunk-install/include/adst/RecStation.h \
- /home/tesla/bmanning/trunk-install/include/adst/SdRecScintillator.h \
- /home/tesla/bmanning/trunk-install/include/adst/Traces.h \
- /home/tesla/bmanning/trunk-install/include/adst/SdBadStation.h \
- /home/tesla/bmanning/trunk-install/include/adst/GenStation.h \
- /home/tesla/bmanning/trunk-install/include/adst/MuonMap.h \
- /home/tesla/bmanning/trunk-install/include/adst/FDEvent.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdRecShower.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdRecLevel.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdRecGeometry.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdGeometry.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdPCGFData.h \
- /home/tesla/bmanning/trunk-install/include/adst/SdRecGeometry.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdRecApertureLight.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdApertureLight.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdRecPixel.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdTrace.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdMultiTrace.h \
- /home/tesla/bmanning/trunk-install/include/adst/TelescopeGeometry.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdRecStation.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdGenGeometry.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdGenShower.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdTelescopeData.h \
- /home/tesla/bmanning/trunk-install/include/adst/FdGenApertureLight.h \
- /home/tesla/bmanning/trunk-install/include/adst/GenShower.h \
- /home/tesla/bmanning/trunk-install/include/adst/RdEvent.h \
- /home/tesla/bmanning/trunk-install/include/adst/RdRecShower.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/UnivRecShower.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SdRecStation.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/StationStatus.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/TraceType.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RecStation.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SdRecScintillator.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/Traces.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SdBadStation.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/GenStation.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/MuonMap.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FDEvent.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdRecShower.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdRecLevel.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdRecGeometry.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdGeometry.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdPCGFData.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SdRecGeometry.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdRecApertureLight.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdApertureLight.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdRecPixel.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdTrace.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdMultiTrace.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/TelescopeGeometry.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdRecStation.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdGenGeometry.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdGenShower.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdTelescopeData.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/FdGenApertureLight.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/GenShower.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RdEvent.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RdRecShower.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TFitResult.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/Fit/FitResult.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/Math/IFunctionfwd.h \
@@ -117,31 +117,31 @@ ReadADST_short.o: ReadADST_short.cc \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TMatrixDUtils.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TMatrixDUtilsfwd.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TMath.h \
- /home/tesla/bmanning/trunk-install/include/adst/RdRecLevel.h \
- /home/tesla/bmanning/trunk-install/include/adst/RdBeamQuants.h \
- /home/tesla/bmanning/trunk-install/include/adst/RdBeamPeak.h \
- /home/tesla/bmanning/trunk-install/include/adst/ShowerRRecDataQuantities.h \
- /home/tesla/bmanning/trunk-install/include/adst/RdRecShowerParameterStorageMap.h \
- /home/tesla/bmanning/trunk-install/include/adst/RdRecStation.h \
- /home/tesla/bmanning/trunk-install/include/adst/RdTrace.h \
- /home/tesla/bmanning/trunk-install/include/adst/RdRecChannel.h \
- /home/tesla/bmanning/trunk-install/include/adst/ChannelRRecDataQuantities.h \
- /home/tesla/bmanning/trunk-install/include/adst/RdRecChannelParameterStorageMap.h \
- /home/tesla/bmanning/trunk-install/include/adst/StationRRecDataQuantities.h \
- /home/tesla/bmanning/trunk-install/include/adst/RdRecStationParameterStorageMap.h \
- /home/tesla/bmanning/trunk-install/include/adst/SimRdPulse.h \
- /home/tesla/bmanning/trunk-install/include/adst/MDEventADST.h \
- /home/tesla/bmanning/trunk-install/include/adst/MdRecCounter.h \
- /home/tesla/bmanning/trunk-install/include/adst/MdRecModule.h \
- /home/tesla/bmanning/trunk-install/include/adst/MdRecChannel.h \
- /home/tesla/bmanning/trunk-install/include/adst/MdSimCounter.h \
- /home/tesla/bmanning/trunk-install/include/adst/MdSimScintillator.h \
- /home/tesla/bmanning/trunk-install/include/adst/MdRecShower.h \
- /home/tesla/bmanning/trunk-install/include/adst/MdRecLevel.h \
- /home/tesla/bmanning/trunk-install/include/adst/RecEventFile.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RdRecLevel.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RdBeamQuants.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RdBeamPeak.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/ShowerRRecDataQuantities.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RdRecShowerParameterStorageMap.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RdRecStation.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RdTrace.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RdRecChannel.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/ChannelRRecDataQuantities.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RdRecChannelParameterStorageMap.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/StationRRecDataQuantities.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RdRecStationParameterStorageMap.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/SimRdPulse.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/MDEventADST.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/MdRecCounter.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/MdRecModule.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/MdRecChannel.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/MdSimCounter.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/MdSimScintillator.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/MdRecShower.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/MdRecLevel.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/RecEventFile.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/Rtypes.h \
- /home/tesla/bmanning/trunk-install/include/adst/DetectorGeometry.h \
- /home/tesla/bmanning/trunk-install/include/adst/EyeGeometry.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/DetectorGeometry.h \
+ /remote/tesla/bmanning/dev-trunk/trunk-install/include/adst/EyeGeometry.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TH1F.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TApplication.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TQObject.h \

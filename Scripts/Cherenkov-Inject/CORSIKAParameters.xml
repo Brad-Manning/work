@@ -4,10 +4,10 @@
   <CORSIKA>
 
     <!-- Directory to CORSIKA file location -->
-    <file>/remote/tesla/bmanning/data/qgsII3/proton/19/60deg/DAT200330.part</file>
-    <saveLocation>/remote/tesla/bmanning/data/SimulationData/proton/19/60deg/</saveLocation>
+    <file>/remote/tesla/bmanning/corsika-76400/run/DAT000002</file>
+    <saveLocation>/remote/tesla/bmanning/data/SimulationData/photon/19/0deg</saveLocation>
     <particle>all</particle> <!-- all, muon, gamma, electron -->
-    <phi> 0.15 </phi> <!-- Radians, total span of phi -->
+    <phi> 6.2831 </phi> <!-- Radians, total span of phi -->
     <phiAngle>0</phiAngle> <!-- degrees, the starting angle for phi in CORSIKA convention.
     WITH THE SHOWER ALWAYS POINTING TOWARDS +X -->
 

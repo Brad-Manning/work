@@ -6,7 +6,7 @@
 
 #include "globals.hh"
 #include "G4UserRunAction.hh"
-#include "G4Parameter.hh"
+#include "G4Accumulable.hh"
 #include <vector>
 class G4Timer;
 class G4Run;
@@ -24,7 +24,7 @@ public:
   G4double GetWeight();
 private:
   G4Timer* timer;
-  G4Parameter<G4double> fgammaCounter;
+  G4Accumulable<G4double> fgammaCounter;
   G4double totalPhotons;
   std::vector<G4double> fWeight;
   bool fUseWeights;

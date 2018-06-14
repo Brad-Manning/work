@@ -4,11 +4,11 @@
   <CORSIKA>
 
     <!-- Directory to CORSIKA file location --> <!-- include file or directory -->
-    <file>/remote/tesla/bmanning/data/qgsII3/proton/19.5/26deg/*</file> 
+    <file>/remote/tesla/bmanning/data/qgsII3/iron/18.5/60deg/*</file> 
     <saveLocation>/remote/tesla/bmanning/data/ShowerComponents/qgsII4/proton/19/60deg/</saveLocation>
     <particle>all</particle>
     <!-- all, muon, gamma, electron -->
-    <phi> 0.15 </phi> <!-- Radians -->
+    <phi> 6.28 </phi> <!-- Radians -->
     <phiAngle>0</phiAngle>
     <delta> 0.1 </delta> <!-- width either side of tank for section of ring -->
     <startingPosition>1000</startingPosition>

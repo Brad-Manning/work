@@ -1,8 +1,8 @@
-The system is: Linux - 4.15.6-200.fc26.x86_64 - x86_64
+The system is: Linux - 4.16.7-100.fc26.x86_64 - x86_64
 Compiling the C compiler identification source file "CMakeCCompilerId.c" succeeded.
 Compiler: /usr/bin/cc 
 Build flags: 
-Id flags: 
+Id flags:  
 
 The output was:
 0
@@ -10,12 +10,12 @@ The output was:
 
 Compilation of the C compiler identification source "CMakeCCompilerId.c" produced "a.out"
 
-The C compiler identification is GNU, found in "/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/3.7.2/CompilerIdC/a.out"
+The C compiler identification is GNU, found in "/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/3.11.1/CompilerIdC/a.out"
 
 Compiling the CXX compiler identification source file "CMakeCXXCompilerId.cpp" succeeded.
 Compiler: /usr/bin/c++ 
 Build flags: 
-Id flags: 
+Id flags:  
 
 The output was:
 0
@@ -23,33 +23,33 @@ The output was:
 
 Compilation of the CXX compiler identification source "CMakeCXXCompilerId.cpp" produced "a.out"
 
-The CXX compiler identification is GNU, found in "/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/3.7.2/CompilerIdCXX/a.out"
+The CXX compiler identification is GNU, found in "/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/3.11.1/CompilerIdCXX/a.out"
 
 Determining if the C compiler works passed with the following output:
 Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_bc4ef/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_bc4ef.dir/build.make CMakeFiles/cmTC_bc4ef.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_d9a4e/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_d9a4e.dir/build.make CMakeFiles/cmTC_d9a4e.dir/build
 gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_bc4ef.dir/testCCompiler.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_bc4ef.dir/testCCompiler.c.o   -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp/testCCompiler.c
-Linking C executable cmTC_bc4ef
-/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_bc4ef.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_bc4ef.dir/testCCompiler.c.o  -o cmTC_bc4ef -rdynamic 
+Building C object CMakeFiles/cmTC_d9a4e.dir/testCCompiler.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_d9a4e.dir/testCCompiler.c.o   -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp/testCCompiler.c
+Linking C executable cmTC_d9a4e
+/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d9a4e.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_d9a4e.dir/testCCompiler.c.o  -o cmTC_d9a4e 
 gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
 
 
 Detecting C compiler ABI info compiled with the following output:
 Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_eeb3c/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_eeb3c.dir/build.make CMakeFiles/cmTC_eeb3c.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_73603/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_73603.dir/build.make CMakeFiles/cmTC_73603.dir/build
 gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_eeb3c.dir/CMakeCCompilerABI.c.o
-/usr/bin/cc     -o CMakeFiles/cmTC_eeb3c.dir/CMakeCCompilerABI.c.o   -c /remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/share/cmake-3.7/Modules/CMakeCCompilerABI.c
-Linking C executable cmTC_eeb3c
-/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eeb3c.dir/link.txt --verbose=1
-/usr/bin/cc      -v CMakeFiles/cmTC_eeb3c.dir/CMakeCCompilerABI.c.o  -o cmTC_eeb3c -rdynamic  
+Building C object CMakeFiles/cmTC_73603.dir/CMakeCCompilerABI.c.o
+/usr/bin/cc    -o CMakeFiles/cmTC_73603.dir/CMakeCCompilerABI.c.o   -c /remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/share/cmake-3.11/Modules/CMakeCCompilerABI.c
+Linking C executable cmTC_73603
+/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_73603.dir/link.txt --verbose=1
+/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_73603.dir/CMakeCCompilerABI.c.o  -o cmTC_73603 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/cc
 COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper
@@ -61,24 +61,24 @@ Thread model: posix
 gcc version 7.3.1 20180130 (Red Hat 7.3.1-2) (GCC) 
 COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/7/:/usr/libexec/gcc/x86_64-redhat-linux/7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/7/:/usr/lib/gcc/x86_64-redhat-linux/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/7/:/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_eeb3c' '-rdynamic' '-mtune=generic' '-march=x86-64'
- /usr/libexec/gcc/x86_64-redhat-linux/7/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/7/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOhbjuw.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_eeb3c /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/7 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../.. CMakeFiles/cmTC_eeb3c.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_eeb3c' '-rdynamic' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_73603' '-mtune=generic' '-march=x86-64'
+ /usr/libexec/gcc/x86_64-redhat-linux/7/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/7/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQGT1G4.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_73603 /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/7 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../.. CMakeFiles/cmTC_73603.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_73603' '-mtune=generic' '-march=x86-64'
 gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
 
 
 Parsed C implicit link information from above output:
-  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_eeb3c/fast"]
-  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_eeb3c.dir/build.make CMakeFiles/cmTC_eeb3c.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_73603/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_73603.dir/build.make CMakeFiles/cmTC_73603.dir/build]
   ignore line: [gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp']
-  ignore line: [Building C object CMakeFiles/cmTC_eeb3c.dir/CMakeCCompilerABI.c.o]
-  ignore line: [/usr/bin/cc     -o CMakeFiles/cmTC_eeb3c.dir/CMakeCCompilerABI.c.o   -c /remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/share/cmake-3.7/Modules/CMakeCCompilerABI.c]
-  ignore line: [Linking C executable cmTC_eeb3c]
-  ignore line: [/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_eeb3c.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/cc      -v CMakeFiles/cmTC_eeb3c.dir/CMakeCCompilerABI.c.o  -o cmTC_eeb3c -rdynamic  ]
+  ignore line: [Building C object CMakeFiles/cmTC_73603.dir/CMakeCCompilerABI.c.o]
+  ignore line: [/usr/bin/cc    -o CMakeFiles/cmTC_73603.dir/CMakeCCompilerABI.c.o   -c /remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/share/cmake-3.11/Modules/CMakeCCompilerABI.c]
+  ignore line: [Linking C executable cmTC_73603]
+  ignore line: [/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_73603.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/cc     -v -rdynamic CMakeFiles/cmTC_73603.dir/CMakeCCompilerABI.c.o  -o cmTC_73603 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/cc]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper]
@@ -90,13 +90,13 @@ Parsed C implicit link information from above output:
   ignore line: [gcc version 7.3.1 20180130 (Red Hat 7.3.1-2) (GCC) ]
   ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/7/:/usr/libexec/gcc/x86_64-redhat-linux/7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/7/:/usr/lib/gcc/x86_64-redhat-linux/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/7/:/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_eeb3c' '-rdynamic' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/7/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/7/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOhbjuw.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_eeb3c /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/7 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../.. CMakeFiles/cmTC_eeb3c.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_73603' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/7/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/7/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccQGT1G4.res -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lgcc_s --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_73603 /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/7 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../.. CMakeFiles/cmTC_73603.dir/CMakeCCompilerABI.c.o -lgcc --as-needed -lgcc_s --no-as-needed -lc -lgcc --as-needed -lgcc_s --no-as-needed /usr/lib/gcc/x86_64-redhat-linux/7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crtn.o]
     arg [/usr/libexec/gcc/x86_64-redhat-linux/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/libexec/gcc/x86_64-redhat-linux/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccOhbjuw.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccQGT1G4.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -112,7 +112,7 @@ Parsed C implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_eeb3c] ==> ignore
+    arg [cmTC_73603] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/7/crtbegin.o] ==> ignore
@@ -121,7 +121,7 @@ Parsed C implicit link information from above output:
     arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
     arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
     arg [-L/usr/lib/gcc/x86_64-redhat-linux/7/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/7/../../..]
-    arg [CMakeFiles/cmTC_eeb3c.dir/CMakeCCompilerABI.c.o] ==> ignore
+    arg [CMakeFiles/cmTC_73603.dir/CMakeCCompilerABI.c.o] ==> ignore
     arg [-lgcc] ==> lib [gcc]
     arg [--as-needed] ==> ignore
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -133,16 +133,12 @@ Parsed C implicit link information from above output:
     arg [--no-as-needed] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/7/crtend.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crtn.o] ==> ignore
-  remove lib [gcc]
-  remove lib [gcc_s]
-  remove lib [gcc]
-  remove lib [gcc_s]
   collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/7] ==> [/usr/lib/gcc/x86_64-redhat-linux/7]
   collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64] ==> [/usr/lib64]
   collapse library dir [/lib/../lib64] ==> [/lib64]
   collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
   collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/7/../../..] ==> [/usr/lib]
-  implicit libs: [c]
+  implicit libs: [gcc;gcc_s;c;gcc;gcc_s]
   implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/7;/usr/lib64;/lib64;/usr/lib]
   implicit fwks: []
 
@@ -152,14 +148,14 @@ Parsed C implicit link information from above output:
 Detecting C [-std=c11] compiler features compiled with the following output:
 Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_e4345/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_e4345.dir/build.make CMakeFiles/cmTC_e4345.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_fda7b/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_fda7b.dir/build.make CMakeFiles/cmTC_fda7b.dir/build
 gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_e4345.dir/feature_tests.c.o
-/usr/bin/cc    -std=c11 -o CMakeFiles/cmTC_e4345.dir/feature_tests.c.o   -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.c
-Linking C executable cmTC_e4345
-/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_e4345.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_e4345.dir/feature_tests.c.o  -o cmTC_e4345 -rdynamic 
+Building C object CMakeFiles/cmTC_fda7b.dir/feature_tests.c.o
+/usr/bin/cc   -std=c11 -o CMakeFiles/cmTC_fda7b.dir/feature_tests.c.o   -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.c
+Linking C executable cmTC_fda7b
+/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fda7b.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_fda7b.dir/feature_tests.c.o  -o cmTC_fda7b 
 gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
 
 
@@ -172,14 +168,14 @@ gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-b
 Detecting C [-std=c99] compiler features compiled with the following output:
 Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_8887d/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_8887d.dir/build.make CMakeFiles/cmTC_8887d.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_d6218/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_d6218.dir/build.make CMakeFiles/cmTC_d6218.dir/build
 gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_8887d.dir/feature_tests.c.o
-/usr/bin/cc    -std=c99 -o CMakeFiles/cmTC_8887d.dir/feature_tests.c.o   -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.c
-Linking C executable cmTC_8887d
-/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_8887d.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_8887d.dir/feature_tests.c.o  -o cmTC_8887d -rdynamic 
+Building C object CMakeFiles/cmTC_d6218.dir/feature_tests.c.o
+/usr/bin/cc   -std=c99 -o CMakeFiles/cmTC_d6218.dir/feature_tests.c.o   -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.c
+Linking C executable cmTC_d6218
+/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_d6218.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_d6218.dir/feature_tests.c.o  -o cmTC_d6218 
 gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
 
 
@@ -192,14 +188,14 @@ gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-b
 Detecting C [-std=c90] compiler features compiled with the following output:
 Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_ab937/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_ab937.dir/build.make CMakeFiles/cmTC_ab937.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_ea464/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_ea464.dir/build.make CMakeFiles/cmTC_ea464.dir/build
 gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
-Building C object CMakeFiles/cmTC_ab937.dir/feature_tests.c.o
-/usr/bin/cc    -std=c90 -o CMakeFiles/cmTC_ab937.dir/feature_tests.c.o   -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.c
-Linking C executable cmTC_ab937
-/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ab937.dir/link.txt --verbose=1
-/usr/bin/cc       CMakeFiles/cmTC_ab937.dir/feature_tests.c.o  -o cmTC_ab937 -rdynamic 
+Building C object CMakeFiles/cmTC_ea464.dir/feature_tests.c.o
+/usr/bin/cc   -std=c90 -o CMakeFiles/cmTC_ea464.dir/feature_tests.c.o   -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.c
+Linking C executable cmTC_ea464
+/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_ea464.dir/link.txt --verbose=1
+/usr/bin/cc      -rdynamic CMakeFiles/cmTC_ea464.dir/feature_tests.c.o  -o cmTC_ea464 
 gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
 
 
@@ -210,28 +206,28 @@ gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-b
 Determining if the CXX compiler works passed with the following output:
 Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_f3b66/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_f3b66.dir/build.make CMakeFiles/cmTC_f3b66.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_a1247/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_a1247.dir/build.make CMakeFiles/cmTC_a1247.dir/build
 gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_f3b66.dir/testCXXCompiler.cxx.o
-/usr/bin/c++      -o CMakeFiles/cmTC_f3b66.dir/testCXXCompiler.cxx.o -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
-Linking CXX executable cmTC_f3b66
-/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_f3b66.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_f3b66.dir/testCXXCompiler.cxx.o  -o cmTC_f3b66 -rdynamic 
+Building CXX object CMakeFiles/cmTC_a1247.dir/testCXXCompiler.cxx.o
+/usr/bin/c++     -o CMakeFiles/cmTC_a1247.dir/testCXXCompiler.cxx.o -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp/testCXXCompiler.cxx
+Linking CXX executable cmTC_a1247
+/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_a1247.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_a1247.dir/testCXXCompiler.cxx.o  -o cmTC_a1247 
 gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
 
 
 Detecting CXX compiler ABI info compiled with the following output:
 Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_cb93d/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_cb93d.dir/build.make CMakeFiles/cmTC_cb93d.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_28aa3/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_28aa3.dir/build.make CMakeFiles/cmTC_28aa3.dir/build
 gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_cb93d.dir/CMakeCXXCompilerABI.cpp.o
-/usr/bin/c++      -o CMakeFiles/cmTC_cb93d.dir/CMakeCXXCompilerABI.cpp.o -c /remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/share/cmake-3.7/Modules/CMakeCXXCompilerABI.cpp
-Linking CXX executable cmTC_cb93d
-/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cb93d.dir/link.txt --verbose=1
-/usr/bin/c++       -v CMakeFiles/cmTC_cb93d.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_cb93d -rdynamic  
+Building CXX object CMakeFiles/cmTC_28aa3.dir/CMakeCXXCompilerABI.cpp.o
+/usr/bin/c++     -o CMakeFiles/cmTC_28aa3.dir/CMakeCXXCompilerABI.cpp.o -c /remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/share/cmake-3.11/Modules/CMakeCXXCompilerABI.cpp
+Linking CXX executable cmTC_28aa3
+/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28aa3.dir/link.txt --verbose=1
+/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_28aa3.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_28aa3 
 Using built-in specs.
 COLLECT_GCC=/usr/bin/c++
 COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper
@@ -243,24 +239,24 @@ Thread model: posix
 gcc version 7.3.1 20180130 (Red Hat 7.3.1-2) (GCC) 
 COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/7/:/usr/libexec/gcc/x86_64-redhat-linux/7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/7/:/usr/lib/gcc/x86_64-redhat-linux/
 LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/7/:/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/7/../../../:/lib/:/usr/lib/
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cb93d' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
- /usr/libexec/gcc/x86_64-redhat-linux/7/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/7/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccfmB8c1.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_cb93d /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/7 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../.. CMakeFiles/cmTC_cb93d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crtn.o
-COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cb93d' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_28aa3' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
+ /usr/libexec/gcc/x86_64-redhat-linux/7/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/7/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOwYSLv.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_28aa3 /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/7 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../.. CMakeFiles/cmTC_28aa3.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crtn.o
+COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_28aa3' '-shared-libgcc' '-mtune=generic' '-march=x86-64'
 gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
 
 
 Parsed CXX implicit link information from above output:
-  link line regex: [^( *|.*[/\])(ld|([^/\]+-)?ld|collect2)[^/\]*( |$)]
+  link line regex: [^( *|.*[/\])(ld|CMAKE_LINK_STARTFILE-NOTFOUND|([^/\]+-)?ld|collect2)[^/\]*( |$)]
   ignore line: [Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp]
   ignore line: []
-  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_cb93d/fast"]
-  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_cb93d.dir/build.make CMakeFiles/cmTC_cb93d.dir/build]
+  ignore line: [Run Build Command:"/usr/bin/gmake" "cmTC_28aa3/fast"]
+  ignore line: [/usr/bin/gmake -f CMakeFiles/cmTC_28aa3.dir/build.make CMakeFiles/cmTC_28aa3.dir/build]
   ignore line: [gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp']
-  ignore line: [Building CXX object CMakeFiles/cmTC_cb93d.dir/CMakeCXXCompilerABI.cpp.o]
-  ignore line: [/usr/bin/c++      -o CMakeFiles/cmTC_cb93d.dir/CMakeCXXCompilerABI.cpp.o -c /remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/share/cmake-3.7/Modules/CMakeCXXCompilerABI.cpp]
-  ignore line: [Linking CXX executable cmTC_cb93d]
-  ignore line: [/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_cb93d.dir/link.txt --verbose=1]
-  ignore line: [/usr/bin/c++       -v CMakeFiles/cmTC_cb93d.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_cb93d -rdynamic  ]
+  ignore line: [Building CXX object CMakeFiles/cmTC_28aa3.dir/CMakeCXXCompilerABI.cpp.o]
+  ignore line: [/usr/bin/c++     -o CMakeFiles/cmTC_28aa3.dir/CMakeCXXCompilerABI.cpp.o -c /remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/share/cmake-3.11/Modules/CMakeCXXCompilerABI.cpp]
+  ignore line: [Linking CXX executable cmTC_28aa3]
+  ignore line: [/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_28aa3.dir/link.txt --verbose=1]
+  ignore line: [/usr/bin/c++      -v -rdynamic CMakeFiles/cmTC_28aa3.dir/CMakeCXXCompilerABI.cpp.o  -o cmTC_28aa3 ]
   ignore line: [Using built-in specs.]
   ignore line: [COLLECT_GCC=/usr/bin/c++]
   ignore line: [COLLECT_LTO_WRAPPER=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper]
@@ -272,13 +268,13 @@ Parsed CXX implicit link information from above output:
   ignore line: [gcc version 7.3.1 20180130 (Red Hat 7.3.1-2) (GCC) ]
   ignore line: [COMPILER_PATH=/usr/libexec/gcc/x86_64-redhat-linux/7/:/usr/libexec/gcc/x86_64-redhat-linux/7/:/usr/libexec/gcc/x86_64-redhat-linux/:/usr/lib/gcc/x86_64-redhat-linux/7/:/usr/lib/gcc/x86_64-redhat-linux/]
   ignore line: [LIBRARY_PATH=/usr/lib/gcc/x86_64-redhat-linux/7/:/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/:/lib/../lib64/:/usr/lib/../lib64/:/usr/lib/gcc/x86_64-redhat-linux/7/../../../:/lib/:/usr/lib/]
-  ignore line: [COLLECT_GCC_OPTIONS='-v' '-o' 'cmTC_cb93d' '-rdynamic' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
-  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/7/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/7/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccfmB8c1.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_cb93d /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/7 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../.. CMakeFiles/cmTC_cb93d.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crtn.o]
+  ignore line: [COLLECT_GCC_OPTIONS='-v' '-rdynamic' '-o' 'cmTC_28aa3' '-shared-libgcc' '-mtune=generic' '-march=x86-64']
+  link line: [ /usr/libexec/gcc/x86_64-redhat-linux/7/collect2 -plugin /usr/libexec/gcc/x86_64-redhat-linux/7/liblto_plugin.so -plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper -plugin-opt=-fresolution=/tmp/ccOwYSLv.res -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc -plugin-opt=-pass-through=-lc -plugin-opt=-pass-through=-lgcc_s -plugin-opt=-pass-through=-lgcc --build-id --no-add-needed --eh-frame-hdr --hash-style=gnu -m elf_x86_64 -export-dynamic -dynamic-linker /lib64/ld-linux-x86-64.so.2 -o cmTC_28aa3 /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crt1.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crti.o /usr/lib/gcc/x86_64-redhat-linux/7/crtbegin.o -L/usr/lib/gcc/x86_64-redhat-linux/7 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64 -L/lib/../lib64 -L/usr/lib/../lib64 -L/usr/lib/gcc/x86_64-redhat-linux/7/../../.. CMakeFiles/cmTC_28aa3.dir/CMakeCXXCompilerABI.cpp.o -lstdc++ -lm -lgcc_s -lgcc -lc -lgcc_s -lgcc /usr/lib/gcc/x86_64-redhat-linux/7/crtend.o /usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crtn.o]
     arg [/usr/libexec/gcc/x86_64-redhat-linux/7/collect2] ==> ignore
     arg [-plugin] ==> ignore
     arg [/usr/libexec/gcc/x86_64-redhat-linux/7/liblto_plugin.so] ==> ignore
     arg [-plugin-opt=/usr/libexec/gcc/x86_64-redhat-linux/7/lto-wrapper] ==> ignore
-    arg [-plugin-opt=-fresolution=/tmp/ccfmB8c1.res] ==> ignore
+    arg [-plugin-opt=-fresolution=/tmp/ccOwYSLv.res] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc_s] ==> ignore
     arg [-plugin-opt=-pass-through=-lgcc] ==> ignore
     arg [-plugin-opt=-pass-through=-lc] ==> ignore
@@ -294,7 +290,7 @@ Parsed CXX implicit link information from above output:
     arg [-dynamic-linker] ==> ignore
     arg [/lib64/ld-linux-x86-64.so.2] ==> ignore
     arg [-o] ==> ignore
-    arg [cmTC_cb93d] ==> ignore
+    arg [cmTC_28aa3] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crt1.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crti.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/7/crtbegin.o] ==> ignore
@@ -303,7 +299,7 @@ Parsed CXX implicit link information from above output:
     arg [-L/lib/../lib64] ==> dir [/lib/../lib64]
     arg [-L/usr/lib/../lib64] ==> dir [/usr/lib/../lib64]
     arg [-L/usr/lib/gcc/x86_64-redhat-linux/7/../../..] ==> dir [/usr/lib/gcc/x86_64-redhat-linux/7/../../..]
-    arg [CMakeFiles/cmTC_cb93d.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
+    arg [CMakeFiles/cmTC_28aa3.dir/CMakeCXXCompilerABI.cpp.o] ==> ignore
     arg [-lstdc++] ==> lib [stdc++]
     arg [-lm] ==> lib [m]
     arg [-lgcc_s] ==> lib [gcc_s]
@@ -313,33 +309,102 @@ Parsed CXX implicit link information from above output:
     arg [-lgcc] ==> lib [gcc]
     arg [/usr/lib/gcc/x86_64-redhat-linux/7/crtend.o] ==> ignore
     arg [/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64/crtn.o] ==> ignore
-  remove lib [gcc_s]
-  remove lib [gcc]
-  remove lib [gcc_s]
-  remove lib [gcc]
   collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/7] ==> [/usr/lib/gcc/x86_64-redhat-linux/7]
   collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/7/../../../../lib64] ==> [/usr/lib64]
   collapse library dir [/lib/../lib64] ==> [/lib64]
   collapse library dir [/usr/lib/../lib64] ==> [/usr/lib64]
   collapse library dir [/usr/lib/gcc/x86_64-redhat-linux/7/../../..] ==> [/usr/lib]
-  implicit libs: [stdc++;m;c]
+  implicit libs: [stdc++;m;gcc_s;gcc;c;gcc_s;gcc]
   implicit dirs: [/usr/lib/gcc/x86_64-redhat-linux/7;/usr/lib64;/lib64;/usr/lib]
   implicit fwks: []
 
 
 
 
+Detecting CXX [-std=c++1z] compiler features compiled with the following output:
+Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/gmake" "cmTC_64d09/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_64d09.dir/build.make CMakeFiles/cmTC_64d09.dir/build
+gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
+Building CXX object CMakeFiles/cmTC_64d09.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++1z -o CMakeFiles/cmTC_64d09.dir/feature_tests.cxx.o -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_64d09
+/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_64d09.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_64d09.dir/feature_tests.cxx.o  -o cmTC_64d09 
+gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
+
+
+    Feature record: CXX_FEATURE:1cxx_aggregate_default_initializers
+    Feature record: CXX_FEATURE:1cxx_alias_templates
+    Feature record: CXX_FEATURE:1cxx_alignas
+    Feature record: CXX_FEATURE:1cxx_alignof
+    Feature record: CXX_FEATURE:1cxx_attributes
+    Feature record: CXX_FEATURE:1cxx_attribute_deprecated
+    Feature record: CXX_FEATURE:1cxx_auto_type
+    Feature record: CXX_FEATURE:1cxx_binary_literals
+    Feature record: CXX_FEATURE:1cxx_constexpr
+    Feature record: CXX_FEATURE:1cxx_contextual_conversions
+    Feature record: CXX_FEATURE:1cxx_decltype
+    Feature record: CXX_FEATURE:1cxx_decltype_auto
+    Feature record: CXX_FEATURE:1cxx_decltype_incomplete_return_types
+    Feature record: CXX_FEATURE:1cxx_default_function_template_args
+    Feature record: CXX_FEATURE:1cxx_defaulted_functions
+    Feature record: CXX_FEATURE:1cxx_defaulted_move_initializers
+    Feature record: CXX_FEATURE:1cxx_delegating_constructors
+    Feature record: CXX_FEATURE:1cxx_deleted_functions
+    Feature record: CXX_FEATURE:1cxx_digit_separators
+    Feature record: CXX_FEATURE:1cxx_enum_forward_declarations
+    Feature record: CXX_FEATURE:1cxx_explicit_conversions
+    Feature record: CXX_FEATURE:1cxx_extended_friend_declarations
+    Feature record: CXX_FEATURE:1cxx_extern_templates
+    Feature record: CXX_FEATURE:1cxx_final
+    Feature record: CXX_FEATURE:1cxx_func_identifier
+    Feature record: CXX_FEATURE:1cxx_generalized_initializers
+    Feature record: CXX_FEATURE:1cxx_generic_lambdas
+    Feature record: CXX_FEATURE:1cxx_inheriting_constructors
+    Feature record: CXX_FEATURE:1cxx_inline_namespaces
+    Feature record: CXX_FEATURE:1cxx_lambdas
+    Feature record: CXX_FEATURE:1cxx_lambda_init_captures
+    Feature record: CXX_FEATURE:1cxx_local_type_template_args
+    Feature record: CXX_FEATURE:1cxx_long_long_type
+    Feature record: CXX_FEATURE:1cxx_noexcept
+    Feature record: CXX_FEATURE:1cxx_nonstatic_member_init
+    Feature record: CXX_FEATURE:1cxx_nullptr
+    Feature record: CXX_FEATURE:1cxx_override
+    Feature record: CXX_FEATURE:1cxx_range_for
+    Feature record: CXX_FEATURE:1cxx_raw_string_literals
+    Feature record: CXX_FEATURE:1cxx_reference_qualified_functions
+    Feature record: CXX_FEATURE:1cxx_relaxed_constexpr
+    Feature record: CXX_FEATURE:1cxx_return_type_deduction
+    Feature record: CXX_FEATURE:1cxx_right_angle_brackets
+    Feature record: CXX_FEATURE:1cxx_rvalue_references
+    Feature record: CXX_FEATURE:1cxx_sizeof_member
+    Feature record: CXX_FEATURE:1cxx_static_assert
+    Feature record: CXX_FEATURE:1cxx_strong_enums
+    Feature record: CXX_FEATURE:1cxx_template_template_parameters
+    Feature record: CXX_FEATURE:1cxx_thread_local
+    Feature record: CXX_FEATURE:1cxx_trailing_return_types
+    Feature record: CXX_FEATURE:1cxx_unicode_literals
+    Feature record: CXX_FEATURE:1cxx_uniform_initialization
+    Feature record: CXX_FEATURE:1cxx_unrestricted_unions
+    Feature record: CXX_FEATURE:1cxx_user_literals
+    Feature record: CXX_FEATURE:1cxx_variable_templates
+    Feature record: CXX_FEATURE:1cxx_variadic_macros
+    Feature record: CXX_FEATURE:1cxx_variadic_templates
+
+
 Detecting CXX [-std=c++14] compiler features compiled with the following output:
 Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_c7e1c/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_c7e1c.dir/build.make CMakeFiles/cmTC_c7e1c.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_21e49/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_21e49.dir/build.make CMakeFiles/cmTC_21e49.dir/build
 gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_c7e1c.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++14 -o CMakeFiles/cmTC_c7e1c.dir/feature_tests.cxx.o -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_c7e1c
-/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_c7e1c.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_c7e1c.dir/feature_tests.cxx.o  -o cmTC_c7e1c -rdynamic 
+Building CXX object CMakeFiles/cmTC_21e49.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++14 -o CMakeFiles/cmTC_21e49.dir/feature_tests.cxx.o -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_21e49
+/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_21e49.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_21e49.dir/feature_tests.cxx.o  -o cmTC_21e49 
 gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
 
 
@@ -405,14 +470,14 @@ gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-b
 Detecting CXX [-std=c++11] compiler features compiled with the following output:
 Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_2cf5e/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_2cf5e.dir/build.make CMakeFiles/cmTC_2cf5e.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_15979/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_15979.dir/build.make CMakeFiles/cmTC_15979.dir/build
 gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_2cf5e.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++11 -o CMakeFiles/cmTC_2cf5e.dir/feature_tests.cxx.o -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_2cf5e
-/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_2cf5e.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_2cf5e.dir/feature_tests.cxx.o  -o cmTC_2cf5e -rdynamic 
+Building CXX object CMakeFiles/cmTC_15979.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++11 -o CMakeFiles/cmTC_15979.dir/feature_tests.cxx.o -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_15979
+/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_15979.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_15979.dir/feature_tests.cxx.o  -o cmTC_15979 
 gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
 
 
@@ -478,14 +543,14 @@ gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-b
 Detecting CXX [-std=c++98] compiler features compiled with the following output:
 Change Dir: /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp
 
-Run Build Command:"/usr/bin/gmake" "cmTC_73b2b/fast"
-/usr/bin/gmake -f CMakeFiles/cmTC_73b2b.dir/build.make CMakeFiles/cmTC_73b2b.dir/build
+Run Build Command:"/usr/bin/gmake" "cmTC_fad42/fast"
+/usr/bin/gmake -f CMakeFiles/cmTC_fad42.dir/build.make CMakeFiles/cmTC_fad42.dir/build
 gmake[1]: Entering directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
-Building CXX object CMakeFiles/cmTC_73b2b.dir/feature_tests.cxx.o
-/usr/bin/c++     -std=c++98 -o CMakeFiles/cmTC_73b2b.dir/feature_tests.cxx.o -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.cxx
-Linking CXX executable cmTC_73b2b
-/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.7.2/bin/cmake -E cmake_link_script CMakeFiles/cmTC_73b2b.dir/link.txt --verbose=1
-/usr/bin/c++        CMakeFiles/cmTC_73b2b.dir/feature_tests.cxx.o  -o cmTC_73b2b -rdynamic 
+Building CXX object CMakeFiles/cmTC_fad42.dir/feature_tests.cxx.o
+/usr/bin/c++    -std=c++98 -o CMakeFiles/cmTC_fad42.dir/feature_tests.cxx.o -c /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/feature_tests.cxx
+Linking CXX executable cmTC_fad42
+/remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E cmake_link_script CMakeFiles/cmTC_fad42.dir/link.txt --verbose=1
+/usr/bin/c++       -rdynamic CMakeFiles/cmTC_fad42.dir/feature_tests.cxx.o  -o cmTC_fad42 
 gmake[1]: Leaving directory '/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/CMakeFiles/CMakeTmp'
 
 

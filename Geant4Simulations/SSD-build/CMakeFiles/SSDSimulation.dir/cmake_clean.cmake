@@ -8,8 +8,6 @@ file(REMOVE_RECURSE
   "CMakeFiles/SSDSimulation.dir/src/SSDSteppingAction.cc.o"
   "SSDSimulation.pdb"
   "SSDSimulation"
-  "SSDSimulation.pdb"
-  "CMakeFiles/CMakeRelink.dir/SSDSimulation"
 )
 
 # Per-language clean rules from dependency scanning.

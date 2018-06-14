@@ -11,7 +11,7 @@
 
 #include "G4RunManager.hh"
 #include "G4Run.hh"
-#include "G4ParameterManager.hh"
+#include "G4AccumulableManager.hh"
 #include "G4LogicalVolumeStore.hh"
 #include "G4LogicalVolume.hh"
 #include "G4UnitsTable.hh"
@@ -28,9 +28,9 @@ SSDRunAction::SSDRunAction()
 { 
 
   // Register parameter to the parameter manager
-  G4ParameterManager* parameterManager = G4ParameterManager::Instance();
-  parameterManager->RegisterParameter(fEdep);
-  parameterManager->RegisterParameter(fEdep2);
+  G4AccumulableManager* parameterManager = G4AccumulableManager::Instance();
+  parameterManager->RegisterAccumulable(fEdep);
+  parameterManager->RegisterAccumulable(fEdep2);
 
   G4AnalysisManager* man = G4AnalysisManager::Instance();
 
@@ -90,7 +90,7 @@ void SSDRunAction::BeginOfRunAction(const G4Run* run)
   G4RunManager::GetRunManager()->SetRandomNumberStore(false);
 
   // reset parameters to their initial values
-  G4ParameterManager* parameterManager = G4ParameterManager::Instance();
+  G4AccumulableManager* parameterManager = G4AccumulableManager::Instance();
   parameterManager->Reset();
 
 }
@@ -102,7 +102,7 @@ void SSDRunAction::EndOfRunAction(const G4Run* run)
   if (nofEvents == 0) return;
 
   // Merge parameters 
-  G4ParameterManager* parameterManager = G4ParameterManager::Instance();
+  G4AccumulableManager* parameterManager = G4AccumulableManager::Instance();
   parameterManager->Merge();
 
    const SSDDetectorConstruction* detectorConstruction

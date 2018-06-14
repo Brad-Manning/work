@@ -186,5 +186,6 @@ mergeSimData.o: mergeSimData.cc \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TApplicationImp.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TLegend.h \
  /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TPave.h \
- /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TBox.h
+ /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TBox.h \
+ /home/tesla/bmanning/auger/software/ApeInstall/External/root/5.34.00-561c9478a3/include/root/TLegendEntry.h
 poissontest.o: poissontest.cc

@@ -8,7 +8,7 @@
 
 #include "G4RunManager.hh"
 #include "CherenkovAnalysis.hh"
-#include "G4ParameterManager.hh"
+#include "G4AccumulableManager.hh"
 #include <fstream>
 #include <vector>
 
@@ -19,8 +19,8 @@ CherenkovRunAction::CherenkovRunAction()
 {
   timer = new G4Timer;
   //Define Paramters for number of photons
-  G4ParameterManager* parameterManager = G4ParameterManager::Instance();
-  parameterManager->RegisterParameter(fgammaCounter);
+  G4AccumulableManager* parameterManager = G4AccumulableManager::Instance();
+  parameterManager->RegisterAccumulable(fgammaCounter);
 
   //Manager instance to create root files
   G4AnalysisManager* man = G4AnalysisManager::Instance();

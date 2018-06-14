@@ -146,9 +146,9 @@ void CherenkovPhysicsList::ConstructGeneral()
 
 void CherenkovPhysicsList::ConstructEM()
 {
-  theParticleIterator->reset();
-  while( (*theParticleIterator)() ){
-    G4ParticleDefinition* particle = theParticleIterator->value();
+  GetParticleIterator()->reset();
+  while( (*GetParticleIterator())() ){
+    G4ParticleDefinition* particle = GetParticleIterator()->value();
     G4ProcessManager* pmanager = particle->GetProcessManager();
     G4String particleName = particle->GetParticleName();
 
@@ -212,9 +212,9 @@ void CherenkovPhysicsList::ConstructOp()
   //boundaryProcess->SetModel(model);
 
   //Add discrete processes to optical photons and particles if applicable
-  theParticleIterator->reset();
-  while( (*theParticleIterator)() ){
-    G4ParticleDefinition* particle = theParticleIterator->value();
+  GetParticleIterator()->reset();
+  while( (*GetParticleIterator())() ){
+    G4ParticleDefinition* particle = GetParticleIterator()->value();
     G4ProcessManager* pmanager = particle->GetProcessManager();
     G4String particleName = particle->GetParticleName();
     G4cout << particleName << G4endl;

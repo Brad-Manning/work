@@ -1,0 +1,41 @@
+//Bradley Manning 4/6/2018
+//SNR.cc
+
+
+#include <vector>
+#include "TH1F.h"
+#include "Tfile.h"
+//First 600 bins always contain noise and no signal(?)
+
+//Calculate the RMS of the first 600 bins
+
+vector < double > getFirst600Bins(TH1* traceHistogram)
+{
+  
+
+}
+
+
+
+double calculateRMS(vector < double > )
+{
+
+}
+
+
+
+
+
+
+
+int main()
+{
+
+
+
+}
+
+
+
+
+//SNR.cc
