@@ -1,0 +1,7 @@
+/remote/tesla/bmanning/work/Geant4Simulations/Station-build/CMakeFiles/install/strip.dir
+/remote/tesla/bmanning/work/Geant4Simulations/Station-build/CMakeFiles/edit_cache.dir
+/remote/tesla/bmanning/work/Geant4Simulations/Station-build/CMakeFiles/Cherenkov.dir
+/remote/tesla/bmanning/work/Geant4Simulations/Station-build/CMakeFiles/install.dir
+/remote/tesla/bmanning/work/Geant4Simulations/Station-build/CMakeFiles/rebuild_cache.dir
+/remote/tesla/bmanning/work/Geant4Simulations/Station-build/CMakeFiles/list_install_components.dir
+/remote/tesla/bmanning/work/Geant4Simulations/Station-build/CMakeFiles/install/local.dir

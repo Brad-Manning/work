@@ -11,7 +11,7 @@
     <phi> 6.28 </phi> <!-- Radians -->
     <phiAngle>0</phiAngle>
     <delta> 0.1 </delta> <!-- width either side of tank for section of ring -->
-    <startingPosition>244</startingPosition>
+    <startingPosition>445</startingPosition>
     <!-- distance (m) of first tank from shower core -->
     <maxPosition>4000</maxPosition>
     <!-- max distance(m) of last tank from shower core - to simulate one distance make max and staring position the same -->

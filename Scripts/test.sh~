@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-for i in {01..05}; do echo "$i"; done

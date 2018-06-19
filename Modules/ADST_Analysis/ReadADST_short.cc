@@ -459,8 +459,11 @@ main(int argc, char **argv)
   ComponentsSD->cd();
   ComponentsSD->SetLogy();
   eLDFSD->SetMarkerColor(kRed);
-  pLDFSD->SetMarkerColor(kYellow);
+  pLDFSD->SetMarkerColor(kGreen);
   mLDFSD->SetMarkerColor(kBlue);
+  eLDFSD->Write("eLDFSD");
+  pLDFSD->Write("pLDFSD");
+  mLDFSD->Write("mLDFSD");
   SDmg->Add(eLDFSD);
   SDmg->Add(pLDFSD);
   SDmg->Add(mLDFSD);
@@ -476,8 +479,11 @@ main(int argc, char **argv)
   ComponentsSSD->cd();
   ComponentsSSD->SetLogy();
   eLDF->SetMarkerColor(kRed);
-  pLDF->SetMarkerColor(kYellow);
+  pLDF->SetMarkerColor(kGreen);
   mLDF->SetMarkerColor(kBlue);
+  eLDF->Write("eLDF");
+  pLDF->Write("pLDF");
+  mLDF->Write("mLDF");
   SSDmg->Add(eLDF);
   SSDmg->Add(pLDF);
   SSDmg->Add(mLDF);

@@ -1,12 +1,10 @@
-//Bradley Manning 8/2017
-//CherenkovPhysicsLists.cc
-//Defines all physics
-#include "G4ios.hh"
-#include <iomanip>
+// Bradley Manning
+
+// simple radioactive decay
+
 
 #include "globals.hh"
-#include "CherenkovPhysicsList.hh"
-#include "CherenkovPhysicsListMessenger.hh"
+#include "simpleRadioactiveDecayPhysicsList.hh"
 
 #include "G4ParticleDefinition.hh"
 #include "G4ParticleTypes.hh"
@@ -17,29 +15,13 @@
 #include "G4ProcessManager.hh"
 #include "G4ProcessVector.hh"
 
-#include "G4Cerenkov.hh"
-#include "G4Scintillation.hh"
-#include "G4OpAbsorption.hh"
-#include "G4OpRayleigh.hh"
-#include "G4OpBoundaryProcess.hh"
-#include "G4StepLimiter.hh"
+simpleRadioactiveDecayPhysicsList::simpleRadioactiveDecayPhysicsList() : G4VUserPhysicsList()
+{}
 
-CherenkovPhysicsList::CherenkovPhysicsList() : G4VUserPhysicsList()
-{
-  cherenkovProcess = 0;
-  scintillationProcess = 0;
-  absorptionProcess = 0;
-  rayleighScatteringProcess = 0;
-  boundaryProcess = 0;
+simpleRadioactiveDecayPhysicsList::~simpleRadioactiveDecayPhysicsList()
+{}
 
-  pMessenger = new CherenkovPhysicsListMessenger(this);
-  SetVerboseLevel(0);
-}
-
-CherenkovPhysicsList::~CherenkovPhysicsList() {delete pMessenger;}
-
-
-void CherenkovPhysicsList::ConstructParticle()
+void simpleRadioactiveDecayPhysicsList::ConstructParticle()
 {
   //Necessary to describe interactions of following particles
   ConstructBosons();
@@ -48,7 +30,7 @@ void CherenkovPhysicsList::ConstructParticle()
   ConstructBaryons();
 }
 
-void CherenkovPhysicsList::ConstructBosons()
+void simpleRadioactiveDecayPhysicsList::ConstructBosons()
 {
   // G4 pseudo-particles
   G4Geantino::GeantinoDefinition();
@@ -61,7 +43,7 @@ void CherenkovPhysicsList::ConstructBosons()
   G4OpticalPhoton::OpticalPhotonDefinition();
 }
 
-void CherenkovPhysicsList::ConstructLeptons()
+void simpleRadioactiveDecayPhysicsList::ConstructLeptons()
 {
   // leptons
   G4Electron::ElectronDefinition();
@@ -75,7 +57,7 @@ void CherenkovPhysicsList::ConstructLeptons()
   
 }
 
-void CherenkovPhysicsList::ConstructMesons()
+void simpleRadioactiveDecayPhysicsList::ConstructMesons()
 {
   G4PionPlus::PionPlusDefinition();
   G4PionMinus::PionMinusDefinition();
@@ -87,7 +69,7 @@ void CherenkovPhysicsList::ConstructMesons()
   G4KaonZeroShort::KaonZeroShortDefinition();
 }
 
-void CherenkovPhysicsList::ConstructBaryons()
+void simpleRadioactiveDecayPhysicsList::ConstructBaryons()
 {
   G4Proton::ProtonDefinition();
   G4AntiProton::AntiProtonDefinition();
@@ -95,7 +77,7 @@ void CherenkovPhysicsList::ConstructBaryons()
   G4AntiNeutron::AntiNeutronDefinition();
 }
 
-void CherenkovPhysicsList::ConstructProcess()
+void simpleRadioactiveDecayPhysicsList::ConstructProcess()
 {
   AddTransportation();
   ConstructGeneral();
@@ -106,7 +88,7 @@ void CherenkovPhysicsList::ConstructProcess()
 // May not be necessary, included for accuracy
 #include "G4Decay.hh"
 
-void CherenkovPhysicsList::ConstructGeneral()
+void simpleRadioactiveDecayPhysicsList::ConstructGeneral()
 {
   G4Decay* const decayProcess = new G4Decay();
   
@@ -144,11 +126,11 @@ void CherenkovPhysicsList::ConstructGeneral()
 
 //Construct Electromagnetic Processes
 
-void CherenkovPhysicsList::ConstructEM()
+void simpleRadioactiveDecayPhysicsList::ConstructEM()
 {
-  theParticleIterator->reset();
-  while( (*theParticleIterator)() ){
-    G4ParticleDefinition* particle = theParticleIterator->value();
+  GetParticleIterator()->reset();
+  while( (*GetParticleIterator())() ){
+    G4ParticleDefinition* particle = GetParticleIterator()->value();
     G4ProcessManager* pmanager = particle->GetProcessManager();
     G4String particleName = particle->GetParticleName();
 
@@ -178,7 +160,7 @@ void CherenkovPhysicsList::ConstructEM()
       pmanager->AddProcess(new G4MuPairProduction(), -1, 4, 4);
 
     } else {
-     if ((particle->GetPDGCharge() != 0.0) && (particle->GetParticleName() != "chargedgeantino")) {
+      if ((particle->GetPDGCharge() != 0.0) && (particle->GetParticleName() != "chargedgeantino")) {
 	// all other particles except geantino
 	pmanager->AddProcess(new G4hMultipleScattering(), -1, 1, 1);
 	pmanager->AddProcess(new G4hIonisation(), -1, 2, 2);
@@ -187,79 +169,10 @@ void CherenkovPhysicsList::ConstructEM()
   }
 }
 
-//Construct Optical Processes
-void CherenkovPhysicsList::ConstructOp()
-{
-  cherenkovProcess = new G4Cerenkov("Cerenkov");
-  scintillationProcess = new G4Scintillation("Scintillation");
-  absorptionProcess = new G4OpAbsorption();
-  rayleighScatteringProcess = new G4OpRayleigh();
-  boundaryProcess = new G4OpBoundaryProcess();
-
-  //optional dumps here. eg.
-  //cherenkovProcess->DumpPhysicstable();
-
-  SetVerbose(0);
-  // Define maximum number of photons generated per step, in water is it ~300 per step; note that this is the maximum mean
-  cherenkovProcess->SetMaxNumPhotonsPerStep(3);
-  cherenkovProcess->SetTrackSecondariesFirst(true);
-
-  scintillationProcess->SetScintillationYieldFactor(1.);
-  scintillationProcess->SetTrackSecondariesFirst(true);
-
-  //Necessary for boundary process ##For older versions of GEANT4##
-  //G4OpticalSurfaceModel model = unified;
-  //boundaryProcess->SetModel(model);
-
-  //Add discrete processes to optical photons and particles if applicable
-  theParticleIterator->reset();
-  while( (*theParticleIterator)() ){
-    G4ParticleDefinition* particle = theParticleIterator->value();
-    G4ProcessManager* pmanager = particle->GetProcessManager();
-    G4String particleName = particle->GetParticleName();
-    G4cout << particleName << G4endl;
-    if (cherenkovProcess->IsApplicable(*particle)) {
-      pmanager->AddProcess(cherenkovProcess);
-      pmanager->SetProcessOrdering(cherenkovProcess, idxPostStep);
-    }
-    if (scintillationProcess->IsApplicable(*particle)) {
-      pmanager->AddProcess(scintillationProcess);
-      pmanager->SetProcessOrderingToLast(scintillationProcess, idxAtRest);
-      pmanager->SetProcessOrderingToLast(scintillationProcess, idxPostStep);
-    }
-    if (particleName == "opticalphoton") {
-      G4cout << "AddDiscreteProcess to OpticalPhoton " << G4endl;
-      pmanager->AddDiscreteProcess(absorptionProcess);
-      pmanager->AddDiscreteProcess(rayleighScatteringProcess);
-      pmanager->AddDiscreteProcess(boundaryProcess);
-     
-    }
-  }
-}
-
-void CherenkovPhysicsList::SetVerbose(G4int verbose)
-{
-  cherenkovProcess->SetVerboseLevel(verbose);
-  scintillationProcess->SetVerboseLevel(verbose);
-  absorptionProcess->SetVerboseLevel(verbose);
-  rayleighScatteringProcess->SetVerboseLevel(verbose);
-  boundaryProcess->SetVerboseLevel(verbose);
-}
-
-void CherenkovPhysicsList::SetNbOfPhotonsCherenkov(G4int MaxNumber)
-{
-  cherenkovProcess->SetMaxNumPhotonsPerStep(MaxNumber);
-}
-
-void CherenkovPhysicsList::SetCuts()
+void simpleRadioactiveDecayPhysicsList::SetCuts()
 {
   //G4VUserPhysicsList::SetCutsWIthDefault method sets the
   //default cut value for all particle types
   SetCutsWithDefault();
   if (verboseLevel>0) DumpCutValuesTable();
 }
-
-  
-  
-
-					   

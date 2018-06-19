@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
-HadronicModels=(qgsII4 qgsII3) #(qgsII3 qgsII4)
-nH=2 #2
-Primary=(proton iron) #(proton iron photon)
-nP=2 #3
-Energies=(20 19.5 19 18.5) #(20 19.5 19 18.5)
-nE=4 #4
-Angles=(0deg 26deg 38deg 49deg 60deg) #(0deg 26deg 38deg 49deg 60deg)
-nA=5 #5
+HadronicModels=(qgsII4) #(qgsII3 qgsII4)
+nH=1 #2
+Primary=(proton) #(proton iron photon)
+nP=1 #3
+Energies=(19) #(20 19.5 19 18.5)
+nE=1 #4
+Angles=(38deg) #(0deg 26deg 38deg 49deg 60deg)
+nA=1 #5
 
 for (( hMuon=0; hMuon<nH; hMuon=hMuon+1 ))
 do

@@ -2392,6 +2392,18 @@ G4PhysicsTable.hh
 G4PhysicsOrderedFreeVector.hh
 /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4PhysicsOrderedFreeVector.hh
 
+/remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4OpenGLImmediateQt.hh
+G4OpenGLQt.hh
+/remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4OpenGLQt.hh
+
+/remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4OpenGLQt.hh
+G4VGraphicsSystem.hh
+/remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4VGraphicsSystem.hh
+
+/remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4OpenGLStoredQt.hh
+G4OpenGLQt.hh
+/remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4OpenGLQt.hh
+
 /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4OpticalPhoton.hh
 globals.hh
 /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/globals.hh

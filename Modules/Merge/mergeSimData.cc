@@ -105,7 +105,7 @@ int main(){
   
   cout << "dir to get files of: " << flush;
   //getline( cin, dir );  // gets everything the user ENTERs
-  dir =  "/remote/tesla/bmanning/data/SimulationData/proton/19/38deg";
+  dir =  "/remote/tesla/bmanning/data/SimulationData/qgsII4/proton/19/38deg";
   dp = opendir( dir.c_str() );
   if (dp == NULL)
     {
@@ -324,6 +324,12 @@ int main(){
   if (Trace->IsOpen() ) printf("Offline sim file opened successfully\n");
   TGraph *LDFSD = (TGraph*)Trace->Get("LDFSD");
   TGraph *LDFSSD = (TGraph*)Trace->Get("LDFSSD");
+  TGraph *eLDFSD = (TGraph*)Trace->Get("eLDFSD");
+  TGraph *pLDFSD = (TGraph*)Trace->Get("pLDFSD");
+  TGraph *mLDFSD = (TGraph*)Trace->Get("mLDFSD");
+  TGraph *eLDFSSD = (TGraph*)Trace->Get("eLDF");
+  TGraph *pLDFSSD = (TGraph*)Trace->Get("pLDF");
+  TGraph *mLDFSSD = (TGraph*)Trace->Get("mLDF");
   
   TCanvas *c = new TCanvas("All4", "All4", 1920,1000);
   mg->Add(simLDFSSD);
@@ -668,6 +674,217 @@ int main(){
   legsimComponentsSSDprof->Draw("SAME");
   
   CombinedPlot2->Write();
+
+  TCanvas* CombinedPlot3 = new TCanvas("combinedPlot3", "combinedPlot3", 800,600);
+  TPad pad2_2("Signal", "MIP", 0.01, 0.5, 0.99, 0);
+  TPad pad1_2("Signal", "VEM", 0.01, 0.99, 0.99, 0.5);
+
+  TMultiGraph *mg4 = new TMultiGraph();
+  TMultiGraph *mg5 = new TMultiGraph();
+  
+  CombinedPlot3->cd();
+  pad1_2.Draw();
+  pad1_2.cd();
+  pad1_2.SetLogy();
+  mg4->Add(eSimLDFSD);
+  mg4->Add(pSimLDFSD);
+  mg4->Add(mSimLDFSD);
+  //simLDFSDnum->Draw("SAME");
+  mg4->Add(eLDFSD);
+  mg4->Add(pLDFSD);
+  mg4->Add(mLDFSD);
+
+  eLDFSD->SetMarkerSize(1);   pLDFSD->SetMarkerSize(1);   mLDFSD->SetMarkerSize(1); 
+  eLDFSD->SetMarkerStyle(29);  pLDFSD->SetMarkerStyle(29);  mLDFSD->SetMarkerStyle(29);
+  
+  mg4->Draw("AP");
+  mg4->SetMinimum(0.1);
+  mg4->SetMaximum(15000);
+  mg4->GetYaxis()->SetTitle("Signal (VEM)");
+  mg4->GetXaxis()->SetLimits(0,4000);
+  mg4->GetXaxis()->SetTitle("r (m)");
+  mg4->SetTitle("Lateral Distribution Function (My G4 vs OffLine)");
+
+
+  
+  CombinedPlot3->cd();
+  pad2_2.Draw();
+  pad2_2.cd();
+  pad2_2.SetLogy();
+
+  mg5->Add(eSimLDFSSD);
+  mg5->Add(pSimLDFSSD);
+  mg5->Add(mSimLDFSSD);
+  //simLDFSSDnum->Draw("SAME");
+  mg5->Add(eLDFSSD);
+  mg5->Add(pLDFSSD);
+  mg5->Add(mLDFSSD);
+
+  eLDFSSD->SetMarkerSize(1);   pLDFSSD->SetMarkerSize(1);   mLDFSSD->SetMarkerSize(1); 
+  eLDFSSD->SetMarkerStyle(30);  pLDFSSD->SetMarkerStyle(30);  mLDFSSD->SetMarkerStyle(30);
+  
+  mg5->Draw("AP");
+  mg5->SetMinimum(0.1);
+  mg5->SetMaximum(15000);
+  mg5->GetYaxis()->SetTitle("Signal (MIP)");
+  mg5->GetXaxis()->SetLimits(0,4000);
+  mg5->GetXaxis()->SetTitle("r (m)");
+  mg5->SetTitle("Lateral Distribution Function (My G4 vs OffLine)");
+
+  CombinedPlot3->Write();
+  
+  TCanvas* GammaOffLineMyG4 = new TCanvas("GammaOfflineMyG4", "GammaOfflineMyG4", 800,600);
+  TPad pad2_3("Signal", "MIP", 0.01, 0.5, 0.99, 0);
+  TPad pad1_3("Signal", "VEM", 0.01, 0.99, 0.99, 0.5);
+  TMultiGraph *mg6 = new TMultiGraph();
+  TMultiGraph *mg7 = new TMultiGraph();
+  pad1_3.Draw();
+  pad1_3.cd();
+  pad1_3.SetLogy(); 
+  mg6->Add(pSimLDFSD);
+  mg6->Add(pLDFSD);
+  mg6->Draw("AP");
+  mg6->SetMinimum(0.001);
+  mg6->SetMaximum(15000);
+  mg6->GetYaxis()->SetTitle("Signal (VEM)");
+  mg6->GetXaxis()->SetLimits(0,4000);
+  mg6->GetXaxis()->SetTitle("r (m)");
+  mg6->SetTitle("Lateral Distribution Function (My G4 vs OffLine)");
+  mg6->Write("GammaOffLineMyG4_WCD");
+
+  TLegend* GammaComponentsSD = new TLegend(0.7, 0.6, 0.8, 0.8);
+  GammaComponentsSD->AddEntry(pSimLDFSD, "#gamma, My G4", "p");
+  GammaComponentsSD->AddEntry(pLDFSD, "#gamma, OffLine", "p");
+  GammaComponentsSD->SetBorderSize(0);
+  GammaComponentsSD->Draw("SAME");
+
+  
+  GammaOffLineMyG4->cd();
+  pad2_3.Draw();
+  pad2_3.cd();
+  pad2_3.SetLogy();
+
+  mg7->Add(pSimLDFSSD);
+  mg7->Add(pLDFSSD);
+  mg7->Draw("AP");
+  mg7->SetMinimum(0.001);
+  mg7->SetMaximum(15000);
+  mg7->GetYaxis()->SetTitle("Signal (MIP)");
+  mg7->GetXaxis()->SetLimits(0,4000);
+  mg7->GetXaxis()->SetTitle("r (m)");
+  mg7->SetTitle("Lateral Distribution Function (My G4 vs OffLine)");
+  mg7->Write("GammaOffLineMyG4_SSD");
+  TLegend* GammaComponentsSSD = new TLegend(0.7, 0.6, 0.8, 0.8);
+  GammaComponentsSSD->AddEntry(pSimLDFSSD, "#gamma, My G4", "p");
+  GammaComponentsSSD->AddEntry(pLDFSSD, "#gamma, OffLine", "p");
+  GammaComponentsSSD->SetBorderSize(0);
+  GammaComponentsSSD->Draw("SAME");
+  GammaOffLineMyG4->Write();
+
+  TCanvas* ElectronOffLineMyG4 = new TCanvas("ElectronOffLineMyG4", "ElectronOffLineMyG4", 800,600);
+  
+  TPad pad2_4("Signal", "MIP", 0.01, 0.5, 0.99, 0);
+  TPad pad1_4("Signal", "VEM", 0.01, 0.99, 0.99, 0.5);
+  TMultiGraph *mg8 = new TMultiGraph();
+  TMultiGraph *mg9 = new TMultiGraph();
+  pad1_4.Draw();
+  pad1_4.cd();
+  pad1_4.SetLogy(); 
+  mg8->Add(eSimLDFSD);
+  mg8->Add(eLDFSD);
+  mg8->Draw("AP");
+  mg8->SetMinimum(0.001);
+  mg8->SetMaximum(15000);
+  mg8->GetYaxis()->SetTitle("Signal (VEM)");
+  mg8->GetXaxis()->SetLimits(0,4000);
+  mg8->GetXaxis()->SetTitle("r (m)");
+  mg8->SetTitle("Lateral Distribution Function (My G4 vs OffLine)");
+  mg8->Write("ElectronOffLineMyG4_WCD");
+
+  TLegend* ElectronComponentsSD = new TLegend(0.7, 0.6, 0.8, 0.8);
+  ElectronComponentsSD->AddEntry(eSimLDFSD, "e^{+} / e^{-}, My G4", "p");
+  ElectronComponentsSD->AddEntry(eLDFSD, "e^{+} / e^{-}, OffLine", "p");
+  ElectronComponentsSD->SetBorderSize(0);
+  ElectronComponentsSD->Draw("SAME");
+
+  ElectronOffLineMyG4->cd();
+  pad2_4.Draw();
+  pad2_4.cd();
+  pad2_4.SetLogy();
+
+  mg9->Add(eSimLDFSSD);
+  mg9->Add(eLDFSSD);
+  mg9->Draw("AP");
+  mg9->SetMinimum(0.001);
+  mg9->SetMaximum(15000);
+  mg9->GetYaxis()->SetTitle("Signal (MIP)");
+  mg9->GetXaxis()->SetLimits(0,4000);
+  mg9->GetXaxis()->SetTitle("r (m)");
+  mg9->SetTitle("Lateral Distribution Function (My G4 vs OffLine)");
+  mg9->Write("ElectronOffLineMyG4_SSD");
+  TLegend* ElectronComponentsSSD = new TLegend(0.7, 0.6, 0.8, 0.8);
+  ElectronComponentsSSD->AddEntry(eSimLDFSSD, "e^{+} / e^{-}, My G4", "p");
+  ElectronComponentsSSD->AddEntry(eLDFSSD, "e^{+} / e^{-}, OffLine", "p");
+  ElectronComponentsSSD->SetBorderSize(0);
+  ElectronComponentsSSD->Draw("SAME");
+  ElectronOffLineMyG4->Write();
+
+  TCanvas* MuonOffLineMyG4 = new TCanvas("MuonOffLineMyG4", "MuonOffLineMyG4", 800,600);
+  TPad pad2_5("Signal", "MIP", 0.01, 0.5, 0.99, 0);
+  TPad pad1_5("Signal", "VEM", 0.01, 0.99, 0.99, 0.5);
+  TMultiGraph *mg10 = new TMultiGraph();
+  TMultiGraph *mg11 = new TMultiGraph();
+  pad1_5.Draw();
+  pad1_5.cd();
+  pad1_5.SetLogy(); 
+  mg10->Add(mSimLDFSD);
+  mg10->Add(mLDFSD);
+  mg10->Draw("AP");
+  mg10->SetMinimum(0.001);
+  mg10->SetMaximum(15000);
+  mg10->GetYaxis()->SetTitle("Signal (VEM)");
+  mg10->GetXaxis()->SetLimits(0,4000);
+  mg10->GetXaxis()->SetTitle("r (m)");
+  mg10->SetTitle("Lateral Distribution Function (My G4 vs OffLine)");
+  mg10->Write("MuonOffLineMyG4_WCD");
+
+  TLegend* MuonComponentsSD = new TLegend(0.7, 0.6, 0.8, 0.8);
+  MuonComponentsSD->AddEntry(mSimLDFSD, "#mu, My G4", "p");
+  MuonComponentsSD->AddEntry(mLDFSD, "#mu, OffLine", "p");
+  MuonComponentsSD->SetBorderSize(0);
+  MuonComponentsSD->Draw("SAME");
+  
+  MuonOffLineMyG4->cd();
+  pad2_5.Draw();
+  pad2_5.cd();
+  pad2_5.SetLogy();
+
+  mg11->Add(mSimLDFSSD);
+  mg11->Add(mLDFSSD);
+  mg11->Draw("AP");
+  mg11->SetMinimum(0.001);
+  mg11->SetMaximum(15000);
+  mg11->GetYaxis()->SetTitle("Signal (MIP)");
+  mg11->GetXaxis()->SetLimits(0,4000);
+  mg11->GetXaxis()->SetTitle("r (m)");
+  mg11->SetTitle("Lateral Distribution Function (My G4 vs OffLine)");
+  mg11->Write("MuonOffLineMyG4_SSD");
+
+  TLegend* MuonComponentsSSD = new TLegend(0.7, 0.6, 0.8, 0.8);
+  MuonComponentsSSD->AddEntry(mSimLDFSSD, "#mu, My G4", "p");
+  MuonComponentsSSD->AddEntry(mLDFSSD, "#mu, OffLine", "p");
+  MuonComponentsSSD->SetBorderSize(0);
+  MuonComponentsSSD->Draw("SAME");  
+
+  MuonOffLineMyG4->Write();
+
+
+
+
+
+
+
+
   simTrace->Write();
 
 

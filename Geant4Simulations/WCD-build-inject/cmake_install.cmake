@@ -49,7 +49,7 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
      NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/Cherenkov")
     file(RPATH_CHANGE
          FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/Cherenkov"
-         OLD_RPATH "/remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64:/remote/tesla/bmanning/auger/software/ApeInstall/External/clhep/2.4.0.4/lib:"
+         OLD_RPATH "/remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64:/remote/tesla/bmanning/Qt5.7.0/5.7/gcc_64/lib:/remote/tesla/bmanning/auger/software/ApeInstall/External/clhep/2.4.0.4/lib:"
          NEW_RPATH "")
     if(CMAKE_INSTALL_DO_STRIP)
       execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/bin/Cherenkov")

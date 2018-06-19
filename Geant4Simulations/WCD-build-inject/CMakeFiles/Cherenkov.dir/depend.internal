@@ -170,6 +170,9 @@ CMakeFiles/Cherenkov.dir/Cherenkov.cc.o
  /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4NormalNavigation.hh
  /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4NormalNavigation.icc
  /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4NullModel.hh
+ /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4OpenGLImmediateQt.hh
+ /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4OpenGLQt.hh
+ /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4OpenGLStoredQt.hh
  /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4OrderedTable.hh
  /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4PDefManager.hh
  /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/include/Geant4/G4ParameterisedNavigation.hh

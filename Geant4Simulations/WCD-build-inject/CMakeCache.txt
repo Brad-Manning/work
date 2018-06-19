@@ -203,6 +203,21 @@ Cherenkov_SOURCE_DIR:STATIC=/remote/tesla/bmanning/work/Geant4Simulations/WCD/WC
 //The directory containing a CMake configuration file for Geant4.
 Geant4_DIR:PATH=/remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/Geant4-10.4.1
 
+//The directory containing a CMake configuration file for Qt5Core.
+Qt5Core_DIR:PATH=/remote/tesla/bmanning/Qt5.7.0/5.7/gcc_64/lib/cmake/Qt5Core
+
+//The directory containing a CMake configuration file for Qt5Gui.
+Qt5Gui_DIR:PATH=/remote/tesla/bmanning/Qt5.7.0/5.7/gcc_64/lib/cmake/Qt5Gui
+
+//The directory containing a CMake configuration file for Qt5OpenGL.
+Qt5OpenGL_DIR:PATH=/remote/tesla/bmanning/Qt5.7.0/5.7/gcc_64/lib/cmake/Qt5OpenGL
+
+//The directory containing a CMake configuration file for Qt5PrintSupport.
+Qt5PrintSupport_DIR:PATH=/remote/tesla/bmanning/Qt5.7.0/5.7/gcc_64/lib/cmake/Qt5PrintSupport
+
+//The directory containing a CMake configuration file for Qt5Widgets.
+Qt5Widgets_DIR:PATH=/remote/tesla/bmanning/Qt5.7.0/5.7/gcc_64/lib/cmake/Qt5Widgets
+
 //Build example with Geant4 UI and Vis drivers
 WITH_GEANT4_UIVIS:BOOL=ON
 

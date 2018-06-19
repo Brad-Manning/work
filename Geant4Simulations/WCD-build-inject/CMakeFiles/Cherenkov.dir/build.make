@@ -219,6 +219,8 @@ Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.0
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4visHepRep.so
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4RayTracer.so
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4VRML.so
+Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4OpenGL.so
+Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4gl2ps.so
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4interfaces.so
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4persistency.so
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4error_propagation.so
@@ -228,6 +230,12 @@ Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.0
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4FR.so
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4vis_management.so
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4modeling.so
+Cherenkov: /usr/lib64/libGL.so
+Cherenkov: /remote/tesla/bmanning/Qt5.7.0/5.7/gcc_64/lib/libQt5OpenGL.so.5.7.0
+Cherenkov: /remote/tesla/bmanning/Qt5.7.0/5.7/gcc_64/lib/libQt5PrintSupport.so.5.7.0
+Cherenkov: /remote/tesla/bmanning/Qt5.7.0/5.7/gcc_64/lib/libQt5Widgets.so.5.7.0
+Cherenkov: /remote/tesla/bmanning/Qt5.7.0/5.7/gcc_64/lib/libQt5Gui.so.5.7.0
+Cherenkov: /remote/tesla/bmanning/Qt5.7.0/5.7/gcc_64/lib/libQt5Core.so.5.7.0
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4run.so
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4event.so
 Cherenkov: /remote/tesla/bmanning/auger/software/ApeInstall/External/geant4/10.04.p01/lib64/libG4tracking.so
