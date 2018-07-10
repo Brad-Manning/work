@@ -1,4 +1,4 @@
-# Install script for directory: /remote/tesla/bmanning/ape-build-brad/geant4/geant4.10.04.p01/examples/extended/radioactivedecay/rdecay02
+# Install script for directory: /remote/tesla/bmanning/work/Geant4Simulations/simpleRadioactiveDecay
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)

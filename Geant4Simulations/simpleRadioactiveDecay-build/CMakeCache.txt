@@ -219,7 +219,13 @@ WITH_GEANT4_UIVIS:BOOL=ON
 rdecay02_BINARY_DIR:STATIC=/remote/tesla/bmanning/work/Geant4Simulations/simpleRadioactiveDecay-build
 
 //Value Computed by CMake
-rdecay02_SOURCE_DIR:STATIC=/remote/tesla/bmanning/ape-build-brad/geant4/geant4.10.04.p01/examples/extended/radioactivedecay/rdecay02
+rdecay02_SOURCE_DIR:STATIC=/remote/tesla/bmanning/work/Geant4Simulations/simpleRadioactiveDecay
+
+//Value Computed by CMake
+simpleRadioactiveDecay_BINARY_DIR:STATIC=/remote/tesla/bmanning/work/Geant4Simulations/simpleRadioactiveDecay-build
+
+//Value Computed by CMake
+simpleRadioactiveDecay_SOURCE_DIR:STATIC=/remote/tesla/bmanning/work/Geant4Simulations/simpleRadioactiveDecay
 
 
 ########################
@@ -302,7 +308,7 @@ CMAKE_GENERATOR_PLATFORM:INTERNAL=
 CMAKE_GENERATOR_TOOLSET:INTERNAL=
 //Source directory with the top level CMakeLists.txt file for this
 // project
-CMAKE_HOME_DIRECTORY:INTERNAL=/remote/tesla/bmanning/ape-build-brad/geant4/geant4.10.04.p01/examples/extended/radioactivedecay/rdecay02
+CMAKE_HOME_DIRECTORY:INTERNAL=/remote/tesla/bmanning/work/Geant4Simulations/simpleRadioactiveDecay
 //Install .so files without execute permission.
 CMAKE_INSTALL_SO_NO_EXE:INTERNAL=0
 //ADVANCED property for variable: CMAKE_LINKER

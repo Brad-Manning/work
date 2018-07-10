@@ -1,0 +1,8 @@
+/remote/tesla/bmanning/work/Geant4Simulations/TA-inject-build/CMakeFiles/install/local.dir
+/remote/tesla/bmanning/work/Geant4Simulations/TA-inject-build/CMakeFiles/install/strip.dir
+/remote/tesla/bmanning/work/Geant4Simulations/TA-inject-build/CMakeFiles/B1.dir
+/remote/tesla/bmanning/work/Geant4Simulations/TA-inject-build/CMakeFiles/SSDSimulation.dir
+/remote/tesla/bmanning/work/Geant4Simulations/TA-inject-build/CMakeFiles/install.dir
+/remote/tesla/bmanning/work/Geant4Simulations/TA-inject-build/CMakeFiles/edit_cache.dir
+/remote/tesla/bmanning/work/Geant4Simulations/TA-inject-build/CMakeFiles/rebuild_cache.dir
+/remote/tesla/bmanning/work/Geant4Simulations/TA-inject-build/CMakeFiles/list_install_components.dir

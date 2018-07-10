@@ -340,7 +340,6 @@ int createGEANT4Files(int argc, char **argv, parameters parameter, bool useWeigh
 		//double zprime = Part.y*sin(Part.primtheta)/100.0; Unused as of 23/5/2018
 		r = (sqrt( pow(yprime,2 ) + pow(xprime,2)))/100.0; //radius in shower plane
 		phi=atan2( yprime , xprime ); //azimuth in shower plane - NOTE: Must use atan2 to consider all 4 quadrants
-		//cout << r << endl;
 	
 		//time=Part.t-(Part.zstart-theRun.OBSLEVELS[Part.obslev-1])*(1.0E+07/cos(Part.primtheta))/c-Part.x*1.0E+07*sin(Part.primtheta)*cos(Part.primphi)/c-Part.y*1.0E+07*sin(Part.primtheta)*sin(Part.primphi)/c;//time in shower front
 

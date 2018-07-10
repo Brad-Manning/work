@@ -54,7 +54,7 @@ RM = /remote/tesla/bmanning/auger/software/ApeInstall/cmake/3.11.1/bin/cmake -E 
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = /remote/tesla/bmanning/ape-build-brad/geant4/geant4.10.04.p01/examples/extended/radioactivedecay/rdecay02
+CMAKE_SOURCE_DIR = /remote/tesla/bmanning/work/Geant4Simulations/simpleRadioactiveDecay
 
 # The top-level build directory on which CMake was run.
 CMAKE_BINARY_DIR = /remote/tesla/bmanning/work/Geant4Simulations/simpleRadioactiveDecay-build

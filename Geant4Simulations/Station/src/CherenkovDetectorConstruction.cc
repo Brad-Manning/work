@@ -219,20 +219,20 @@ G4VPhysicalVolume* CherenkovDetectorConstruction::Construct()
   G4LogicalVolume* logic_aluminum_cover = new G4LogicalVolume(aluminum_cover, aluminum, "aluminum_cover");
   G4LogicalVolume* logic_aluminum_bottom = new G4LogicalVolume(aluminum_bottom, aluminum, "aluminum_bottom");
   
-  new G4PVPlacement(0, G4ThreeVector(0,0*cm,0.65*m+0.5*cm),logic_vessel_cover,"vessel_cover",world_log,false,0,checkOverlaps);
-  new G4PVPlacement(0, G4ThreeVector(0,61*cm,0.65*m+1.5*cm), logic_vessel_horizontal_strip, "vessel_horizontal_strip_1", world_log, false, 0, checkOverlaps);
-  new G4PVPlacement(0, G4ThreeVector(0,-61*cm,0.65*m+1.5*cm),logic_vessel_horizontal_strip, "vessel_horizontal_strip_2", world_log, false, 0, checkOverlaps);
-  new G4PVPlacement(0, G4ThreeVector(0+186*cm,0*cm,0.65*m+1.5*cm), logic_vessel_vertical_strip, "vessel_vertical_strip_1",world_log, false, 0, checkOverlaps);
-  new G4PVPlacement(0, G4ThreeVector(0-186*cm,0*cm,0.65*m+1.5*cm), logic_vessel_vertical_strip, "vessel_vertical_strip_2", world_log, false, 0, checkOverlaps);
-  new G4PVPlacement(0, G4ThreeVector(0,0*cm,0.65*m+3.0*cm), logic_vessel_bottom, "vessel_bottom", world_log, false, 0, checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0,0*cm,1.27*m+0.5*cm),logic_vessel_cover,"vessel_cover",world_log,false,0,checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0,61*cm,1.27*m+1.5*cm), logic_vessel_horizontal_strip, "vessel_horizontal_strip_1", world_log, false, 0, checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0,-61*cm,1.27*m+1.5*cm),logic_vessel_horizontal_strip, "vessel_horizontal_strip_2", world_log, false, 0, checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0+186*cm,0*cm,1.27*m+1.5*cm), logic_vessel_vertical_strip, "vessel_vertical_strip_1",world_log, false, 0, checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0-186*cm,0*cm,1.27*m+1.5*cm), logic_vessel_vertical_strip, "vessel_vertical_strip_2", world_log, false, 0, checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0,0*cm,1.27*m+3.0*cm), logic_vessel_bottom, "vessel_bottom", world_log, false, 0, checkOverlaps);
 
-  new G4PVPlacement(0, G4ThreeVector(0,0*cm,0.65*m-0.5*mm), logic_aluminum_cover, "aluminum_cover", world_log, false, 0, checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0,0*cm,1.27*m-0.5*mm), logic_aluminum_cover, "aluminum_cover", world_log, false, 0, checkOverlaps);
 
-  new G4PVPlacement(0, G4ThreeVector(0,0*cm,0.65*m-10.5*mm), logic_aluminum_cover, "aluminum_cover2", world_log, false, 0, checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0,0*cm,1.27*m-10.5*mm), logic_aluminum_cover, "aluminum_cover2", world_log, false, 0, checkOverlaps);
   
-  new G4PVPlacement(0, G4ThreeVector(0,0*cm,0.65*m+40.5*mm), logic_aluminum_bottom, "aluminum_bottom", world_log, false, 0, checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0,0*cm,1.27*m+40.5*mm), logic_aluminum_bottom, "aluminum_bottom", world_log, false, 0, checkOverlaps);
 
-  new G4PVPlacement(0, G4ThreeVector(0,0*cm,0.65*m+50.5*mm), logic_aluminum_bottom, "aluminum_bottom2", world_log, false, 0, checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0,0*cm,1.27*m+50.5*mm), logic_aluminum_bottom, "aluminum_bottom2", world_log, false, 0, checkOverlaps);
   
   
   //-----------------------------------------------------------------------------------------------------------
@@ -248,8 +248,8 @@ G4VPhysicalVolume* CherenkovDetectorConstruction::Construct()
   G4LogicalVolume* logic_scintillator_left_module = new G4LogicalVolume(scintillator_left_module, plastic, "scintillator_left_module");
   G4LogicalVolume* logic_scintillator_right_module = new G4LogicalVolume(scintillator_right_module, plastic, "scintillator_right_module");
 
-  new G4PVPlacement(0, G4ThreeVector(0+105*cm,0*cm,0.65*m+1.5*cm), logic_scintillator_left_module, "scintillator_left_module", world_log, false, 0, checkOverlaps);
-  new G4PVPlacement(0, G4ThreeVector(0-105*cm, 0*cm,0.65*m+1.5*cm), logic_scintillator_right_module,  "scintillator_right_module", world_log, false, 0, checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0+105*cm,0*cm,1.27*m+1.5*cm), logic_scintillator_left_module, "scintillator_left_module", world_log, false, 0, checkOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0-105*cm, 0*cm,1.27*m+1.5*cm), logic_scintillator_right_module,  "scintillator_right_module", world_log, false, 0, checkOverlaps);
 
   fScoringVolume = logic_scintillator_left_module;
   fScoringVolume2 = logic_scintillator_right_module;

@@ -1,0 +1,57 @@
+// Bradley Manning
+
+
+
+
+signal getDataFromDirectory(string directory, parameters parameter)
+{
+  ifstream fin;
+  string dir, filepath, file;
+  string nameOfLine;
+  double num; DIR *dp;
+  double num2; double num3;
+  struct dirent *dirp;
+  struct stat filestat;
+  vector<double> VEM;
+  double nFiles = 0;
+  double sumVEM = 0;
+  double finalVEM;
+  
+  //cout << "dir to get files of: " << flush;
+  dir = directory;
+ 
+  dp = opendir( dir.c_str() );
+  if (dp == NULL)
+    {
+      cout << "Error(" << errno << ") opening " << dir << endl;
+    }
+  while ((dirp = readdir( dp )))
+    {
+      filepath = dir + "/" + dirp->d_name;
+      file = dirp->d_name;
+      int found=file.find(".long");
+      // If the file is a directory (or is in some way invalid) we'll skip it
+      if (stat( filepath.c_str(), &filestat )) continue;
+      if (S_ISDIR( filestat.st_mode )) continue;
+
+      // Endeavor to read a single number from the file and display it
+      fin.open( filepath.c_str() );
+      //fin.open ("/remote/tesla/bmanning/data/EnergyTable/TA/qgsII4/iron/19/49deg/800-muon-1.txt");
+      //  cout << file << endl;
+      //File is opened
+   
+       if ( found!=std::string::npos)
+       	{
+      	  while ( fin >> num >> num2 >> num3) 
+	    {
+	    }
+	}
+       fin.close();
+    }
+  }
+}
+
+
+int main()
+{
+}

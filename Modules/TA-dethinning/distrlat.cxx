@@ -1,0 +1,161 @@
+#include "TMath.h"
+#include "TFile.h"
+#include "TH1.h"
+#include "THStack.h"
+#include "TStyle.h"
+#include "TCanvas.h"
+#include "TAxis.h"
+#include "TLegend.h"
+#include "TPaveStats.h"
+#include "TF1.h"
+
+//
+// The lateral shower age parameter as an estimator of chemical composition
+// A. Tapia et al.
+// 33ND INTERNATIONAL COSMIC RAY CONFERENCE, RIO DE JANEIRO 2013
+// https://arxiv.org/abs/1309.3536
+// https://arxiv.org/pdf/1309.3536v1.pdf
+//
+double Linsley_rho(const double *x, const double *p) {
+  double R = x[0];
+  double CN = p[0];
+  double alpha = p[1];
+  double eta = p[2];
+  double R_0 = p[3];
+  double rho = 1.0;
+  R /= R_0;
+  rho *= TMath::Power(R, -alpha) * TMath::Power(1.0 + R, -(eta - alpha));
+  rho *= CN / R_0 / R_0;
+  return rho;
+}
+
+void distrlat()
+{
+  TFile *f = TFile::Open("componentLDFs.root");
+  if ((!f) || f->IsZombie()) {
+    // if we cannot open the file, print an error message and return immediatly
+    printf("Error: cannot open cors_plot.root!\n");
+    delete f;
+    return;
+  }
+  // f->ls();
+  TH1F *hgamlat; f->GetObject("hgamlat", hgamlat);
+  TH1F *helelat; f->GetObject("helelat", helelat);
+  TH1F *hmuolat; f->GetObject("hmuolat", hmuolat);
+  TH1F *hhadlat; f->GetObject("hhadlat", hhadlat);
+  if (!(hgamlat && helelat && hmuolat && hhadlat)) {
+    printf("Error getting an histogram from the file!\n");
+    delete f;
+    return;
+  }
+  hgamlat->SetLineColor(kBlack);
+  helelat->SetLineColor(kRed);
+  hmuolat->SetLineColor(kGreen);
+  hhadlat->SetLineColor(kBlue);
+  
+#if 0 /* 0 or 1 */
+  // try to fix histogram errors
+  Double_t s1, s2, s3, s4;
+  s1 = hgamlat->GetBinContent(hgamlat->FindLastBinAbove(0));
+  s2 = helelat->GetBinContent(helelat->FindLastBinAbove(0));
+  s3 = hmuolat->GetBinContent(hmuolat->FindLastBinAbove(0));
+  s4 = hhadlat->GetBinContent(hhadlat->FindLastBinAbove(0));
+  s1 = TMath::Min(s1, s2); s3 = TMath::Min(s3, s4); s1 = s2 = s3 = s4 = TMath::Min(s1, s3);
+  hgamlat->Scale(1.0 / s1);
+  helelat->Scale(1.0 / s2);
+  hmuolat->Scale(1.0 / s3);
+  hhadlat->Scale(1.0 / s4);
+  hgamlat->Sumw2(kTRUE);
+  helelat->Sumw2(kTRUE);
+  hmuolat->Sumw2(kTRUE);
+  hhadlat->Sumw2(kTRUE);
+  hgamlat->Scale(s1);
+  helelat->Scale(s2);
+  hmuolat->Scale(s3);
+  hhadlat->Scale(s4);
+#endif /* 0 or 1 */
+  
+  THStack *hs = new THStack("hs", "Distribuzione laterale;Distanza dal core (m);Densita' (1/m^{2}_{})");
+  hs->Add(hgamlat);
+  hs->Add(helelat);
+  hs->Add(hmuolat);
+  hs->Add(hhadlat);
+  
+  gStyle->SetOptStat("nemr"); // "nemr" or "neMR"
+  gStyle->SetOptFit(112);
+  
+  Double_t offx = 1.0;
+  Double_t offy = 1.2;
+  Double_t n = 3;
+  Double_t marg = 0.17;
+  TCanvas *c = new TCanvas("c", "hists with different scales", 1280, 1024);
+  // c->SetLeftMargin(marg);
+  c->SetLogx();
+  c->SetLogy();
+  hs->Draw("NOSTACK");
+  c->Update();
+  hs->GetXaxis()->SetTitleOffset(offx);
+  hs->GetYaxis()->SetTitleOffset(offy);
+  hgamlat->Draw("HIST sames");
+  helelat->Draw("HIST sames");
+  hmuolat->Draw("HIST sames");
+  hhadlat->Draw("HIST sames");
+  c->Update();
+  TLegend *leg = new TLegend(0.75, 0.70, 0.55, 0.85);
+  leg->SetNColumns(1);
+  leg->AddEntry(hgamlat, "Fotoni", "l");
+  leg->AddEntry(helelat, "Elettroni/Positroni", "l");
+  leg->AddEntry(hmuolat, "Muoni", "l");
+  leg->AddEntry(hhadlat, "Adroni", "l");
+  leg->Draw();
+  // now retrieve each stats box and reposition them
+  TPaveStats *stats1 = (TPaveStats*)hgamlat->GetListOfFunctions()->FindObject("stats");
+  TPaveStats *stats2 = (TPaveStats*)helelat->GetListOfFunctions()->FindObject("stats");
+  TPaveStats *stats3 = (TPaveStats*)hmuolat->GetListOfFunctions()->FindObject("stats");
+  TPaveStats *stats4 = (TPaveStats*)hhadlat->GetListOfFunctions()->FindObject("stats");
+  stats1->SetTextColor(kBlack);
+  stats2->SetTextColor(kRed);
+  stats3->SetTextColor(kGreen);
+  stats4->SetTextColor(kBlue);
+  stats1->SetX1NDC(0.80); stats1->SetX2NDC(0.98);
+  stats1->SetY1NDC(0.77); stats1->SetY2NDC(0.92);
+  stats2->SetX1NDC(0.80); stats2->SetX2NDC(0.98);
+  stats2->SetY1NDC(0.60); stats2->SetY2NDC(0.75);
+  stats3->SetX1NDC(0.80); stats3->SetX2NDC(0.98);
+  stats3->SetY1NDC(0.43); stats3->SetY2NDC(0.58);
+  stats4->SetX1NDC(0.80); stats4->SetX2NDC(0.98);
+  stats4->SetY1NDC(0.26); stats4->SetY2NDC(0.41);
+  c->Update();
+  c->Print("gamma1_distr_lat.pdf");
+  
+  Double_t R_0 = 100.;
+  Double_t alpha = 0.5;
+  Double_t eta = 3.5;
+  TF1 *fitdistrlat = new TF1("fitdistrlat", Linsley_rho, 0, 1e4, 4);
+  fitdistrlat->SetParNames("C(#alpha,#eta) N", "#alpha", "#eta", "R_{0}^{}");
+  fitdistrlat->SetParameters(1., alpha, eta, R_0);
+  fitdistrlat->FixParameter(3, R_0); // fix "R_0"
+  
+  const char *fit_options = ""; // e.g. "" or "L" or "W" or "WW"
+  fitdistrlat->SetParameters(1., alpha, eta, R_0);
+  fitdistrlat->SetParameter(0, hgamlat->GetBinContent(1)/fitdistrlat->Eval(hgamlat->GetBinCenter(1)));
+  hgamlat->Fit(fitdistrlat, fit_options);
+  fitdistrlat->SetParameters(1., alpha, eta, R_0);
+  fitdistrlat->SetParameter(0, helelat->GetBinContent(1)/fitdistrlat->Eval(helelat->GetBinCenter(1)));
+  helelat->Fit(fitdistrlat, fit_options);
+  fitdistrlat->SetParameters(1., alpha, eta, R_0);
+  fitdistrlat->SetParameter(0, hmuolat->GetBinContent(1)/fitdistrlat->Eval(hmuolat->GetBinCenter(1)));
+  hmuolat->Fit(fitdistrlat, fit_options);
+  fitdistrlat->SetParameters(1., alpha, eta, R_0);
+  fitdistrlat->SetParameter(0, hhadlat->GetBinContent(1)/fitdistrlat->Eval(hhadlat->GetBinCenter(1)));
+  hhadlat->Fit(fitdistrlat, fit_options);
+  c->Update();
+  c->Print("gamma1_distr_lat_fit.pdf");
+  
+  delete leg;
+  delete hs;
+  delete c;
+  delete f; // automatically deletes all histograms
+  delete fitdistrlat;
+}
+

@@ -4,8 +4,8 @@ Compositions=(qgsII4 qgsII3) #(qgsII3 qgsII4)
 nC=2 #2
 Particles=(proton iron) # (proton iron)
 nP=2 #2
-Energies=(20 19.5 19 18.5)         #  (20 19.5 19 18.5)
-nE=4 #4
+Energies=(19)         #  (20 19.5 19 18.5)
+nE=1 #4
 Angles=(0deg 26deg 38deg 49deg 60deg)   #(0deg 26deg 38deg 49deg 60deg)
 nA=5  #5
 
@@ -22,8 +22,8 @@ do
 	    do
 		angle=${Angles[a]}
 	        newFileName=/remote/tesla/bmanning/data/${composition}/${particle}/${energy}/${angle}/*
-		#	newSaveLocation=/remote/tesla/bmanning/data/EnergyTable/Auger/${composition}/${particle}/${energy}/${angle}/
-		newSaveLocation=/remote/tesla/bmanning/data/ShowerComponents/qgsII4/proton/19/60deg/
+		newSaveLocation=/remote/tesla/bmanning/data/EnergyTable/TA/${composition}/${particle}/${energy}/${angle}/
+		#newSaveLocation=/remote/tesla/bmanning/data/ShowerComponents/qgsII4/proton/19/60deg/
 		
 sed -i "
     /<CORSIKA>/,/<\/CORSIKA>/ s@<file>.*</file>@<file>$newFileName</file>@;
@@ -55,8 +55,8 @@ do
 #	echo ${rs2}
 #	echo ${rs20}
 #	echo ${rs21}
-
-	/remote/tesla/bmanning/work/Modules/UniversalCORSIKAExtraction/./UniParticleReader ${fileName} <<EOF #/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part 
+	echo ${i}
+	/remote/tesla/bmanning/work/Modules/TA-dethinning/./UniParticleReader ${fileName} <<EOF #/remote/tesla/bmanning/data/qgsII3/proton/10E19/0deg/DAT200006.part 
  ${i}
 EOF
 
@@ -66,11 +66,11 @@ EOF
 
 	for (( j=1; j<=nUniqueShowers; j=j+1 ))
 	do	
-	    /remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/./Cherenkov *${j}.mac
-	  
+	    #/remote/tesla/bmanning/work/Geant4Simulations/WCD-build-inject/./Cherenkov *${j}.mac
+	    /remote/tesla/bmanning/work/Geant4Simulations/TA-inject-build/./SSDSimulation *${j}.mac
 	    /remote/tesla/bmanning/work/Modules/Merge/./merge
 	done
-	rm -f qgsII*
+	rm -f *.mac
     done
 
 saveLocation=$(sed -n 's/.*<saveLocation>\(.*\)<\/saveLocation>/\1/p' CORSIKAParameters.xml)
@@ -80,7 +80,7 @@ echo ${e}
 echo ${startingPosition}
 echo ${saveLocation}${startingPosition}${particle}-${e}.txt
 
-mv VEM_r_bins.txt ${saveLocation}${startingPosition}-${e}.txt
+mv MIP_r_bins.txt ${saveLocation}${startingPosition}-muon-${e}.txt
     
 rm -f qgsII*
 rm -f rValues.txt
@@ -89,7 +89,6 @@ rm -f weightAll.txt
 rm -f SSD.root
 rm -f VEM.txt
 rm -f eValues.txt
-#rm -f VEM_r_bins.txt
 rm -f Cherenkov.root
 rm -f LDF.root
 rm -f MIP_r_bins.txt

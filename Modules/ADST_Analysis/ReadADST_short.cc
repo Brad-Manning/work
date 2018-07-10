@@ -309,6 +309,7 @@ main(int argc, char **argv)
 	  const Detector& det = theRecEvent->GetDetector();
 	  for ( unsigned int iS=0;iS<sevent2.size();iS++){
 	    const unsigned int id = sevent2[iS].GetId();
+	    cout << id << endl;
 	    double X;
 	    double Y;
 	    double l;

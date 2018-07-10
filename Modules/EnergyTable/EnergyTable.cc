@@ -143,7 +143,7 @@ signal getDataFromDirectory(string directory, parameters parameter)
   ifstream fin;
   string dir, filepath, file;
   double num; DIR *dp;
-  
+  double num2; double num3;
   struct dirent *dirp;
   struct stat filestat;
   vector<double> VEM;
@@ -153,6 +153,7 @@ signal getDataFromDirectory(string directory, parameters parameter)
   
   //cout << "dir to get files of: " << flush;
   dir = directory;
+ 
   dp = opendir( dir.c_str() );
   if (dp == NULL)
     {
@@ -162,23 +163,33 @@ signal getDataFromDirectory(string directory, parameters parameter)
     {
       filepath = dir + "/" + dirp->d_name;
       file = dirp->d_name;
+      int found=file.find(parameter.tankPosition);
       // If the file is a directory (or is in some way invalid) we'll skip it
       if (stat( filepath.c_str(), &filestat )) continue;
       if (S_ISDIR( filestat.st_mode )) continue;
 
       // Endeavor to read a single number from the file and display it
       fin.open( filepath.c_str() );
-
+      //fin.open ("/remote/tesla/bmanning/data/EnergyTable/TA/qgsII4/iron/19/49deg/800-muon-1.txt");
+      //  cout << file << endl;
       //File is opened
-
-      while ( fin >> num ) 
-	{
-	  if ( file.find(parameter.tankPosition) != std::string::npos) {
-	    VEM.push_back(num);
-	    sumVEM = sumVEM + num;
-	    nFiles++;
-	  }
+   
+       if ( found!=std::string::npos)
+       	{
+      	  cout << "wowee " << file << endl;
+       	  cout << filepath.c_str() << endl;
+	 
+	  
+	  while ( fin >> num >> num2 >> num3) 
+	    {
+	      cout << parameter.tankPosition << endl;
+	      VEM.push_back(num);
+	      sumVEM = sumVEM + num;
+	      nFiles++;
+	    }
+	  
 	}
+       fin.close();
     }
   finalVEM = sumVEM / nFiles;
   cout << "VEM  = " << finalVEM << endl;
@@ -193,7 +204,7 @@ signal getDataFromDirectory(string directory, parameters parameter)
   }
   variance = variance / VEM.size();
   cout << "Variance = " << variance << endl;
-  double error = sqrt(variance);// / sqrt(VEM.size());
+  double error = sqrt(variance)/ sqrt(VEM.size());
 
   signal signal;
   signal.VEM = finalVEM;
@@ -288,9 +299,9 @@ int main()
    grqgsII4p[1]->Draw("P");
    grqgsII4p[2]->Draw("P");
    grqgsII4p[0]->Draw("P");
-   grqgsII4p[3]->GetYaxis()->SetTitle("log_{10} [S800 / (VEM m^{-2}) ]");
+   grqgsII4p[3]->GetYaxis()->SetTitle("log_{10} [S800 / (VEM) ]");
    grqgsII4p[3]->GetXaxis()->SetTitle("sec (#theta)");
-   grqgsII4p[3]->GetYaxis()->SetRangeUser(0.,3.5);
+   grqgsII4p[3]->GetYaxis()->SetRangeUser(0.001,10000);
    grqgsII4p[3]->GetXaxis()->SetRangeUser(0,2);
    grqgsII4p[0]->SetLineColor(1);
    grqgsII4p[1]->SetLineColor(1);
@@ -470,21 +481,21 @@ int main()
    double qgsII3i3_p1 = grqgsII3i[3]->GetFunction("myFit")->GetParameter(1);
    }
 
-   // TLegend* legend;
-   // legend = new TLegend(0.1,0.7,0.48,0.9);
-   // legend->SetNColumns(2);
-   // legend->SetHeader("Energies-Composition");
-   // legend->AddEntry("grqgsII4p","QGSJETII-04 proton","l");
-   // legend->AddEntry("grqgsII4p","10E18.5","p");
+   TLegend* legend;
+   legend = new TLegend(0.1,0.7,0.48,0.9);
+   legend->SetNColumns(2);
+   legend->SetHeader("Energies-Composition");
+   legend->AddEntry("grqgsII4p","QGSJETII-04 proton","l");
+   legend->AddEntry("grqgsII4p","10E18.5","p");
  
-   // legend->AddEntry("grqgsII4i","QGSJETII-04 iron", "l");
-   // legend->AddEntry("grqgsII4p2","10E19.5","p");
-   // legend->AddEntry("grqgsII3p", "QGSJETII-03 proton","l");
-   // legend->AddEntry("grqgsII4p1","10E19","p");
-   // legend->AddEntry("grqgsII3i","QGSJETII-03 iron", "l");
-   // legend->AddEntry("grqgsII4p3","10E20","p");
+   legend->AddEntry("grqgsII4i","QGSJETII-04 iron", "l");
+   legend->AddEntry("grqgsII4p2","10E19.5","p");
+   legend->AddEntry("grqgsII3p", "QGSJETII-03 proton","l");
+   legend->AddEntry("grqgsII4p1","10E19","p");
+   legend->AddEntry("grqgsII3i","QGSJETII-03 iron", "l");
+   legend->AddEntry("grqgsII4p3","10E20","p");
    
-   // legend->Draw();
+   legend->Draw();
 
    EnergyTableCanvas->SetLogy();
    EnergyTableCanvas->Write();
