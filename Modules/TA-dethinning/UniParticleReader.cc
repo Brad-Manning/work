@@ -1001,6 +1001,7 @@ int createLDF(int argc, char **argv, parameters parameter)
 	max_LDF_g = (TH1F*)gamma_LDF->Clone("gamma max LDF");
 	max_LDF_e = (TH1F*)electron_LDF->Clone("electron max LDF");
 	max_LDF_m = (TH1F*)muon_LDF->Clone("muon max LDF");
+
 	//	max_LDF_g->SetLineColor(kRed);
 	//	max_LDF_e->SetLineColor(kRed);
 	//max_LDF_m->SetLineColor(kRed);
@@ -1010,22 +1011,23 @@ int createLDF(int argc, char **argv, parameters parameter)
       double range[] = {660., 680., 700., 720., 740., 760., 780., 800., 820., 840., 860., 880., 900., 920., 940., 960., 980., 1000.};
      
 
-      for (int i = 0; i < 18-1; i++) {
-	if (xmax >= range[i] && xmax <= range[i+1])
-	  {
-	    if (isRangeDrawn[i] == 0) {
-
+      // for (int i = 0; i < 18-1; i++) {
+	// if (xmax >= range[i] && xmax <= range[i+1])
+	//   {
+	//if (isRangeDrawn[i] == 0) {
+      int i = 1;
 	      if (firstSave)
 		{
 		  multipleLDFs_g = (TCanvas*)componentLDFs->Get("MultipleLDFs_g");
 		}
-	      
+	      cout << " ?? " << endl;
 	      isRangeDrawn[i] = true;
 	      multipleLDFs_g->cd();
 	      multipleLDFs_g->SetLogy();
 	      gamma_LDF->SetLineColor(i);
 	      electron_LDF->SetLineColor(i);
 	      muon_LDF->SetLineColor(i);
+	      all_LDF->SetLineColor(kMagenta);
 	      if (firstDraw){ gamma_LDF->Draw(""); cout << "first draw" << endl; }
 	      else {gamma_LDF->Draw("SAME"); cout << "drawn same" << endl;}
 
@@ -1046,19 +1048,28 @@ int createLDF(int argc, char **argv, parameters parameter)
 	      multipleLDFs_m->SetLogy();
 	      if (firstDraw) {muon_LDF->Draw("SAME");}
 	      else {muon_LDF->Draw("SAME");}
-	      firstDraw = false;
 
+	      if (firstSave)
+		{
+		  multipleLDFs_a = (TCanvas*)componentLDFs->Get("MultipleLDFs_a");
+		}
+	      multipleLDFs_a->cd();
+	      multipleLDFs_a->SetLogy();
+	      if (firstDraw) {all_LDF->Draw("SAME");}
+	      else {all_LDF->Draw("SAME");}
 	      componentLDFs->cd();
-	      multipleLDFs_g->Write();
-	      multipleLDFs_e->Write();
-	      multipleLDFs_m->Write();
-	      multipleLDFs_a->Write();
+	      firstDraw = false;
+	      // multipleLDFs_g->Write();
+	      //multipleLDFs_e->Write();
+	      //multipleLDFs_m->Write();
+	      //multipleLDFs_a->Write();
 	      firstSave = true;
 	      
-	    }
-	  }
-      }
-
+	      //  }
+	    // }
+      
+	      // }
+      cout << " <?? " << endl;
       
       comparisonName << minXmax << "_" << maxXmax;
       TDirectory *comparisonMinMax = componentLDFs->mkdir(comparisonName.str().c_str());
@@ -1089,9 +1100,9 @@ int createLDF(int argc, char **argv, parameters parameter)
 	  minmax_LDF_canvas_m->cd();
 	  minmax_LDF_canvas_m->SetLogy();
 	  min_LDF_m->Draw();
-	  max_LDF_e->Draw("SAME");
+	  max_LDF_m->Draw("SAME");
 	  minmax_LDF_canvas_m->Write();
-	  
+
 	} 
       xmaxDirectory->cd();
       
@@ -1182,6 +1193,10 @@ int createLDF(int argc, char **argv, parameters parameter)
       multipleLDFs_m->Write();
       multipleLDFs_a->Write();
       componentLDFs->Write();
+      gamma_LDF->Reset();
+      muon_LDF->Reset();
+      electron_LDF->Reset();
+      all_LDF->Reset();
       //------------------------------------------------------------------------------
   }
 
